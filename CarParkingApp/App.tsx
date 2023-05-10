@@ -1,4 +1,6 @@
 
+
+
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import SplashScreen from './src/screens/splashScreen/SplashScreen'
@@ -16,6 +18,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { Provider } from "react-redux";
 import { store } from './src/store/store'
+import parkingSpace from './src/screens/parkingSlot/ParkingSpace'
 const Stack =createNativeStackNavigator();
 const App = () => {
 
@@ -24,7 +27,7 @@ const App = () => {
     <Provider store={store}>
 
        <NavigationContainer >
-      <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Navigator initialRouteName='parkingSpace' screenOptions={{headerShown: false}} >
         <Stack.Screen name="SplashScreen" component={SplashScreen} />
         <Stack.Screen name="OnBoarding" component={OnBoarding} />
         <Stack.Screen name="GetStart" component={GetStart} />
@@ -34,6 +37,7 @@ const App = () => {
         <Stack.Screen name="Password" component={Password} />
         <Stack.Screen name="UserProfile" component={UserProfile}/>
         <Stack.Screen name="MenuScreen" component={MenuScreen}/>
+        <Stack.Screen name="parkingSpace" component={parkingSpace}/>
 
         {/* <Stack.Screen name="ParkingHistory" component={ParkingHistory}/> */}
         {/* <Stack.Screen name="Setting" component={Setting}/> */}
