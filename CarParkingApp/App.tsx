@@ -1,7 +1,5 @@
 
-
-
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet } from 'react-native'
 import React from 'react'
 import SplashScreen from './src/screens/splashScreen/SplashScreen'
 import OnBoarding from './src/screens/onBoarding/OnBoarding'
@@ -52,4 +50,3 @@ const App = () => {
 
 export default App
 
-const styles = StyleSheet.create({})

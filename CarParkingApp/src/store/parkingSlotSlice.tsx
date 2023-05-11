@@ -7,7 +7,9 @@ const parkingSlotSlice = createSlice({
     },
     reducers: {
         setParkingSlotData:(state,action)=>{
-            return action.payload
+          if(state.parkingSlots.length==0){
+            state.parkingSlots=action.payload
+          }
         },
       bookSlot: (state, action) => {
         console.log(action)
