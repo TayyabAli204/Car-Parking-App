@@ -8,16 +8,16 @@ import { fontPixel,pixelSizeHorizontal,pixelSizeVertical } from '../../utils/Res
 import COLORS from '../../consts/colors';
 import CustomButton from '../../components/CustomButton';
 import Menu from '../../components/MenuButton'
+import CarIcon from '../../components/CarIcon';
 const ParkingSpace = () => {
   const dispatch = useDispatch();
   const slotsData = useSelector(
     (state: any) => state.parkingSlotSlice.parkingSlots,
   );
-  // console.log("slotsData",slotsData)
+  console.log(slotsData)
   useEffect(() => {
     async function getSlotsData() {
-      const res = await axios.get('http://192.168.50.2:8000/parkingSlot/data');
-      // console.log('data',res.data)
+      const res = await axios.get('http://192.168.50.65:8000/parkingSlot/data');
       dispatch(setParkingSlotData(res.data.data));
     }
     getSlotsData();
@@ -70,7 +70,12 @@ const ParkingSpace = () => {
                 style={{
                   backgroundColor: '#613EEA',
                 }}>
-                <Cars width={70} height={70} />
+               {
+
+                // <Cars    />
+                <CarIcon color={item.booked?'green':'white'}/>
+            
+               }
               </View>
             </TouchableOpacity>
           );

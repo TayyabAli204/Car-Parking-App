@@ -1,8 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { Alert } from "react-native";
 const parkingSlotSlice = createSlice({
     name: 'parkingSlotSlice',
     initialState: {
-     parkingSlots:[]
+     parkingSlots:[],
+    //  selectedSpot:{}
       
     },
     reducers: {
@@ -11,15 +13,19 @@ const parkingSlotSlice = createSlice({
             state.parkingSlots=action.payload
           }
         },
-      bookSlot: (state, action) => {
-        console.log(action)
-//        let updatedSlot=state.parkingSlots.map((item)=>{
-//         if(item?.id==action.payload?.id){
-// return action.payload
-//         }else{
-// return item
-//         }
-//        })
+      bookSlot: (state, {payload}) => {
+        
+        let updatedSlot:any=state.parkingSlots.map((item:any)=>{
+          if(item._id==payload?._id){
+            //           Alert.alert('you have booked '+item.parkingLotName)
+            console.log(item.parkingLotName,{...item,booked:true})
+            return {...item,booked:true}
+          }else{
+            return item
+            
+          }
+        })
+        state.parkingSlots=updatedSlot
       },
     },
     
