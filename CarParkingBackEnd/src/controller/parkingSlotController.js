@@ -1,16 +1,25 @@
 const { CarParking } = require("../models/parkingModel")
-
- const parkingSlotData=async(req,res)=>{
+  const parkingSlotData=async(req,res)=>{
     const data=await CarParking.find()
-    // req.json({
-    //     massage:"data chal gaya"
-    // })
-    // // console.log(data)
-    res.end('dhello')
-    // res.json({
-    //     massage:"data chal gaya",
-    //     data
-    // })
+    console.log(data)
+    // res.end('dfas')
+    res.json({
+        massage:"data chal gaya",
+        data
+    })
 
 }
-module.exports= parkingSlotData
+  const bookParkingSlot=async(req,res)=>{
+    console.log(req.body._id)
+  const updatedCarParking = await CarParking.findOneAndUpdate(
+    { _id: req.body._id},
+    { $set: req.body },
+    { new: true }
+  );
+res.json(updatedCarParking)
+
+
+
+
+}
+module.exports={parkingSlotData,bookParkingSlot}
