@@ -14,6 +14,3 @@ const CustomButton = (props:any) => {
 
 export default CustomButton
 
-const styles = StyleSheet.create({
-  
-})

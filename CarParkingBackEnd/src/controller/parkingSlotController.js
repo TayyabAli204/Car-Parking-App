@@ -6,11 +6,11 @@ const { CarParking } = require("../models/parkingModel")
     //     massage:"data chal gaya"
     // })
     // // console.log(data)
-    // res.end('dhello')
-    res.json({
-        massage:"data chal gaya",
-        data
-    })
+    res.end('dhello')
+    // res.json({
+    //     massage:"data chal gaya",
+    //     data
+    // })
 
 }
 module.exports= parkingSlotData
