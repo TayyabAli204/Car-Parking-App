@@ -6,22 +6,26 @@ import { useDispatch, useSelector } from 'react-redux'
 const ParkingSpace = () => {
     const dispatch=useDispatch()
     const slotsData=useSelector((state:any)=>state.parkingSlotSlice.parkingSlots)
+    console.log(slotsData)
     useEffect(()=>{
 async function  getSlotsData(){
-const data= await   axios.get('http://192.168.50.2:8000/parkingSlot/data')
-console.log('data',data)
-// dispatch(setParkingSlotData(data))
+const res= await   axios.get('http://192.168.50.2:8000/parkingSlot/data')
+// console.log('data',res.data)
+dispatch(setParkingSlotData(res.data))
+
 
 }
 getSlotsData()
     },[])
   return (
-    <View>
+    <View style={{flex:1,backgroundColor:'red'}}>
      {
     slotsData.map((item:any)=> {
         return <TouchableOpacity onPress={()=>dispatch(bookSlot(item))}>
             <Text>
-             fdasasdf
+       {
+        item.parkingLotName
+       }
             </Text>
         </TouchableOpacity>
     })
