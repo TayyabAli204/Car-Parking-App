@@ -10,7 +10,7 @@ const { CarParking } = require("../models/parkingModel")
 
 }
   const bookParkingSlot=async(req,res)=>{
-    console.log(req.body._id)
+    console.log(req.body,'data form body')
   const updatedCarParking = await CarParking.findOneAndUpdate(
     { _id: req.body._id},
     { $set: req.body },
