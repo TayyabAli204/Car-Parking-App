@@ -19,8 +19,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static("public"));
 
-app.get("/post", (req, resp) => {
-  console.log("request chali");
+app.post("/body", (req, resp) => {
+  console.log("request chali",req.body);
   resp.status(200).send("sucess");
 });
 
