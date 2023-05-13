@@ -2,8 +2,10 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import Menu from '../components/MenuButton';
 import { pixelSizeVertical,fontPixel } from '../utils/ResponsiveStyle'
-
+import { useSelector } from 'react-redux';
+import COLORS from '../consts/colors';
 const MenuSearchBar = (props:any) => {
+
   return (
     <View  style={props.MenuSearchBarStyle}>
         <Menu />
@@ -38,7 +40,7 @@ const styles = StyleSheet.create({
         paddingVertical: 20,
         gap: 10,
       },
-      stext: {fontSize: fontPixel(18), fontFamily: 'OpenSans-SemiBold'},
+      stext: {fontSize: fontPixel(18), color:COLORS.black,fontFamily: 'OpenSans-SemiBold'},
       stext1: {flexDirection: 'row', alignItems: 'center'},
       stext2: {fontSize: fontPixel(18), fontFamily: 'OpenSans-Bold'},
 })

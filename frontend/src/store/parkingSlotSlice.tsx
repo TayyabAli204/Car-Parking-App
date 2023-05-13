@@ -6,22 +6,24 @@ const parkingSlotSlice = createSlice({
      parkingSlots:[
      
      ],
-  
+  selectedArea:''
       
     },
     
     reducers: {
         setParkingSlotData:(state,action)=>{
-          if(state.parkingSlots.length==0){
+          // if(state.parkingSlots.length==0){      
             state.parkingSlots=action.payload
-          }
+          // }
+        },
+        setSelectedArea:(state,{payload})=>{
+          state.selectedArea=payload
         },
       bookSlot: (state, {payload}) => {
         
         let updatedSlot:any=state.parkingSlots.map((item:any)=>{
           if(item._id==payload?._id){
             //           Alert.alert('you have booked '+item.parkingLotName)
-            console.log(item.parkingLotName,{...item,booked:true})
            
             return {...item,booked:true,}
           }else{
@@ -46,6 +48,6 @@ const parkingSlotSlice = createSlice({
       }
     }
   });
-  export const {setParkingSlotData,bookSlot,setBookSpace}=parkingSlotSlice.actions
+  export const {setParkingSlotData,bookSlot,setBookSpace,setSelectedArea}=parkingSlotSlice.actions
 export default parkingSlotSlice.reducer
   

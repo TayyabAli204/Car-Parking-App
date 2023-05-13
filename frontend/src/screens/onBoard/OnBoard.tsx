@@ -18,7 +18,6 @@ import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
 const GetStarted = ({}) => {
   const navigation: any = useNavigation();
-  console.log('hello', navigation);
   const getStart = async () => {
     try {
       // const response = await axios.get('http://192.168.50.2:8000/createPost');

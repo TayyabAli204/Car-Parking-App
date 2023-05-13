@@ -1,5 +1,6 @@
- const initialData = [
-   {
+  [
+  
+     {
 
      parkingLotName: "Lot A",
      parkingSpaceNumber: 1,

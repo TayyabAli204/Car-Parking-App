@@ -9,11 +9,11 @@ const postRoutes = require("./src/routes/postRoutes");
 const userRoutes = require("./src/routes/userRoutes");
 const {storingData}=require('./src/models/parkingModel')
 const parkingSlotRoute=require('./src/routes/parkingSlotRoutes')
-db.connection();
+db.connection('Connect');
 
 const app = express();
 const port = 8000;
-app.get('/data',storingData)
+app.get('/data/:id',storingData)
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

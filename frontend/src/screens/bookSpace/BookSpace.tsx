@@ -31,13 +31,14 @@ const BookSpace = () => {
   const [checkInTime, onChangeNumber] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
 
-  const {parkingSlots, bookSpaces} = useSelector(
+  const {parkingSlots, bookSpaces,selectedArea} = useSelector(
     (state: any) => state.parkingSlotSlice,
   );
-  console.log(bookSpaces, parkingSlots, 'this is from store estimaitd time');
+  console.log(parkingSlots)
   const bookSpace = () => {
-    console.log("estimatedTime",estimatedTime)
-    console.log("checkInTime",checkInTime)
+
+    // console.log("estimatedTime",estimatedTime)
+    // console.log("checkInTime",checkInTime)
 
     dispatch(setBookSpace({estimatedTime, checkInTime}));
 
@@ -48,9 +49,11 @@ const BookSpace = () => {
       parkingSlots.forEach(async (item:any, index:any) => {
         if (item.booked == true) {
           const res = await axios.post(
-            'http://192.168.50.2:8000/parkingSlot/book',
-            item,
+            'http://192.168.50.65:8000/parkingSlot/book',
+            {...item,selectedArea},
           );
+          console.log(res.data)
+          navigation.navigate('UserProfile')
         }
       });
       setModalVisible(false);
@@ -66,7 +69,7 @@ const BookSpace = () => {
         backgroundColor={'white'}
         barStyle={'dark-content'}
       />
-      <MenuSearchBar MenuSearchBarStyle={styles.mainspace} title="Lekki Gardens Car Park A" titleRS="N200" titleHours="/Hr" />
+      <MenuSearchBar MenuSearchBarStyle={styles.mainspace} title={selectedArea} titleRS="N200" titleHours="/Hr" />
       <View>
         {parkingSlots.map((item: any, index: any) => {
           return (
