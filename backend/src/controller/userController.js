@@ -1,9 +1,10 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const saltRounds = 10;
 const sendEmail = require("../utils/sendEmail");
 const usersCollection = require("../models/userModel");
-const {tokenCollection} = require("../models/emailModel")
-const {emailCollection} = require("../models/emailModel")
+const { tokenCollection } = require("../models/emailModel");
+const { emailCollection } = require("../models/emailModel");
 
 const doSignUp = async (req, res) => {
   try {
@@ -11,16 +12,13 @@ const doSignUp = async (req, res) => {
     console.log(".req.body", req.body);
     console.log("====================================");
 
-    // const salt = await bcrypt.genSalt(10);
-    // const passwordHash = await bcrypt.hash(req.body.password, salt)
+    const passwordHash = await bcrypt.hash(req.body.password, saltRounds);
     console.log('===================="passwordHash================');
-    // console.log(passwordHash, salt);
+    console.log(passwordHash, saltRounds);
     console.log("====================================");
     const user = new usersCollection({
       email: req.body.email,
-      passwordHash: req.body.passwordHash,
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
+      passwordHash: passwordHash,
     });
     const result = await user.save();
     console.log("result", result);
@@ -30,8 +28,6 @@ const doSignUp = async (req, res) => {
       message: "user is sucessfully resgistered!",
       data: {
         email: req.body.email,
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
       },
     });
   } catch (error) {
@@ -117,6 +113,7 @@ const doSendEmail = async (req, resp) => {
       message: "Email has send sucessfully",
       data: {
         email: req.body.email,
+        token: token,
       },
     });
   } catch (error) {
@@ -132,50 +129,45 @@ const doSendEmail = async (req, resp) => {
 const doFindToken = async (req, resp) => {
   try {
     const posts = await tokenCollection.find({ email: req.body.email });
-    console.log("posts", posts[0]._doc)
-    console.log(req.body)
-    if(posts[0]._doc.text === req.body.token){
-       resp.status(200).json({
+    console.log("posts", posts[0]._doc);
+    console.log(req.body);
+    if (posts[0]._doc.text === req.body.token) {
+      resp.status(200).json({
         massage: "OK",
       });
-    }
-    else{
+    } else {
       resp.json({
         massage: "worng OTP",
         data: [],
       });
     }
-    }
-    catch (error) {
-     console.log("error",error)
-    
-   }
- };
-
- const doSendPassword= async(res,resp)=>{
-  try {
-    const userPassword = await emailCollection.updateOne({email:res.body.email},{$set:{password:res.body.password}})
-    console.log("res.body.password",res.body.password),
-    console.log("res.body.pas",res.body.password),
-
-    console.log("userPassword",userPassword)
-    console.log("res.body",res.body)
-    resp.status(200).json({
-      massage:"password are add to emailCollection"
-    })
   } catch (error) {
-    console.log("error",error)
+    console.log("error", error);
   }
+};
 
-
- }
-
-    
+const doSendPassword = async (res, resp) => {
+  try {
+    const userPassword = await emailCollection.updateOne(
+      { email: res.body.email },
+      { $set: { password: res.body.password } }
+    );
+    console.log("res.body.password", res.body.password),
+      console.log("res.body.pas", res.body.password),
+      console.log("userPassword", userPassword);
+    console.log("res.body", res.body);
+    resp.status(200).json({
+      massage: "password are add to emailCollection",
+    });
+  } catch (error) {
+    console.log("error", error);
+  }
+};
 
 module.exports = {
   doSignUp,
   doLogin,
   doSendEmail,
   doFindToken,
-  doSendPassword
+  doSendPassword,
 };
