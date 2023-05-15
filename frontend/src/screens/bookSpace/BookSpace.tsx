@@ -2,12 +2,8 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity,
   StatusBar,
-  Switch,
-  ScrollView,
   TextInput,
-  Alert,
   Button,
 } from 'react-native';
 import React, {useState} from 'react';
@@ -23,20 +19,22 @@ import COLORS from '../../consts/colors';
 import MenuSearchBar from '../../components/MenuSearchBar';
 import {useNavigation} from '@react-navigation/native';
 import {setBookSpace} from '../../store/parkingSlotSlice';
+import {Alert} from 'react-native';
 import Modal from 'react-native-modal';
+import DatePicker from 'react-native-date-picker';
 const BookSpace = () => {
   const dispatch = useDispatch();
   const navigation: any = useNavigation();
+  const [date, setDate] = useState(new Date());
+  const [open, setOpen] = useState(false);
   const [estimatedTime, onChangeText] = useState('');
   const [checkInTime, onChangeNumber] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
-
-  const {parkingSlots, bookSpaces,selectedArea} = useSelector(
+  const {parkingSlots, bookSpaces, selectedArea} = useSelector(
     (state: any) => state.parkingSlotSlice,
   );
-  console.log(parkingSlots)
+  console.log(parkingSlots);
   const bookSpace = () => {
-
     // console.log("estimatedTime",estimatedTime)
     // console.log("checkInTime",checkInTime)
 
@@ -46,14 +44,29 @@ const BookSpace = () => {
   };
   const handleConfirm = async () => {
     try {
-      parkingSlots.forEach(async (item:any, index:any) => {
+      parkingSlots.forEach(async (item: any, index: any) => {
         if (item.booked == true) {
+          const dateStr = '2023-05-15T12:47:03.044+00:00';
+          const date = new Date(dateStr);
+
+          const options: any = {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: true,
+          };
+
+          const formattedDate = date.toLocaleString('en-US', options);
+          console.log(formattedDate);
           const res = await axios.post(
-            'http://192.168.50.65:8000/parkingSlot/book',
-            {...item,selectedArea},
+            'http://192.168.50.2:8000/parkingSlot/book',
+            {...item, BookedTime: formattedDate},
           );
-          console.log(res.data)
-          navigation.navigate('UserProfile')
+          console.log(res.data);
+          navigation.navigate('UserProfile');
         }
       });
       setModalVisible(false);
@@ -61,7 +74,19 @@ const BookSpace = () => {
       console.log(error, 'error while setting estimated time');
     }
   };
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const handleDateConfirm = (date: any) => {
+    const currentDate = new Date();
+    const currentTime = currentDate.getTime();
+    const selectedTime = date.getTime();
 
+    if (selectedTime < currentTime) {
+      // Show an error message if the selected date is before today
+      Alert.alert('Invalid Date', 'Please select a date after today.');
+    } else {
+      setSelectedDate(date);
+    }
+  };
   return (
     <>
       <StatusBar
@@ -69,7 +94,12 @@ const BookSpace = () => {
         backgroundColor={'white'}
         barStyle={'dark-content'}
       />
-      <MenuSearchBar MenuSearchBarStyle={styles.mainspace} title={selectedArea} titleRS="N200" titleHours="/Hr" />
+      <MenuSearchBar
+        MenuSearchBarStyle={styles.mainspace}
+        title={selectedArea}
+        titleRS="N200"
+        titleHours="/Hr"
+      />
       <View>
         {parkingSlots.map((item: any, index: any) => {
           return (
@@ -83,6 +113,16 @@ const BookSpace = () => {
       </View>
 
       <View style={styles.contain}>
+        <Button title="Open" onPress={() => setOpen(!open)} />
+        <DatePicker
+          modal
+          open={open}
+          date={date}
+          onConfirm={date => handleDateConfirm(date)}
+          onCancel={() => {
+            setOpen(false);
+          }}
+        />
         {/* <InputRange /> */}
         <TextInput
           style={styles.input}

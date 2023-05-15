@@ -8,7 +8,7 @@ const carParkingSchema = new Schema({
   exitTime: Date,
   totalParkingTime: Number,
   perHourFee: Number,
-  BookedTime:Date,  
+  BookedTime:String,  
   booked:Boolean,
   location:String
 
@@ -25,7 +25,7 @@ const initialData = [
     totalParkingTime: 0,  
     booked:false,
     perHourFee: 10,
-    location:"SUSAN ROAD FAISALABAD"
+    location:"JARANWALA ROAD FAISALABAD"
   },
   {
     parkingLotName: "Lot B",
@@ -37,7 +37,7 @@ const initialData = [
     totalParkingTime: 0,  
     booked:false,
     perHourFee: 15,
-    location:"SUSAN ROAD FAISALABAD"
+    location:"JARANWALA ROAD FAISALABAD"
   },
   {
     parkingLotName: "Lot C",
@@ -49,7 +49,7 @@ const initialData = [
      booked:false,
     totalParkingTime: 4,
     perHourFee: 10,
-    location:"SUSAN ROAD FAISALABAD"
+    location:"JARANWALA ROAD FAISALABAD"
   },
   {
     parkingLotName: "Lot D",
@@ -61,7 +61,7 @@ const initialData = [
     booked:false,
     totalParkingTime: 0,
     perHourFee: 15,
-    location:"SUSAN ROAD FAISALABAD"
+    location:"JARANWALA ROAD FAISALABAD"
   },
   {
     parkingLotName: "Lot E",
@@ -71,7 +71,7 @@ const initialData = [
     exitTime: null, BookedTime:null,
     totalParkingTime: 0,
     perHourFee: 15,
-    location:"SUSAN ROAD FAISALABAD"
+    location:"JARANWALA ROAD FAISALABAD"
   },
   {
     parkingLotName: "Lot F",
@@ -82,7 +82,7 @@ const initialData = [
     exitTime: null, BookedTime:null,
     totalParkingTime: 0,
     perHourFee: 15,
-    location:"SUSAN ROAD FAISALABAD"
+    location:"JARANWALA ROAD FAISALABAD"
   },
   {
     parkingLotName: "Lot G",
@@ -93,7 +93,7 @@ const initialData = [
     exitTime: null, BookedTime:null,
     totalParkingTime: 0,
     perHourFee: 15,
-    location:"SUSAN ROAD FAISALABAD"
+    location:"JARANWALA ROAD FAISALABAD"
   },
   {
     parkingLotName: "Lot H",
@@ -104,7 +104,7 @@ const initialData = [
     exitTime: null, BookedTime:null,
     totalParkingTime: 0,
     perHourFee: 15,
-    location:"SUSAN ROAD FAISALABAD"
+    location:"JARANWALA ROAD FAISALABAD"
   },
 ]
 // async function storeData
