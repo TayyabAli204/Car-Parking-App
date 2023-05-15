@@ -20,10 +20,10 @@ const GetStarted = ({}) => {
   const navigation: any = useNavigation();
   const getStart = async () => {
     try {
-      // const response = await axios.get('http://192.168.50.2:8000/createPost');
+      // const response = await axios.get('http://192.168.0.102:8000/createPost');
       // const data = response.data; // Access the response data using response.data
       // console.log(data, 'API data');
-      navigation.navigate('Login'); 
+      navigation.navigate('Login');
     } catch (error) {
       console.error(error);
     }
@@ -31,11 +31,21 @@ const GetStarted = ({}) => {
 
   return (
     <>
-      <StatusBar translucent  backgroundColor={'transparent'}  barStyle={'dark-content'}/>
+      <StatusBar
+        translucent
+        backgroundColor={'transparent'}
+        barStyle={'dark-content'}
+      />
       <View style={{flex: 1, justifyContent: 'flex-end'}}>
-        <Image style={styles.img} source={require('../../assets/img/onboard1.png')} />
+        <Image
+          style={styles.img}
+          source={require('../../assets/img/onboard1.png')}
+        />
         <Text style={styles.text}>Easy Payment</Text>
-        <Text style={styles.text1}> Lorem ipsum dolor sit amet, consectetur adipiscing elit </Text>
+        <Text style={styles.text1}>
+          {' '}
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit{' '}
+        </Text>
         <TouchableOpacity onPress={getStart} style={styles.touchText}>
           <Text style={styles.text2}>Get Started</Text>
         </TouchableOpacity>
