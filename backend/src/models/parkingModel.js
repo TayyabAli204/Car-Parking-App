@@ -107,6 +107,7 @@ const initialData = [
     location:"SUSAN ROAD FAISALABAD"
   },
 ]
+// async function storeData
 const CarParking = mongoose.model("carParkingData", carParkingSchema);
 // // Insert the initial data into the database
 async function storingData(req,res,next) {

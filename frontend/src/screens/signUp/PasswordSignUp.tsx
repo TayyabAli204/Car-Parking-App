@@ -62,9 +62,7 @@ import { useSelector } from 'react-redux';
         // ...
         const response = await axios.post('http://192.168.50.2:8000/auth/sendpassword',{"password":password,email:selector})
         const data = response.data;
-        console.log(data)
-        console.log("password",password),
-        console.log("email",selector)
+        
 
         navigation.navigate("UserProfile")
       }

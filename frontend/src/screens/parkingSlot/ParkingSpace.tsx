@@ -9,6 +9,7 @@ import React, {useEffect} from 'react';
 import axios from 'axios';
 import Cars from '../../assets/img/ic-round-directions-car.svg';
 import {setParkingSlotData, bookSlot} from '../../store/parkingSlotSlice';
+import MenuSearchBar from '../../components/MenuSearchBar';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   fontPixel,
@@ -23,15 +24,16 @@ import { useNavigation } from '@react-navigation/native';
 const ParkingSpace = () => {
   const navigation:any=useNavigation();
   const dispatch = useDispatch();
-  const slotsData = useSelector(
-    (state: any) => state.parkingSlotSlice.parkingSlots,
+  const {parkingSlots,selectedArea} = useSelector(
+    (state: any) => state.parkingSlotSlice
   );
-  // console.log(slotsData);
+  // console.log(parkingSlots[0])
   useEffect(() => {
     async function getSlotsData() {
-      const res = await axios.get('http://192.168.50.2:8000/parkingSlot/data');
+      // const {data}= await axios.get(`http://192.168.50.65:8000/parkingSlot/data/${selectedArea}`)
+      // console.log(data)
+      // dispatch(setParkingSlotData(data.data));
 
-      dispatch(setParkingSlotData(res.data.data));
     }
     getSlotsData();
   }, []);
@@ -48,21 +50,13 @@ const ParkingSpace = () => {
         barStyle={'dark-content'}
       />
       <View style={styles.mainspace}>
-        <Menu />
-        <View style={styles.miansearch}>
-          <View style={styles.mainouter}>
-            <Text style={styles.stext}>Lekki Gardens Car Park A</Text>
-            <View style={styles.stext1}>
-              <Text style={styles.stext2}>N200</Text>
-              <Text>/Hr</Text>
-            </View>
-          </View>
-        </View>
+ <MenuSearchBar title={selectedArea} />
+      
         <View>
           <Text style={styles.selCar}>Select preferred space</Text>
         </View>
         <View style={styles.selRender}>
-          {slotsData.map((item: any, index: any) => {
+          {parkingSlots.map((item: any, index: any) => {
             return (
               <TouchableOpacity
                 key={index}
@@ -110,7 +104,7 @@ const styles = StyleSheet.create({
   },
   mainspace: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: 'red',
     paddingTop: 33,
     paddingHorizontal: 16,
   },
