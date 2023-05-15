@@ -13,7 +13,7 @@ db.connection();
 
 const app = express();
 const port = 8000;
-app.get("/data/:id", storingData);
+app.get("/data", storingData);
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

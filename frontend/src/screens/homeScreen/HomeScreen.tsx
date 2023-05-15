@@ -17,15 +17,15 @@ import { setParkingSlotData, setSelectedArea } from '../../store/parkingSlotSlic
 const HomeScreen = ({navigation}:any) => {
   const dispatch=useDispatch()
   const Data=[
-    'susan Road Faisalabad',
-    'canal Road Faisalabad',
-    'jaranwala Road Faisalabad',
+    'Susan Road Faisalabad',
+    'Canal Road Faisalabad',
+    'Jaranwala Road Faisalabad',
 
   ]
   async function getDbData(name:String) {
     try{
 
-      const {data}= await axios.get(`http://192.168.50.65:8000/parkingSlot/data/${name}`)
+      const {data}= await axios.get(`http://192.168.50.2:8000/parkingSlot/data/${name.toUpperCase()}`)
       // console.log(data)
       dispatch(setSelectedArea(name))
       dispatch(setParkingSlotData(data.data));
@@ -49,7 +49,7 @@ const HomeScreen = ({navigation}:any) => {
           style={styles.image}>
           <FlatList
           data={Data}
-          renderItem={({item}) =><TouchableOpacity style={{backgroundColor:"blue",marginVertical:10}} onPress={()=>getDbData(item.split(' ').join(''))}>
+          renderItem={({item}) =><TouchableOpacity style={{backgroundColor:"blue",marginVertical:10}} onPress={()=>getDbData(item)}>
             <Text>{item}</Text>
           </TouchableOpacity>}/>
           {/* <MenuSearchBar  MenuSearchBarStyle={styles.mainspace} title="Faisalabad"/> */}
