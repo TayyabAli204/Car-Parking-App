@@ -6,34 +6,39 @@ import {
   StatusBar,
   FlatList,
   Pressable,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert,
 } from 'react-native';
 import React from 'react';
 import axios from 'axios';
 import MenuSearchBar from '../../components/MenuSearchBar';
-import { useDispatch } from 'react-redux';
-import { setParkingSlotData, setSelectedArea } from '../../store/parkingSlotSlice';
-
-const HomeScreen = ({navigation}:any) => {
-  const dispatch=useDispatch()
-  const Data=[
+import {useDispatch} from 'react-redux';
+import {
+  setParkingSlotData,
+  setSelectedArea,
+} from '../../store/parkingSlotSlice';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+const HomeScreen = ({navigation}: any) => {
+  const dispatch = useDispatch();
+  const Data = [
     'Susan Road Faisalabad',
     'Canal Road Faisalabad',
     'Jaranwala Road Faisalabad',
-
-  ]
-  async function getDbData(name:String) {
-    try{
-
-      const {data}= await axios.get(`http://192.168.50.2:8000/parkingSlot/data/${name.toUpperCase()}`)
-      // console.log(data)
-      dispatch(setSelectedArea(name))
+  ];
+  async function getDbData(name: String) {
+    try {
+      const token = await AsyncStorage.getItem('token');
+      const {data} = await axios.get(
+        `http://192.168.50.37:8000/parkingSlot/data/${name.toUpperCase()}/${token}`,
+      );
+      console.log(data.data, 'redponse ');
+      // Alert.alert(data.message);
+      dispatch(setSelectedArea(name));
       dispatch(setParkingSlotData(data.data));
-      navigation.navigate('parkingSpace')
-    }catch(err){
-      // console.log(err)
+      navigation.navigate('parkingSpace');
+    } catch (err) {
+      console.log(err);
     }
-
   }
   return (
     <>
@@ -48,10 +53,24 @@ const HomeScreen = ({navigation}:any) => {
           resizeMode="cover"
           style={styles.image}>
           <FlatList
-          data={Data}
-          renderItem={({item}) =><TouchableOpacity style={{backgroundColor:"blue",marginVertical:10}} onPress={()=>getDbData(item)}>
-            <Text>{item}</Text>
-          </TouchableOpacity>}/>
+            data={Data}
+            renderItem={({item}) => (
+              <TouchableOpacity
+                style={{backgroundColor: 'blue', marginVertical: 10}}
+                onPress={() => getDbData(item)}>
+                <Text>{item}</Text>
+              </TouchableOpacity>
+            )}
+          />
+          <TouchableOpacity
+            onPress={async () => {
+              await AsyncStorage.removeItem('token');
+              navigation.navigate('Login');
+            }}>
+            <Text style={{backgroundColor: 'blue', marginBottom: 30}}>
+              logout
+            </Text>
+          </TouchableOpacity>
           {/* <MenuSearchBar  MenuSearchBarStyle={styles.mainspace} title="Faisalabad"/> */}
         </ImageBackground>
       </View>

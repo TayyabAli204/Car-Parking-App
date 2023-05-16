@@ -7,9 +7,10 @@ import {
   TouchableOpacity,
   StatusBar,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import Slogo from '../../assets/img/splashlogo.svg';
 import COLORS from '../../consts/colors';
+import axios from 'axios';
 import {
   fontPixel,
   pixelSizeVertical,
@@ -17,10 +18,27 @@ import {
   widthPixel,
   heightPixel,
 } from '../../utils/ResponsiveStyle';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 
 const LogIn = ({}) => {
   const navigation: any = useNavigation();
+  const [email, onChangeEmail] = useState('');
+  const [password, onChangePassword] = useState('');
+  const doLogin = async () => {
+    try {
+      console.log(email, password, 'state ma set data');
+      const response = await axios.post(
+        'http://192.168.50.37:8000/auth/login',
+        {email: email, password: password},
+      );
+      console.log(response.data, 'data from db');
+      await AsyncStorage.setItem('token', response.data.data.token);
+      navigation.navigate('HomeScreen');
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <View style={styles.main}>
       <View style={styles.sec}>
@@ -33,12 +51,22 @@ const LogIn = ({}) => {
       />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View>
-          <TextInput style={styles.input} placeholder="Phone number" />
-          <TextInput style={styles.passWord_input} placeholder="Password" />
+          <TextInput
+            onChangeText={onChangeEmail}
+            value={email}
+            style={styles.input}
+            placeholder="Phone number"
+          />
+          <TextInput
+            onChangeText={onChangePassword}
+            value={password}
+            style={styles.passWord_input}
+            placeholder="Password"
+          />
           <Text style={styles.forget}>Forgot Password?</Text>
-          <TouchableOpacity style={styles.sec1}>
+          <TouchableOpacity onPress={doLogin} style={styles.sec1}>
             <Text style={styles.sec2}>Login</Text>
-            </TouchableOpacity>
+          </TouchableOpacity>
           <View style={styles.sec3}>
             <Text style={styles.or}>or</Text>
             <Text

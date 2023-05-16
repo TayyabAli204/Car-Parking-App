@@ -15,15 +15,29 @@ import {
   pixelSizeVertical,
 } from '../../utils/ResponsiveStyle';
 import {useNavigation} from '@react-navigation/native';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const SplashScreen = () => {
   const navigation: any = useNavigation();
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      navigation.navigate('OnBoarding');
-    }, 2000);
-    return () => clearTimeout(timeout);
-  }, [50]);
+    checkToken();
+  }, []);
+  const checkToken = async () => {
+    try {
+      const value = await AsyncStorage.getItem('token');
+      console.log(value, 'stored token');
+      if (value !== null) {
+        navigation.navigate('HomeScreen');
+      } else {
+        const timeout = setTimeout(() => {
+          navigation.navigate('OnBoarding');
+        }, 2000);
+        return () => clearTimeout(timeout);
+        console.log(value, 'stored token');
+      }
+    } catch (e) {
+      console.log(e, 'error');
+    }
+  };
   return (
     <>
       <StatusBar
