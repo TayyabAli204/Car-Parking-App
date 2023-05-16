@@ -16,11 +16,12 @@ import {
 } from '../../utils/ResponsiveStyle';
 import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const GetStarted = ({}) => {
   const navigation: any = useNavigation();
   const getStart = async () => {
     try {
-      // const response = await axios.get('http://192.168.0.102:8000/createPost');
+      // const response = await axios.get('http://192.168.50.37:8000/createPost');
       // const data = response.data; // Access the response data using response.data
       // console.log(data, 'API data');
       navigation.navigate('Login');

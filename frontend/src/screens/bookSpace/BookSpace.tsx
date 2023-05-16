@@ -62,7 +62,7 @@ const BookSpace = () => {
           const formattedDate = date.toLocaleString('en-US', options);
           console.log(formattedDate);
           const res = await axios.post(
-            'http://192.168.50.2:8000/parkingSlot/book',
+            'http://192.168.50.37:8000/parkingSlot/book',
             {...item, BookedTime: formattedDate},
           );
           console.log(res.data);

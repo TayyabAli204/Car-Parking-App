@@ -61,12 +61,12 @@ const Password = () => {
       // Password and confirm password are valid, perform further actions
       // ...
       const response = await axios.post(
-        'http://192.168.0.102:8000/auth/signup',
+        'http://192.168.50.37:8000/auth/signup',
         {password: password, email: selector},
       );
       // const data = response.data;
 
-      navigation.navigate('UserProfile');
+      navigation.navigate('HomeScreen');
     }
   };
   return (

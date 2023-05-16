@@ -50,49 +50,52 @@ const doLogin = async (req, res) => {
     console.log(req.body, userData);
     console.log("====================================");
 
-    // if (!userData.passwordHash) {
-    //     res.status(500).json({
-    //         message: 'email is not found',
-    //         data: []
-    //     })
-    // }
-
-    // const passwordDecode = await bcrypt.compare(req.body.password, userData.passwordHash)
-    // if (!passwordDecode) {
-    //     res.status(500).json({
-    //         message: 'wrong password',
-    //         data: []
-    //     })
-    // }
+    if (!userData.email) {
+      res.status(501).json({
+        message: "email is not found",
+        // data: [],
+      });
+    }
+    console.log(userData.passwordHash, req.body.password);
+    const passwordDecode = await bcrypt.compare(
+      req.body.password,
+      userData.passwordHash
+    );
+    if (!passwordDecode) {
+      res.status(502).json({
+        message: "wrong password",
+        // data: [],
+      });
+    }
 
     const token = await jwt.sign(
       {
         email: userData.email,
-        firstName: userData.firstName,
-        lastName: userData.lastName,
+        // firstName: userData.firstName,
+        // lastName: userData.lastName,
       },
-      process.env.secretkey
+      process.env.secreteKey
     );
 
-    console.log("====================================");
-    console.log("token", token);
-    console.log("====================================");
+    // console.log("====================================");
+    // console.log("token", token);
+    // console.log("====================================");
 
     res.status(200).json({
       message: "user is sucessfully resgistered!",
       data: {
         email: req.body.email,
-        firstName: userData.firstName,
-        lastName: userData.lastName,
-        token,
+        // firstName: userData.firstName,
+        // lastName: userData.lastName,
+        token: token,
       },
     });
   } catch (error) {
     console.log("error", error);
-    res.status(500).json({
+    res.status(600).json({
       message: "failed",
       error: error,
-      data: [],
+      // data: [],
     });
   }
 };

@@ -19,18 +19,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static("public"));
 
-const kittySchema = new mongoose.Schema({
-  name: String,
-});
-
-const Kitten = mongoose.model("Kitten", kittySchema);
-app.post("/example", async (req, res) => {
-  const silence = new Kitten({ name: "Silence" });
-
-  const result = await silence.save();
-  res.send("success");
-});
-
 app.post("/body", (req, resp) => {
   console.log("request chali", req.body);
   resp.status(200).send("sucess");

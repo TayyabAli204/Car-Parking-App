@@ -1,12 +1,13 @@
+const express = require("express");
+const routes = express.Router();
+const verifyUser = require("../utils/verfyUser");
 
-const express = require("express")
-const routes = express.Router()
+const {
+  parkingSlotData,
+  bookParkingSlot,
+} = require("../controller/parkingSlotController");
 
-const {parkingSlotData,bookParkingSlot} = require('../controller/parkingSlotController')
+routes.get("/data/:id/:token", verifyUser, parkingSlotData);
+routes.post("/book", verifyUser, bookParkingSlot);
 
-routes.get('/data/:id', parkingSlotData)
-routes.post('/book',bookParkingSlot)
-
-
-
-module.exports = routes
+module.exports = routes;
