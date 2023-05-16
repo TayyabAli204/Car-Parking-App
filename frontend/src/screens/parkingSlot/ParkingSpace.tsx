@@ -61,10 +61,13 @@ const ParkingSpace = () => {
               <TouchableOpacity
                 key={index}
                 onPress={() => dispatch(bookSlot(item))}>
+                  <Text style={{textAlign:"center",color:'black'}}>{item.parkingLotName}
+                    </Text> 
                 <View
                   style={{
                     backgroundColor: '#613EEA',
                   }}>
+                   
                   {
                     <CarIcon color={item.booked ? 'green' : 'white'} />
                   }
@@ -104,7 +107,7 @@ const styles = StyleSheet.create({
   },
   mainspace: {
     flex: 1,
-    backgroundColor: 'red',
+    backgroundColor: 'white',
     paddingTop: 33,
     paddingHorizontal: 16,
   },
@@ -128,11 +131,11 @@ const styles = StyleSheet.create({
   selCar: {
     textAlign: 'center',
     paddingBottom: 14,
-    fontSize: fontPixel(16),
+    fontSize: fontPixel(20),
     fontFamily: 'OpenSans-Regular',
   },
   selRender: {
-    flex: 0.7,
+    flex: 0.9,
     backgroundColor: 'white',
     flexDirection: 'row',
     flexWrap: 'wrap',

@@ -19,6 +19,7 @@ import COLORS from '../../consts/colors';
 import MenuSearchBar from '../../components/MenuSearchBar';
 import {useNavigation} from '@react-navigation/native';
 import {setBookSpace} from '../../store/parkingSlotSlice';
+import CalendarIcon from '../../assets/img/calendar.svg'
 import {Alert} from 'react-native';
 import Modal from 'react-native-modal';
 import DatePicker from 'react-native-date-picker';
@@ -48,7 +49,6 @@ const BookSpace = () => {
         if (item.booked == true) {
           const dateStr = '2023-05-15T12:47:03.044+00:00';
           const date = new Date(dateStr);
-
           const options: any = {
             weekday: 'long',
             year: 'numeric',
@@ -79,12 +79,14 @@ const BookSpace = () => {
     const currentDate = new Date();
     const currentTime = currentDate.getTime();
     const selectedTime = date.getTime();
-
-    if (selectedTime < currentTime) {
+   
+    if (selectedTime <= currentTime) {
       // Show an error message if the selected date is before today
       Alert.alert('Invalid Date', 'Please select a date after today.');
     } else {
       setSelectedDate(date);
+      // console.log(date)
+
     }
   };
   return (
@@ -113,7 +115,18 @@ const BookSpace = () => {
       </View>
 
       <View style={styles.contain}>
-        <Button title="Open" onPress={() => setOpen(!open)} />
+        <View style={{ alignItems:'center',marginTop:20}}>
+
+          <CalendarIcon onPress={() => setOpen(!open)}/>
+        <CustomButton
+          title={'Check-in Time'}
+          titleStyle={styles.checkintime}
+
+          >
+        </CustomButton>
+          </View>
+        {/* <Button title="Open" onPress={() => setOpen(!open)} /> */}
+
         <DatePicker
           modal
           open={open}
@@ -130,13 +143,7 @@ const BookSpace = () => {
           value={estimatedTime}
           placeholder="Estimate Hours:"
         />
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangeNumber}
-          value={checkInTime}
-          placeholder="Check-in Time:"
-          keyboardType="numeric"
-        />
+        
         <CustomButton
           onPress={bookSpace}
           title={'Book Space'}
@@ -199,4 +206,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
   },
+  checkintime:{
+    fontSize:fontPixel(18),
+    color:'black'
+  }
 });
