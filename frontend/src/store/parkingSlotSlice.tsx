@@ -1,12 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Alert } from "react-native";
+import { act } from "react-test-renderer";
 const parkingSlotSlice = createSlice({
     name: 'parkingSlotSlice',
     initialState: {
      parkingSlots:[
      
      ],
-  selectedArea:''
+     selectedArea:'',
+  selectedSpot:{},
+  bookedSlotsHistory:[]
       
     },
     
@@ -16,22 +19,16 @@ const parkingSlotSlice = createSlice({
             state.parkingSlots=action.payload
           // }
         },
-        setSelectedArea:(state,{payload})=>{
-          state.selectedArea=payload
+        setSelectedArea:(state,action)=>{
+state.selectedArea=action.payload
+        },
+        setSelectedSpot:(state,{payload})=>{
+        
+            state.selectedSpot={...payload,booked:true}
         },
       bookSlot: (state, {payload}) => {
         
-        let updatedSlot:any=state.parkingSlots.map((item:any)=>{
-          if(item._id==payload?._id){
-            //           Alert.alert('you have booked '+item.parkingLotName)
-           
-            return {...item,booked:true,}
-          }else{
-            return item
-            
-          }
-        })
-        state.parkingSlots=updatedSlot
+      
       },
       setBookSpace:(state,{payload})=>{
        let meriState:any = state.parkingSlots.map((item:any)=>{
@@ -48,6 +45,6 @@ const parkingSlotSlice = createSlice({
       }
     }
   });
-  export const {setParkingSlotData,bookSlot,setBookSpace,setSelectedArea}=parkingSlotSlice.actions
+  export const {setParkingSlotData,setSelectedArea,bookSlot,setBookSpace,setSelectedSpot}=parkingSlotSlice.actions
 export default parkingSlotSlice.reducer
   

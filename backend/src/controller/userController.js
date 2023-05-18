@@ -8,26 +8,29 @@ const { emailCollection } = require("../models/emailModel");
 
 const doSignUp = async (req, res) => {
   try {
-    console.log("====================================");
-    console.log(".req.body", req.body);
-    console.log("====================================");
-
+  
     const passwordHash = await bcrypt.hash(req.body.password, saltRounds);
-    console.log('===================="passwordHash================');
-    console.log(passwordHash, saltRounds);
-    console.log("====================================");
+  
+    const token = await jwt.sign(
+      {
+        email: req.body.email,
+      },
+      "Secret"
+    );
     const user = new usersCollection({
       email: req.body.email,
       passwordHash: passwordHash,
     });
-    const result = await user.save();
-    console.log("result", result);
 
+    const result = await user.save();
+   
+console.log(token)
     // posts = [...posts, { ...req.body }]
     res.status(200).json({
       message: "user is sucessfully resgistered!",
       data: {
         email: req.body.email,
+        token,
       },
     });
   } catch (error) {
@@ -74,7 +77,7 @@ const doLogin = async (req, res) => {
         // firstName: userData.firstName,
         // lastName: userData.lastName,
       },
-      process.env.secreteKey
+      "Secret"
     );
 
     // console.log("====================================");

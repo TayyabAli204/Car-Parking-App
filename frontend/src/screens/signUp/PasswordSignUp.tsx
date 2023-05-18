@@ -20,6 +20,7 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import axios from 'axios';
 import {useSelector} from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Password = () => {
   const navigation: any = useNavigation();
@@ -60,12 +61,12 @@ const Password = () => {
     if (handleValidation()) {
       // Password and confirm password are valid, perform further actions
       // ...
-      const response = await axios.post(
-        'http://192.168.50.37:8000/auth/signup',
+      console.log(password,selector)
+      const response:any = await axios.post(
+        'http://192.168.50.65:8000/auth/signup',
         {password: password, email: selector},
       );
-      // const data = response.data;
-
+await AsyncStorage.setItem('token',response.data.data.token)
       navigation.navigate('HomeScreen');
     }
   };

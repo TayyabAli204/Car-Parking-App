@@ -40,8 +40,8 @@ const App = () => {
             <Stack.Screen name="parkingSpace" component={parkingSpace} />
             <Stack.Screen name="BookSpace" component={BookSpace} />
 
-            {/* <Stack.Screen name="ParkingHistory" component={ParkingHistory}/> */}
-            {/* <Stack.Screen name="Setting" component={Setting}/> */}
+            <Stack.Screen name="ParkingHistory" component={ParkingHistory}/>
+            <Stack.Screen name="Setting" component={Setting}/>
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>
