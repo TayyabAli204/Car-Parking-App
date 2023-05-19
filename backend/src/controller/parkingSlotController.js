@@ -10,6 +10,15 @@ const parkingSlotData = async (req, res) => {
     data,
   });
 };
+const userHistory = async (req, res) => {
+
+  const data = await CarParking.find({ userName: req.user.email});
+
+  res.json({
+    message: "request success",
+data
+  });
+};
 const bookParkingSlot = async (req, res) => {
   const { _id,token, ...updateData } = req.body.data;
   updateData.userName=req.user.email
@@ -22,4 +31,4 @@ const bookParkingSlot = async (req, res) => {
 
   res.end("ok");
 };
-module.exports = { parkingSlotData, bookParkingSlot };
+module.exports = { parkingSlotData, bookParkingSlot,userHistory };

@@ -69,7 +69,7 @@ const ParkingSpace = () => {
                     backgroundColor: '#613EEA',
                   }}>
                   {
-                    <CarIcon color={item._id==selectedSpot._id ? 'green' : 'white'} />
+                    <CarIcon color={item.booked|| item._id==selectedSpot._id  ? 'green' : 'white'} />
                   }
                 </View>
               </TouchableOpacity>

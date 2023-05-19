@@ -24,7 +24,7 @@ const App = () => {
       <Provider store={store}>
         <NavigationContainer>
           <Stack.Navigator
-            initialRouteName="HomeScreen"
+            initialRouteName="ParkingHistory"
             screenOptions={{headerShown: false}}>
             <Stack.Screen name="HomeScreen" component={HomeScreen} />
             <Stack.Screen name="SplashScreen" component={SplashScreen} />
