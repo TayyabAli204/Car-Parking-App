@@ -21,7 +21,7 @@ const GetStarted = ({}) => {
   const navigation: any = useNavigation();
   const getStart = async () => {
     try {
-      // const response = await axios.get('http://192.168.50.37:8000/createPost');
+      // const response = await axios.get('http://192.168.50.65:8000/createPost');
       // const data = response.data; // Access the response data using response.data
       // console.log(data, 'API data');
       navigation.navigate('Login');

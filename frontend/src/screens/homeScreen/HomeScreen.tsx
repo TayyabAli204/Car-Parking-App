@@ -16,7 +16,7 @@ import MenuSearchBar from '../../components/MenuSearchBar';
 import {useDispatch} from 'react-redux';
 import {
   setParkingSlotData,
-  setSelectedArea,
+  setSelectedArea
 } from '../../store/parkingSlotSlice';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AvailLocation from '../../assets/img/homeimg/gridicons-location.svg'
@@ -38,11 +38,13 @@ const HomeScreen = ({navigation}: any) => {
   async function getDbData(name: String) {
     try {
       const token = await AsyncStorage.getItem('token');
+      console.log(token)
       const {data} = await axios.get(
-        `http://192.168.50.2:8000/parkingSlot/data/${name.toUpperCase()}/${token}`,
+        `http://192.168.50.65:8000/parkingSlot/data/${name.toUpperCase()}/${token}`,
       );
-      console.log(data.data, 'redponse ');
-      // Alert.alert(data.message);
+      
+      console.log(data)
+      // // Alert.alert(data.message);
       dispatch(setSelectedArea(name));
       dispatch(setParkingSlotData(data.data));
       navigation.navigate('parkingSpace');

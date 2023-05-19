@@ -18,11 +18,11 @@ import CustomButton from '../../components/CustomButton';
 import COLORS from '../../consts/colors';
 import MenuSearchBar from '../../components/MenuSearchBar';
 import {useNavigation} from '@react-navigation/native';
-import {setBookSpace} from '../../store/parkingSlotSlice';
-import CalendarIcon from '../../assets/img/calendar.svg'
+import CalendarIcon from '../../assets/img/calendar.svg';
 import {Alert} from 'react-native';
 import Modal from 'react-native-modal';
 import DatePicker from 'react-native-date-picker';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const BookSpace = () => {
   const dispatch = useDispatch();
   const navigation: any = useNavigation();
@@ -31,62 +31,62 @@ const BookSpace = () => {
   const [estimatedTime, onChangeText] = useState('');
   const [checkInTime, onChangeNumber] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
-  const {parkingSlots, bookSpaces, selectedArea} = useSelector(
-    (state: any) => state.parkingSlotSlice,
-  );
-  console.log(parkingSlots);
+  const {selectedSpot,selectedArea} = useSelector((state: any) => state.parkingSlotSlice);
+ 
+  
   const bookSpace = () => {
-    // console.log("estimatedTime",estimatedTime)
-    // console.log("checkInTime",checkInTime)
-
-    dispatch(setBookSpace({estimatedTime, checkInTime}));
-
+    if(+estimatedTime>10){
+      
+    return   Alert.alert('you can only book parking slot for maximun 10 hours ')
+    }
     setModalVisible(true);
   };
   const handleConfirm = async () => {
     try {
-      parkingSlots.forEach(async (item: any, index: any) => {
-        if (item.booked == true) {
-          const dateStr = '2023-05-15T12:47:03.044+00:00';
-          const date = new Date(dateStr);
-          const options: any = {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            hour: 'numeric',
-            minute: 'numeric',
-            hour12: true,
-          };
+   function convertFormat(date:any){
+    const timestamp:any =date;
 
-          const formattedDate = date.toLocaleString('en-US', options);
-          console.log(formattedDate);
+    // Step 1: Parse the timestamp
+    const dt = new Date(timestamp);
+    
+    // Step 2: Extract the components
+    const dayOfWeek = dt.toLocaleDateString('en-US', { weekday: 'long' });
+    const month = dt.toLocaleDateString('en-US', { month: 'long' });
+    const day = dt.toLocaleDateString('en-US', { day: 'numeric' });
+    const year = dt.getFullYear();
+    const time = dt.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' });
+    
+    // Step 3: Format the components
+    const formattedDate = `${dayOfWeek}, ${month} ${day}, ${year}, ${time}`;
+    return formattedDate
+   }
+      
+         const data={ ...selectedSpot,totalParkingTime:estimatedTime,BookedTime:convertFormat(new Date),entryTime: convertFormat(selectedDate)};
+          
+       const token=await AsyncStorage.getItem('token')
           const res = await axios.post(
-            'http://192.168.50.37:8000/parkingSlot/book',
-            {...item, BookedTime: formattedDate},
+            'http://192.168.50.65:8000/parkingSlot/book',
+           { data,token}
           );
           console.log(res.data);
           navigation.navigate('UserProfile');
-        }
-      });
+        
+
       setModalVisible(false);
     } catch (error) {
       console.log(error, 'error while setting estimated time');
     }
   };
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState('');
   const handleDateConfirm = (date: any) => {
     const currentDate = new Date();
     const currentTime = currentDate.getTime();
     const selectedTime = date.getTime();
-   
+
     if (selectedTime <= currentTime) {
-      // Show an error message if the selected date is before today
       Alert.alert('Invalid Date', 'Please select a date after today.');
     } else {
       setSelectedDate(date);
-      // console.log(date)
-
     }
   };
   return (
@@ -102,30 +102,15 @@ const BookSpace = () => {
         titleRS="N200"
         titleHours="/Hr"
       />
-      <View>
-        {parkingSlots.map((item: any, index: any) => {
-          return (
-            <View key={index}>
-              {item.booked && (
-                <Text style={styles.selCar}>{item.parkingLotName}</Text>
-              )}
-            </View>
-          );
-        })}
-      </View>
+
 
       <View style={styles.contain}>
-        <View style={{ alignItems:'center',marginTop:20}}>
-
-          <CalendarIcon onPress={() => setOpen(!open)}/>
-        <CustomButton
-          title={'Check-in Time'}
-          titleStyle={styles.checkintime}
-
-          >
-        </CustomButton>
-          </View>
-        {/* <Button title="Open" onPress={() => setOpen(!open)} /> */}
+        <View style={{alignItems: 'center', marginTop: 20}}>
+          <CalendarIcon onPress={() => setOpen(!open)} />
+          <CustomButton
+            title={'Check-in Time'}
+            titleStyle={styles.checkintime}></CustomButton>
+        </View>
 
         <DatePicker
           modal
@@ -136,14 +121,16 @@ const BookSpace = () => {
             setOpen(false);
           }}
         />
-        {/* <InputRange /> */}
+
         <TextInput
           style={styles.input}
           onChangeText={onChangeText}
           value={estimatedTime}
+
+          placeholderTextColor={COLORS.primary}
           placeholder="Estimate Hours:"
         />
-        
+
         <CustomButton
           onPress={bookSpace}
           title={'Book Space'}
@@ -203,11 +190,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   input: {
+    color:COLORS.primary,
     borderWidth: 1,
     padding: 10,
   },
-  checkintime:{
-    fontSize:fontPixel(18),
-    color:'black'
-  }
+  checkintime: {
+    fontSize: fontPixel(18),
+    color: 'black',
+  },
 });

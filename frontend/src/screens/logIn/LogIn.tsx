@@ -29,7 +29,7 @@ const LogIn = ({}) => {
     try {
       console.log(email, password, 'state ma set data');
       const response = await axios.post(
-        'http://192.168.50.37:8000/auth/login',
+        'http://192.168.50.65:8000/auth/login',
         {email: email, password: password},
       );
       console.log(response.data, 'data from db');

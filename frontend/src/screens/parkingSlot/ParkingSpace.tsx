@@ -8,7 +8,7 @@ import {
 import React, {useEffect} from 'react';
 import axios from 'axios';
 import Cars from '../../assets/img/ic-round-directions-car.svg';
-import {setParkingSlotData, bookSlot} from '../../store/parkingSlotSlice';
+import {setParkingSlotData, setSelectedSpot} from '../../store/parkingSlotSlice';
 import MenuSearchBar from '../../components/MenuSearchBar';
 import {useDispatch, useSelector} from 'react-redux';
 import {
@@ -24,7 +24,7 @@ import { useNavigation } from '@react-navigation/native';
 const ParkingSpace = () => {
   const navigation:any=useNavigation();
   const dispatch = useDispatch();
-  const {parkingSlots,selectedArea} = useSelector(
+  const {parkingSlots,selectedArea,selectedSpot} = useSelector(
     (state: any) => state.parkingSlotSlice
   );
   // console.log(parkingSlots[0])
@@ -40,8 +40,7 @@ const ParkingSpace = () => {
 
   function navigateToBookSpace() {
     navigation.navigate("BookSpace");
-  }
-  
+  };
   return (
     <>
       <StatusBar
@@ -57,19 +56,20 @@ const ParkingSpace = () => {
         </View>
         <View style={styles.selRender}>
           {parkingSlots.map((item: any, index: any) => {
+{console.log(selectedArea)}
+
             return (
               <TouchableOpacity
                 key={index}
-                onPress={() => dispatch(bookSlot(item))}>
+                onPress={() => dispatch(setSelectedSpot(item))}>
                   <Text style={{textAlign:"center",color:'black'}}>{item.parkingLotName}
                     </Text> 
                 <View
                   style={{
                     backgroundColor: '#613EEA',
                   }}>
-                   
                   {
-                    <CarIcon color={item.booked ? 'green' : 'white'} />
+                    <CarIcon color={item._id==selectedSpot._id ? 'green' : 'white'} />
                   }
                 </View>
               </TouchableOpacity>
@@ -131,6 +131,7 @@ const styles = StyleSheet.create({
   selCar: {
     textAlign: 'center',
     paddingBottom: 14,
+    color:COLORS.primary,
     fontSize: fontPixel(20),
     fontFamily: 'OpenSans-Regular',
   },
