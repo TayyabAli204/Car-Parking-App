@@ -8,6 +8,7 @@ import {
   Pressable,
   TouchableOpacity,
   Alert,
+  Image
 } from 'react-native';
 import React from 'react';
 import axios from 'axios';
@@ -18,18 +19,27 @@ import {
   setSelectedArea,
 } from '../../store/parkingSlotSlice';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import AvailLocation from '../../assets/img/homeimg/gridicons-location.svg'
 const HomeScreen = ({navigation}: any) => {
   const dispatch = useDispatch();
-  const Data = [
-    'Susan Road Faisalabad',
-    'Canal Road Faisalabad',
-    'Jaranwala Road Faisalabad',
+  const Data:any = [
+    {
+      locationName:'Susan Road Faisalabad',
+      locationIcon:<AvailLocation/>,
+    },
+    {
+      locationName:'Canal Road Faisalabad',
+      locationIcon:<AvailLocation/>,
+    },{
+      locationName:'Jaranwala Road Faisalabad',
+      locationIcon:<AvailLocation/>,
+    },
   ];
   async function getDbData(name: String) {
     try {
       const token = await AsyncStorage.getItem('token');
       const {data} = await axios.get(
-        `http://192.168.50.37:8000/parkingSlot/data/${name.toUpperCase()}/${token}`,
+        `http://192.168.50.2:8000/parkingSlot/data/${name.toUpperCase()}/${token}`,
       );
       console.log(data.data, 'redponse ');
       // Alert.alert(data.message);
@@ -49,20 +59,23 @@ const HomeScreen = ({navigation}: any) => {
           barStyle={'dark-content'}
         />
         <ImageBackground
-          source={require('../../assets/img/homescreen/mapimg.png')}
+          source={require('../../assets/img/homeimg/mapimg.png')}
           resizeMode="cover"
           style={styles.image}>
+            {/* <AvailLocation/> */}
           <FlatList
             data={Data}
             renderItem={({item}) => (
               <TouchableOpacity
-                style={{backgroundColor: 'blue', marginVertical: 10}}
-                onPress={() => getDbData(item)}>
-                <Text>{item}</Text>
+                style={{backgroundColor: 'white',marginVertical:30,elevation:10,marginHorizontal:30, gap:10,
+                 justifyContent:"center",alignItems:"center",paddingVertical:20}}
+                onPress={() =>getDbData(item.locationName)}>
+                {item.locationIcon}
+                <Text>{item.locationName}</Text>
               </TouchableOpacity>
             )}
           />
-          <TouchableOpacity
+          {/* <TouchableOpacity
             onPress={async () => {
               await AsyncStorage.removeItem('token');
               navigation.navigate('Login');
@@ -70,8 +83,7 @@ const HomeScreen = ({navigation}: any) => {
             <Text style={{backgroundColor: 'blue', marginBottom: 30}}>
               logout
             </Text>
-          </TouchableOpacity>
-          {/* <MenuSearchBar  MenuSearchBarStyle={styles.mainspace} title="Faisalabad"/> */}
+          </TouchableOpacity> */}
         </ImageBackground>
       </View>
     </>

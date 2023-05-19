@@ -1,4 +1,3 @@
-import {StyleSheet} from 'react-native';
 import React from 'react';
 import SplashScreen from './src/screens/splashScreen/SplashScreen';
 import OnBoarding from './src/screens/onBoarding/OnBoarding';
@@ -25,7 +24,7 @@ const App = () => {
       <Provider store={store}>
         <NavigationContainer>
           <Stack.Navigator
-            initialRouteName="SplashScreen"
+            initialRouteName="HomeScreen"
             screenOptions={{headerShown: false}}>
             <Stack.Screen name="HomeScreen" component={HomeScreen} />
             <Stack.Screen name="SplashScreen" component={SplashScreen} />
