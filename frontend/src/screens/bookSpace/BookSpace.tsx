@@ -4,6 +4,7 @@ import {
   View,
   StatusBar,
   TextInput,
+  ActivityIndicator,
   Button,
 } from 'react-native';
 import React, {useState} from 'react';
@@ -15,6 +16,7 @@ import {
   pixelSizeVertical,
 } from '../../utils/ResponsiveStyle';
 import CustomButton from '../../components/CustomButton';
+import CorrectIcon from '../../assets/img/emojione-check-mark-button.svg'
 import COLORS from '../../consts/colors';
 import MenuSearchBar from '../../components/MenuSearchBar';
 import {useNavigation} from '@react-navigation/native';
@@ -69,7 +71,7 @@ const BookSpace = () => {
            { data,token}
           );
           console.log(res.data);
-          navigation.navigate('UserProfile');
+          // navigation.navigate('UserProfile');
         
 
       setModalVisible(false);
@@ -89,6 +91,15 @@ const BookSpace = () => {
       setSelectedDate(date);
     }
   };
+
+//   if(modalVisible){
+// console.log("modsaf")
+//     const timeout = setTimeout(() => {
+//       navigation.navigate('UserProfile');
+//     }, 2000);
+//   }
+
+
   return (
     <>
       <StatusBar
@@ -137,13 +148,15 @@ const BookSpace = () => {
           titleStyle={styles.title}
         />
       </View>
-      <Modal isVisible={modalVisible}>
-        <View>
-          <Text>Confirm your action</Text>
-          <Button title="Confirm" onPress={handleConfirm} />
-          <Button title="Cancel" onPress={() => setModalVisible(false)} />
+      {/* <Modal isVisible={modalVisible}>
+        <View style={styles.modelView}>
+          <CorrectIcon width={90} height={90}/>
+          <Text style={{color:'black',fontSize:fontPixel(18),fontFamily:'OpenSans-SemiBold'}}>Space Successfully Booked</Text>
+          <ActivityIndicator size="small" color="#C4C4C4" style={{marginTop:20}} />
         </View>
-      </Modal>
+      </Modal> */}
+          {/* <Button title="Confirm" onPress={handleConfirm} /> */}
+          {/* <Button title="Cancel" onPress={() => setModalVisible(false)} /> */}
     </>
   );
 };
@@ -197,5 +210,21 @@ const styles = StyleSheet.create({
   checkintime: {
     fontSize: fontPixel(18),
     color: 'black',
+  },
+  modelView: {
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+    
   },
 });
