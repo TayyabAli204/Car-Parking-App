@@ -19,6 +19,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const SplashScreen = () => {
   const navigation: any = useNavigation();
   useEffect(() => {
+    //  AsyncStorage.clear()
     checkToken();
   }, []);
   const checkToken = async () => {

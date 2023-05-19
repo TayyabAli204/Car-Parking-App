@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   View,
   Text,
@@ -20,39 +20,76 @@ import CompletedSessions from '../../components/CompletedSessions';
 import ActiveSession from '../../components/ActiveSession';
 import GreenIcon from '../../assets/img/emojione-check-mark-button.svg';
 import StarIcon from '../../assets/img/Star.svg';
-
+import { setBookedSlotsHistory } from '../../store/parkingSlotSlice';
 import {
   fontPixel,
   pixelSizeHorizontal,
   pixelSizeVertical,
   widthPixel,
-  heightPixel
+  heightPixel,
 } from '../../utils/ResponsiveStyle';
 import {useState} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
+import { useDispatch,useSelector } from 'react-redux';
 
-const ParkingHistory = () => {
+const ParkingHistory =  () => {
+  const dispatch=useDispatch()
+  const state=useSelector((state:any)=>state.parkingSlotSlice.bookedSlotsHistory)
+  async function getToken() {
+    const token = await AsyncStorage.getItem('token');
+    return token
+  }
+console.log(state,'state')
   const {navigation, route}: any = useNavigation;
   const [first, setfirst] = useState(false);
-  const [resourcePath, setResourcePath] = useState({});
+useEffect(()=>{
+  async function getUserHistory(){
+  const token=await  getToken();
 
+    const {data}=await axios.get(`http://192.168.50.65:8000/parkingSlot/${token}`)
+    dispatch(setBookedSlotsHistory(data.data))
+  }
+  getUserHistory()
+},[])
   return (
     <View style={{flex: 1}}>
-      <StatusBar translucent
+      <StatusBar
+        translucent
         backgroundColor={'transparent'}
-        barStyle={'dark-content'}/>
+        barStyle={'dark-content'}
+      />
       <ScrollView>
         <View style={styles.hi1}>
           <TouchableOpacity onPress={() => setfirst(!first)}>
-            {first ? <Close width={widthPixel(47)} height={heightPixel(47)}/> : <Menu width={widthPixel(25)} height={heightPixel(22)}/>}
+            {first ? (
+              <Close width={widthPixel(47)} height={heightPixel(47)} />
+            ) : (
+              <Menu width={widthPixel(25)} height={heightPixel(22)} />
+            )}
           </TouchableOpacity>
           <Text style={styles.hi2}>History</Text>
-          <Profile width={widthPixel(32)} height={heightPixel(32)}/>
+          <Profile width={widthPixel(32)} height={heightPixel(32)} />
         </View>
         <View style={styles.hi3}>
-          <Text style={styles.hi4}>Active Session</Text>
+          <Text style={styles.hi4}>Sessions :</Text>
           <ActiveSession />
         </View>
-
+{
+  state.map((item:any)=>{
+    return(
+      <>
+      <Text style={styles.hi4}>
+      {  item.BookedTime}
+      {  item.entryTime}
+      {  item.location}
+      {  item.parkingLotName}
+      {  item.perHourFee}
+      {  item.totalParkingTime+" hour"}      </Text>
+      </>
+    )
+  })
+}
         <View style={styles.hi5}>
           <View style={styles.hel1}>
             <Text style={styles.hel2}>Completed Sessions</Text>
@@ -69,7 +106,7 @@ const ParkingHistory = () => {
           </View>
           <CompletedSessions Icon={<StarIcon />} />
         </View>
-        <TouchableOpacity style={styles.touch} >
+        <TouchableOpacity style={styles.touch}>
           <Text style={styles.next}>Go Back to Home Screen</Text>
         </TouchableOpacity>
       </ScrollView>
@@ -125,7 +162,12 @@ const styles = StyleSheet.create({
     marginHorizontal: 24,
     marginTop: 53,
   },
-  hi2: {fontSize: 16, fontWeight: 'bold', color: '#3B414B',fontFamily:'OpenSans-Bold'},
+  hi2: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#3B414B',
+    fontFamily: 'OpenSans-Bold',
+  },
   hi3: {
     marginTop: pixelSizeVertical(29),
     alignItems: 'baseline',
@@ -133,9 +175,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: pixelSizeHorizontal(16),
   },
   hi4: {
-    marginHorizontal: pixelSizeHorizontal(29),
+    // marginHorizontal: pixelSizeHorizontal(1),
     color: COLORS.grey,
-    fontSize: fontPixel(16),
+    fontSize: fontPixel(22),
     fontFamily: 'OpenSans-SemiBold',
   },
   hi5: {

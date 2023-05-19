@@ -71,7 +71,7 @@ const BookSpace = () => {
            { data,token}
           );
           console.log(res.data);
-          // navigation.navigate('UserProfile');
+          navigation.navigate('ParkingHistory');
         
 
       setModalVisible(false);
