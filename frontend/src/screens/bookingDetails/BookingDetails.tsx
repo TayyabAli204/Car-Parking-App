@@ -2,12 +2,18 @@ import {StyleSheet, Text, View, StatusBar} from 'react-native';
 import React from 'react';
 import MenuSearchBar from '../../components/MenuSearchBar';
 import {useSelector} from 'react-redux';
+import {fontPixel,pixelSizeVertical,pixelSizeHorizontal} from '../../utils/ResponsiveStyle';
+import COLORS from '../../consts/colors';
+import CustomButton from '../../components/CustomButton';
 const BookingDetails = () => {
-  const {selectedSpot, selectedArea} = useSelector(
+  const {selectedSpot, selectedArea, parkingSlot} = useSelector(
     (state: any) => state.parkingSlotSlice,
   );
+  console.log('selectedArea detailsascreen', selectedArea);
+
+  console.log('selectedSpot detailsascreen', selectedSpot);
   return (
-    <View style={{flex:1 , backgroundColor:'white'}}>
+    <View style={{flex: 1, backgroundColor: 'white'}}>
       <StatusBar
         translucent={false}
         backgroundColor={'white'}
@@ -16,15 +22,59 @@ const BookingDetails = () => {
       <MenuSearchBar
         MenuSearchBarStyle={styles.mainspace}
         title={selectedArea}
+        titleSlotName={selectedSpot.parkingLotName}
       />
       <View>
         <View style={styles.detailsModel}>
-          <Text style={{color:"black",textAlign:'center',paddingTop:11}}>Booking Details</Text>
-          <View style={{paddingTop:17,paddingHorizontal:13,gap:14,paddingBottom:22}}>
-            <Text style={{color:"black"}}>Check-in Time:</Text>
-            <Text style={{color:"black"}}> Check-out Time (Est):</Text>
+          <Text
+            style={styles.textdetail}>
+            Booking Details
+          </Text>
+          <View style={styles.detailHR}></View>
+          <View
+            style={styles.yaha}>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                paddingHorizontal: 13,
+              }}>
+              <Text style={styles.CHECKINTIMEDATA}>Booked Space: </Text>
+              <Text style={styles.CHECKINTIMETEXT}>
+                {selectedArea} {selectedSpot.parkingLotName}
+              </Text>
+            </View>
+            <View style={styles.detailHR}></View>
+          </View>
+          <View
+            style={styles.detailModel}>
+            <View
+              style={styles.CHECKINTIME}>
+              <Text style={styles.CHECKINTIMETEXT}>Check-in Time: </Text>
+              <Text style={styles.CHECKINTIMEDATA}>{selectedSpot.entryTime}</Text>
+            </View>
+            <View
+              style={styles.CHECKINTIME}>
+              <Text style={styles.CHECKINTIMETEXT}>Estimate Duration : </Text>
+              <Text style={styles.CHECKINTIMEDATA}>{selectedSpot.totalParkingTime + ' hours'} </Text>
+            </View>
+            <View
+              style={styles.CHECKINTIME}>
+              <Text style={styles.CHECKINTIMETEXT}>Unique ID: </Text>
+              <Text style={styles.CHECKINTIMEDATA}>{selectedSpot._id} </Text>
+            </View>
+          </View>
+          <View style={styles.detailHR}></View>
+          <View
+            style={styles.TOTALFEE}>
+            <Text style={styles.CHECKINTIMETOAL}>Total </Text>
+            <Text style={styles.CHECKINTIMETOAL}>{'$' + selectedSpot.perHourFee} </Text>
           </View>
         </View>
+        <CustomButton
+          title={'Pay up'}
+          titleStyle={styles.title}
+        />
       </View>
     </View>
   );
@@ -48,4 +98,59 @@ const styles = StyleSheet.create({
     paddingTop: 33,
     paddingHorizontal: 16,
   },
+  detailHR: {
+    borderWidth: 0.3,
+    borderColor: COLORS.grey,
+    marginHorizontal: 14,
+    marginTop: 10,
+  },
+  textdetail:{
+    color: COLORS.black,
+    textAlign: 'center',
+    paddingTop: 11,
+    fontSize: fontPixel(18),
+    fontFamily: 'OpenSans-SemiBold',
+  },
+  yaha:{
+    paddingVertical: 17,
+  },
+  detailModel:{
+    paddingVertical: 17,
+    paddingHorizontal: 13,
+    gap: 14,
+    flexDirection: 'column',
+  },
+ CHECKINTIME :{flexDirection: 'row', justifyContent: 'space-between'},
+ TOTALFEE:{
+  flexDirection: 'row',
+  justifyContent: 'space-around',
+  paddingVertical: 20,
+},
+CHECKINTIMETEXT:{
+  color:COLORS.primary,
+  fontSize:fontPixel(16),
+  fontFamily:"OpenSans-Regular"
+  
+},
+CHECKINTIMEDATA:{
+  color:COLORS.primary,
+  fontSize:fontPixel(16),
+  fontFamily:"OpenSans-SemiBold"
+},
+CHECKINTIMETOAL:{
+  color:COLORS.primary,
+  fontSize:fontPixel(24),
+  fontFamily:"OpenSans-SemiBold"
+},
+title: {
+  backgroundColor: COLORS.secondary,
+  marginTop: pixelSizeVertical(24),
+  marginHorizontal: pixelSizeHorizontal(20),
+  paddingVertical: pixelSizeVertical(14),
+  textAlign: 'center',
+  fontSize: fontPixel(20),
+  color: COLORS.white,
+  fontFamily: 'OpenSans-Bold',
+  borderRadius:6
+},
 });

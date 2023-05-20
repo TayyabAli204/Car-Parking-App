@@ -12,7 +12,7 @@ const parkingSlotSlice = createSlice({
 
   reducers: {
     setParkingSlotData: (state, action) => {
-      console.log(action.payload,'action.payloadaction.payload')
+      console.log(action.payload, 'action.payloadaction.payload');
       // if(state.parkingSlots.length==0){
       state.parkingSlots = action.payload;
       // }
@@ -21,18 +21,21 @@ const parkingSlotSlice = createSlice({
       state.selectedArea = action.payload;
     },
     setSelectedSpot: (state, {payload}) => {
+      console.log(payload, 'payload');
       // console.log(state.parkingSlots)
-      if(state.parkingSlots.find((item:any)=>(item?._id==payload._id&& item.booked))){
-return        Alert.alert('Already booked')
-      }else{
-        state.selectedSpot={...payload,booked:true}
-
+      if (
+        state.parkingSlots.find(
+          (item: any) => item?._id == payload._id && item.booked,
+        )
+      ) {
+        return Alert.alert('Already booked');
+      } else {
+        state.selectedSpot = {...payload, booked: true};
       }
     },
     bookSlot: (state, {payload}) => {},
     setBookedSlotsHistory: (state, {payload}) => {
-      state.bookedSlotsHistory=payload
-     
+      state.bookedSlotsHistory = payload;
     },
   },
 });

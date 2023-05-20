@@ -25,7 +25,7 @@ const App = () => {
       <Provider store={store}>
         <NavigationContainer>
           <Stack.Navigator
-            initialRouteName="ParkingHistory"
+            initialRouteName="SplashScreen"
             screenOptions={{headerShown: false}}>
             <Stack.Screen name="HomeScreen" component={HomeScreen} />
             <Stack.Screen name="SplashScreen" component={SplashScreen} />
@@ -41,8 +41,8 @@ const App = () => {
             <Stack.Screen name="BookSpace" component={BookSpace} />
             <Stack.Screen name="BookingDetails" component={BookingDetails} />
 
-            {/* <Stack.Screen name="ParkingHistory" component={ParkingHistory}/>
-            <Stack.Screen name="Setting" component={Setting}/> */}
+            <Stack.Screen name="ParkingHistory" component={ParkingHistory}/>
+            <Stack.Screen name="Setting" component={Setting}/>
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>

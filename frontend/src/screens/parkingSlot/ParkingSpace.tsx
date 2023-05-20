@@ -4,6 +4,7 @@ import {
   View,
   TouchableOpacity,
   StatusBar,
+  Alert,
 } from 'react-native';
 import React, {useEffect} from 'react';
 import axios from 'axios';
@@ -27,19 +28,23 @@ const ParkingSpace = () => {
   const {parkingSlots,selectedArea,selectedSpot} = useSelector(
     (state: any) => state.parkingSlotSlice
   );
-  // console.log(parkingSlots[0])
+  console.log(selectedArea,"selectedArea from home screen")
   useEffect(() => {
     async function getSlotsData() {
-      // const {data}= await axios.get(`http://192.168.50.65:8000/parkingSlot/data/${selectedArea}`)
-      // console.log(data)
-      // dispatch(setParkingSlotData(data.data));
+      const {data}= await axios.get(`http://192.168.50.9:8000/parkingSlot/data/${selectedArea}`)
+      console.log(data)
+      dispatch(setParkingSlotData(data.data));
 
     }
     getSlotsData();
   }, []);
 
   function navigateToBookSpace() {
-    navigation.navigate("BookSpace");
+    if(Object.keys(selectedSpot).length){
+      Alert.alert("Kindly select an spot")
+    }else{
+      navigation.navigate("BookSpace");
+    }
   };
   return (
     <>
@@ -49,21 +54,21 @@ const ParkingSpace = () => {
         barStyle={'dark-content'}
       />
       <View style={styles.mainspace}>
- <MenuSearchBar title={selectedArea} />
+ <MenuSearchBar title={selectedArea}  titleSlotName={parkingSlots[0].perHourFee + "$"}/>
       
         <View>
           <Text style={styles.selCar}>Select preferred space</Text>
         </View>
         <View style={styles.selRender}>
           {parkingSlots.map((item: any, index: any) => {
-{console.log(selectedArea)}
+          // {console.log(selectedArea)}
 
             return (
+
               <TouchableOpacity
                 key={index}
                 onPress={() => dispatch(setSelectedSpot(item))}>
-                  <Text style={{textAlign:"center",color:'black'}}>{item.parkingLotName}
-                    </Text> 
+                  <Text style={{textAlign:"center",color:'black'}}>{item.parkingLotName}</Text> 
                 <View
                   style={{
                     backgroundColor: '#613EEA',
