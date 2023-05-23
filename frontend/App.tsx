@@ -1,4 +1,6 @@
 import React from 'react';
+import {Alert} from 'react-native';
+import {StripeProvider} from '@stripe/stripe-react-native';
 import SplashScreen from './src/screens/splashScreen/SplashScreen';
 import OnBoarding from './src/screens/onBoarding/OnBoarding';
 import GetStart from './src/screens/onBoard/OnBoard';
@@ -18,34 +20,38 @@ import parkingSpace from './src/screens/parkingSlot/ParkingSpace';
 import BookSpace from './src/screens/bookSpace/BookSpace';
 import HomeScreen from './src/screens/homeScreen/HomeScreen';
 import BookingDetails from './src/screens/bookingDetails/BookingDetails';
+import MakePayment from './src/screens/makePayment/MakePayment';
+import {SP_KEY} from '@env';
 const Stack = createNativeStackNavigator();
 const App = () => {
   return (
     <>
-      <Provider store={store}>
-        <NavigationContainer>
-          <Stack.Navigator
-            initialRouteName="SplashScreen"
-            screenOptions={{headerShown: false}}>
-            <Stack.Screen name="HomeScreen" component={HomeScreen} />
-            <Stack.Screen name="SplashScreen" component={SplashScreen} />
-            <Stack.Screen name="OnBoarding" component={OnBoarding} />
-            <Stack.Screen name="GetStart" component={GetStart} />
-            <Stack.Screen name="Login" component={Login} />
-            <Stack.Screen name="PhoneNoSignup" component={PhoneNoSignup} />
-            <Stack.Screen name="VerficationCode" component={VerficationCode} />
-            <Stack.Screen name="Password" component={Password} />
-            <Stack.Screen name="UserProfile" component={UserProfile} />
-            <Stack.Screen name="MenuScreen" component={MenuScreen} />
-            <Stack.Screen name="parkingSpace" component={parkingSpace} />
-            <Stack.Screen name="BookSpace" component={BookSpace} />
-            <Stack.Screen name="BookingDetails" component={BookingDetails} />
-
-            <Stack.Screen name="ParkingHistory" component={ParkingHistory}/>
-            <Stack.Screen name="Setting" component={Setting}/>
-          </Stack.Navigator>
-        </NavigationContainer>
-      </Provider>
+      <StripeProvider publishableKey={SP_KEY}>
+        <Provider store={store}>
+          <NavigationContainer>
+            <Stack.Navigator
+              initialRouteName="BookingDetails"
+              screenOptions={{headerShown: false}}>
+              <Stack.Screen name="HomeScreen" component={HomeScreen} />
+              <Stack.Screen name="SplashScreen" component={SplashScreen} />
+              <Stack.Screen name="OnBoarding" component={OnBoarding} />
+              <Stack.Screen name="GetStart" component={GetStart} />
+              <Stack.Screen name="Login" component={Login} />
+              <Stack.Screen name="PhoneNoSignup" component={PhoneNoSignup} />
+              <Stack.Screen name="VerficationCode" component={VerficationCode}  />
+              <Stack.Screen name="Password" component={Password} />
+              <Stack.Screen name="UserProfile" component={UserProfile} />
+              <Stack.Screen name="MenuScreen" component={MenuScreen} />
+              <Stack.Screen name="parkingSpace" component={parkingSpace} />
+              <Stack.Screen name="BookSpace" component={BookSpace} />
+              <Stack.Screen name="BookingDetails" component={BookingDetails} />
+              <Stack.Screen name="ParkingHistory" component={ParkingHistory} />
+              <Stack.Screen name="Setting" component={Setting} />
+              <Stack.Screen name="MakePayment" component={MakePayment} />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </Provider>
+      </StripeProvider>
     </>
   );
 };

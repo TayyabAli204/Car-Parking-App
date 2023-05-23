@@ -1,6 +1,7 @@
 const express = require("express");
 require("dotenv").config();
 const bodyParser = require("body-parser");
+const stripe = require('stripe')(process.env.Stripe_S_Key);
 const cors = require("cors");
 const mongoose = require("mongoose");
 const emailCollection = require("./src/models/emailModel");
@@ -23,10 +24,72 @@ app.post("/body", (req, resp) => {
   console.log("request chali", req.body);
   resp.status(200).send("sucess");
 });
+app.get("/card",(req,res)=>{
+     res.end("cards details")
+     console.log("afsdjakjf",res)
+})
+
+// Set your secret key. Remember to switch to your live secret key in production.
+// See your keys here: https://dashboard.stripe.com/apikeys
+// const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
+
+// const paymentIntent = await stripe.paymentIntents.create({
+//   amount: 1099,
+//   currency: 'usd',
+// });
+// const clientSecret = paymentIntent.client_secret
+// // Pass the client secret to the client
+// console.log("clientSecret",clientSecret)
+
+
+
+
+
+
 
 app.use("/post", postRoutes);
 app.use("/auth", userRoutes);
 app.use("/parkingSlot", parkingSlotRoute);
+
+
+// This example sets up an endpoint using the Express framework.
+// Watch this video to get started: https://youtu.be/rPR2aJ6XnAc.
+
+app.post('/payment-sheet', async (req, res) => {
+console.log(req.body)
+  
+  // Use an existing Customer ID if this is a returning customer.
+  const {amount,currency} = req.body;
+  const customer = await stripe.customers.create();
+  const ephemeralKey = await stripe.ephemeralKeys.create(
+    {customer: customer.id},
+    {apiVersion: '2022-11-15'}
+  );
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: amount,
+    currency:currency,
+    customer: customer.id,
+    payment_method_types: ['card'],
+  });
+
+  res.json({
+    paymentIntent: paymentIntent.client_secret,
+    ephemeralKey: ephemeralKey.secret,
+    customer: customer.id,
+  });
+
+  
+});
+
+
+
+
+
+
+
+
+
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

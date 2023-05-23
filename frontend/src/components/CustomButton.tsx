@@ -3,7 +3,7 @@ import React from 'react'
 const CustomButton = (props:any) => {
   return (
     <>
-     <TouchableOpacity onPress={props.onPress} style={props.buttonStyle}>
+     <TouchableOpacity onPress={props.onPress} disabled={props.disabled} style={props.buttonStyle}>
            {/* {props?.children} */}
           <Text style={props.titleStyle}>{props.title}</Text>
 
