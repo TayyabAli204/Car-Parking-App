@@ -13,14 +13,18 @@ import {
 import React from 'react';
 import axios from 'axios';
 import MenuSearchBar from '../../components/MenuSearchBar';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {
   setParkingSlotData,
   setSelectedArea
 } from '../../store/parkingSlotSlice';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AvailLocation from '../../assets/img/homeimg/gridicons-location.svg'
+import COLORS from '../../consts/colors';
 const HomeScreen = ({navigation}: any) => {
+  // const {setParkingSlotData} = useSelector(
+  //   (state: any) => state.parkingSlotSlice
+  // );
   const dispatch = useDispatch();
   const Data:any = [
     {
@@ -38,11 +42,10 @@ const HomeScreen = ({navigation}: any) => {
   async function getDbData(name: String) {
     try {
       const token = await AsyncStorage.getItem('token');
-      console.log(token)
+      console.log("token from , that are  login",token)
       const {data} = await axios.get(
-        `http://192.168.50.65:8000/parkingSlot/data/${name.toUpperCase()}/${token}`,
+        `http://192.168.50.9:8000/parkingSlot/data/${name.toUpperCase()}/${token}`,
       );
-      
       console.log(data)
       // // Alert.alert(data.message);
       dispatch(setSelectedArea(name));
@@ -73,7 +76,7 @@ const HomeScreen = ({navigation}: any) => {
                  justifyContent:"center",alignItems:"center",paddingVertical:20}}
                 onPress={() =>getDbData(item.locationName)}>
                 {item.locationIcon}
-                <Text>{item.locationName}</Text>
+                <Text style={styles.locationName}>{item.locationName}</Text>
               </TouchableOpacity>
             )}
           />
@@ -106,4 +109,7 @@ const styles = StyleSheet.create({
     paddingTop: 33,
     paddingHorizontal: 16,
   },
+  locationName:{
+    color:COLORS.black
+  }
 });
