@@ -1,15 +1,34 @@
 
-import { StyleSheet, Alert, View } from 'react-native'
-import React,{useState} from 'react'
+import { StyleSheet, Alert, View,Image,StatusBar,Text,TouchableOpacity,ActivityIndicator } from 'react-native'
+import React,{useState,useEffect,useRef} from 'react'
 import { CardField, confirmPayment } from '@stripe/stripe-react-native';
 import CustomButton from '../../components/CustomButton';
 import { heightPixel, pixelSizeHorizontal } from '../../utils/ResponsiveStyle';
+import MenuSearchBar from '../../components/MenuSearchBar';
 import COLORS from '../../consts/colors';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
+import AnimatedLottieView from 'lottie-react-native';
+import { Animated, Easing } from 'react-native';
+import Modal from 'react-native-modal'
 export default function MakePayment() {
    const [cardInfo, setCardInfo] = useState(null)
    const [loading, setLoading] = useState(false);
+   const [showAnimation,setShowAnimation] =useState(false);
+   const [showLoader,setShowLoader] =useState(false);
+   const [showBtnTitle,setBtnTitle] =useState("Make Payment");
+
+   const animationProgress = useRef(new Animated.Value(0))
+
+  // useEffect(() => {
+  //   Animated.timing(animationProgress.current, {
+  //     toValue: 0,
+  //     duration: 5000,
+  //     easing: Easing.linear,
+  //     useNativeDriver: false
+  //   }).start();
+  // }, [])
+
    const {selectedSpot, selectedArea, parkingSlot} = useSelector(
     (state: any) => state.parkingSlotSlice,
 
@@ -28,7 +47,11 @@ export default function MakePayment() {
   
 
   const onDone = async ()=>{
-    // console.log("cardInfocardInfocardInfo",cardInfo)
+    setShowLoader(true)
+
+    setBtnTitle("Payment Succesful!")
+
+    console.log("cardInfocardInfocardInfo",cardInfo)
     let apiData = {
         amount:selectedSpot.perHourFee,
         currency : "usd"
@@ -37,18 +60,26 @@ export default function MakePayment() {
 
     try {
       const res = await  axios.post("http://192.168.50.9:8000/payment-sheet",apiData)
-      // console.log("payment intent create sucessfully...",res.data)
+      console.log("payment intent create sucessfully...",res.data)
     
       if(res?.data?.paymentIntent){
           var paymentConfrmR:any = await confirmPayment(res?.data?.paymentIntent,{paymentMethodType:'Card'})
-          // console.log("paymentConfrmR",paymentConfrmR)
-          Alert.alert("Payment Successfully...!!!");
+          console.log("paymentConfrmR",paymentConfrmR)
+
+          // Alert.alert("Payment Successfully...!!!");
+
+              setShowLoader(false)
+    setShowAnimation(true)
       }
     } catch (error) {
       console.log("error",error)
       
-    }
+    }finally{
+ setTimeout(()=>{setShowAnimation(false)},3000)
+    
 
+    }
+   
   }
      // if(!!cardInfo){
     //   try {
@@ -59,9 +90,33 @@ export default function MakePayment() {
         
     //   }
     // }
+
+                             
   return (
         <View style={styles.container}>
+          <StatusBar
+        translucent={false}
+        backgroundColor={'white'}
+        barStyle={'dark-content'}
+      />
+     {
+  <Modal isVisible={showLoader}>
+    <ActivityIndicator size={'large'} color={COLORS.white}></ActivityIndicator>
+  </Modal>
+}
+      <MenuSearchBar
+        MenuSearchBarStyle={styles.mainspace}
+        title={selectedArea}
+        titleSlotName={selectedSpot.parkingLotName}
 
+      />
+      <View style={{justifyContent:'center',alignItems:"center"}}>
+        <Text style={styles.cardRs}>Total Fee = {"N"+selectedSpot.perHourFee}</Text>
+        <Text style={styles.cardDetail}>Select preferred card</Text>
+        {/* <Card_purple width={220} height={heightPixel(230)} /> */}
+        <Image source={require("../../assets/img/card_purple.jpeg")} style={{ borderRadius:10,paddingTop:40}}/>
+      </View>
+      <Text style={styles.cardDetail}>Input new card details</Text>
       <CardField
         postalCodeEnabled={false}
         placeholders={{
@@ -70,6 +125,9 @@ export default function MakePayment() {
         cardStyle={{
           backgroundColor: '#FFFFFF',
           textColor: '#000000',
+          borderRadius: 8,
+          borderWidth: 1,
+          borderColor: '#CCCCCC',
         }} 
         style={{
           width: '100%',
@@ -84,7 +142,17 @@ export default function MakePayment() {
           console.log('focusField', focusedField);
         }}
       />
-      <CustomButton  title="Make Payment" buttonStyle={[styles.buttonStyle,{backgroundColor: cardInfo? COLORS.lightBlue : COLORS.grey}]} onPress={()=>onDone()} titleStyle={styles.titleStyle} disabled={!cardInfo && !loading} />
+{  showAnimation ? (
+  <AnimatedLottieView source={require('../../consts/success-lotties.json')}  autoPlay loop  />
+  ) : (
+    <CustomButton  title={showBtnTitle}
+    buttonStyle={[styles.buttonStyle,{backgroundColor: cardInfo? COLORS.lightBlue : COLORS.grey}]} 
+    onPress={()=>onDone()} titleStyle={styles.titleStyle} disabled={!cardInfo && !loading} />
+    )
+}
+
+      
+
     </View>
   )
 }
@@ -93,6 +161,7 @@ const styles = StyleSheet.create({
   container:{
    flex:1,
    padding:pixelSizeHorizontal(16),
+   backgroundColor: 'white'
 
   },
   buttonStyle:{
@@ -106,5 +175,16 @@ const styles = StyleSheet.create({
     fontFamily:"OpenSans-SemiBold",
     color:COLORS.white,
 
+  },
+  mainspace: {
+    backgroundColor: 'white',
+    paddingTop: 33,
+    paddingHorizontal: 16,
+  },
+  cardDetail:{color:COLORS.grey,textAlign:"center",fontSize:16 ,letterSpacing:2},
+  cardRs:{
+    color:COLORS.black,
+    fontSize:18,
+    fontFamily:"OpenSans-SemiBold"
   }
 })

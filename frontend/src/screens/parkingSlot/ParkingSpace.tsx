@@ -60,7 +60,7 @@ const ParkingSpace = () => {
       <View style={styles.mainspace}>
         <MenuSearchBar
           title={selectedArea}
-          titleSlotName={parkingSlots[0].perHourFee}
+          titleSlotName={ "N" + parkingSlots[0].perHourFee}
         />
 
         <View>

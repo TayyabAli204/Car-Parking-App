@@ -71,7 +71,7 @@ const BookingDetails = () => {
           <View
             style={styles.TOTALFEE}>
             <Text style={styles.CHECKINTIMETOAL}>Total </Text>
-            <Text style={styles.CHECKINTIMETOAL}>{selectedSpot.perHourFee} </Text>
+            <Text style={styles.CHECKINTIMETOAL}>{"N"+selectedSpot.perHourFee} </Text>
           </View>
         </View>
         <CustomButton

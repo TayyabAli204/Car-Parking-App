@@ -46,13 +46,8 @@ console.log(state,'state')
 useEffect(()=>{
   async function getUserHistory(){
   const token=await  getToken();
-<<<<<<< HEAD
-console.log(token)
-    const {data}=await axios.get(`http://192.168.50.65:8000/parkingSlot/${token}`)
-=======
 
     const {data}=await axios.get(`http://192.168.50.9:8000/parkingSlot/${token}`)
->>>>>>> 0e5925bb63ea53182518aa39fd677a22014d7b4d
     dispatch(setBookedSlotsHistory(data.data))
   }
   getUserHistory()
