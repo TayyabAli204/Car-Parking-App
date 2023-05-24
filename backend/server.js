@@ -24,28 +24,6 @@ app.post("/body", (req, resp) => {
   console.log("request chali", req.body);
   resp.status(200).send("sucess");
 });
-app.get("/card",(req,res)=>{
-     res.end("cards details")
-     console.log("afsdjakjf",res)
-})
-
-// Set your secret key. Remember to switch to your live secret key in production.
-// See your keys here: https://dashboard.stripe.com/apikeys
-// const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
-
-// const paymentIntent = await stripe.paymentIntents.create({
-//   amount: 1099,
-//   currency: 'usd',
-// });
-// const clientSecret = paymentIntent.client_secret
-// // Pass the client secret to the client
-// console.log("clientSecret",clientSecret)
-
-
-
-
-
-
 
 app.use("/post", postRoutes);
 app.use("/auth", userRoutes);

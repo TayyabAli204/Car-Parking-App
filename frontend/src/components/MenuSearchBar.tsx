@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   },
   stext: {
     fontSize: fontPixel(18),
-    color: COLORS.black,
+    color: "red",
     fontFamily: 'OpenSans-SemiBold',
   },
   stext1: {flexDirection: 'row', alignItems: 'center'},

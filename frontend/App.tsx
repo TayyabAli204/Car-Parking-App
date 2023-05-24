@@ -30,10 +30,10 @@ const App = () => {
         <Provider store={store}>
           <NavigationContainer>
             <Stack.Navigator
-              initialRouteName="BookingDetails"
+              initialRouteName="SplashScreen"
               screenOptions={{headerShown: false}}>
-              <Stack.Screen name="HomeScreen" component={HomeScreen} />
               <Stack.Screen name="SplashScreen" component={SplashScreen} />
+              <Stack.Screen name="HomeScreen" component={HomeScreen} />
               <Stack.Screen name="OnBoarding" component={OnBoarding} />
               <Stack.Screen name="GetStart" component={GetStart} />
               <Stack.Screen name="Login" component={Login} />

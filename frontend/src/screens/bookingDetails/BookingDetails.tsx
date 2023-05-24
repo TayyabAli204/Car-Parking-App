@@ -5,8 +5,10 @@ import {useSelector} from 'react-redux';
 import {fontPixel,pixelSizeVertical,pixelSizeHorizontal} from '../../utils/ResponsiveStyle';
 import COLORS from '../../consts/colors';
 import CustomButton from '../../components/CustomButton';
+import { useNavigation } from '@react-navigation/native';
 const BookingDetails = () => {
-  const {selectedSpot, selectedArea, parkingSlot} = useSelector(
+  const navigation :any = useNavigation();
+  const {selectedSpot, selectedArea, } = useSelector(
     (state: any) => state.parkingSlotSlice,
   );
   console.log('selectedArea detailsascreen', selectedArea);
@@ -23,6 +25,7 @@ const BookingDetails = () => {
         MenuSearchBarStyle={styles.mainspace}
         title={selectedArea}
         titleSlotName={selectedSpot.parkingLotName}
+
       />
       <View>
         <View style={styles.detailsModel}>
@@ -68,12 +71,13 @@ const BookingDetails = () => {
           <View
             style={styles.TOTALFEE}>
             <Text style={styles.CHECKINTIMETOAL}>Total </Text>
-            <Text style={styles.CHECKINTIMETOAL}>{'$' + selectedSpot.perHourFee} </Text>
+            <Text style={styles.CHECKINTIMETOAL}>{selectedSpot.perHourFee} </Text>
           </View>
         </View>
         <CustomButton
           title={'Pay up'}
           titleStyle={styles.title}
+          onPress={()=>{navigation.navigate("MakePayment")}}
         />
       </View>
     </View>
