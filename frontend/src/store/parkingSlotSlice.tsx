@@ -13,15 +13,13 @@ const parkingSlotSlice = createSlice({
   reducers: {
     setParkingSlotData: (state, action) => {
       console.log(action.payload,'action.payloadaction.payload')
-      // if(state.parkingSlots.length==0){
+      
       state.parkingSlots = action.payload;
-      // }
     },
     setSelectedArea: (state, action) => {
       state.selectedArea = action.payload;
     },
     setSelectedSpot: (state, {payload}) => {
-      // console.log(state.parkingSlots)
       if(state.parkingSlots.find((item:any)=>(item?._id==payload._id&& item.booked))){
 return        Alert.alert('Already booked')
       }else{

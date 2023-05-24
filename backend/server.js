@@ -19,9 +19,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static("public"));
 
-app.post("/body", (req, resp) => {
+app.get("/body", (req, resp) => {
+console.log(req.query.Quiz.forEach(item=>console.log(item)))
   console.log("request chali", req.body);
-  resp.status(200).send("sucess");
+  resp.status(200).json(req.query);
 });
 
 app.use("/post", postRoutes);

@@ -11,17 +11,16 @@ const parkingSlotData = async (req, res) => {
   });
 };
 const userHistory = async (req, res) => {
-
-  const data = await CarParking.find({ userName: req.user.email});
+  const data = await CarParking.find({ userName: req.user.email });
 
   res.json({
     message: "request success",
-data
+    data,
   });
 };
 const bookParkingSlot = async (req, res) => {
-  const { _id,token, ...updateData } = req.body.data;
-  updateData.userName=req.user.email
+  const { _id, token, ...updateData } = req.body.data;
+  updateData.userName = req.user.email;
   const updatedData = await CarParking.updateOne(
     { _id: new ObjectId(_id) },
     { $set: updateData },
@@ -31,4 +30,18 @@ const bookParkingSlot = async (req, res) => {
 
   res.end("ok");
 };
-module.exports = { parkingSlotData, bookParkingSlot,userHistory };
+const getParkingSlots = async (req, res) => {
+  const data = await CarParking.find();
+  res.json(data);
+};
+const getBookedSlots = async (req, res) => {
+  const data = await CarParking.find({booked:true});
+  res.json(data);
+};
+module.exports = {
+  parkingSlotData,
+  bookParkingSlot,
+  userHistory,
+  getParkingSlots,
+  getBookedSlots
+};

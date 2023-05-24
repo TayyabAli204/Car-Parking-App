@@ -17,6 +17,7 @@ import {store} from './src/store/store';
 import parkingSpace from './src/screens/parkingSlot/ParkingSpace';
 import BookSpace from './src/screens/bookSpace/BookSpace';
 import HomeScreen from './src/screens/homeScreen/HomeScreen';
+import ParkingSlots from './src/adminScreens/parkingSlots/ParkingSlots';
 const Stack = createNativeStackNavigator();
 const App = () => {
   return (
@@ -24,7 +25,7 @@ const App = () => {
       <Provider store={store}>
         <NavigationContainer>
           <Stack.Navigator
-            initialRouteName="ParkingHistory"
+            initialRouteName="AdminParkingSlots"
             screenOptions={{headerShown: false}}>
             <Stack.Screen name="HomeScreen" component={HomeScreen} />
             <Stack.Screen name="SplashScreen" component={SplashScreen} />
@@ -39,8 +40,9 @@ const App = () => {
             <Stack.Screen name="parkingSpace" component={parkingSpace} />
             <Stack.Screen name="BookSpace" component={BookSpace} />
 
-            <Stack.Screen name="ParkingHistory" component={ParkingHistory}/>
-            <Stack.Screen name="Setting" component={Setting}/>
+            <Stack.Screen name="ParkingHistory" component={ParkingHistory} />
+            <Stack.Screen name="Setting" component={Setting} />
+            <Stack.Screen name="AdminParkingSlots" component={ParkingSlots} />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>
