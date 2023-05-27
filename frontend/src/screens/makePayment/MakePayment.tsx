@@ -11,19 +11,21 @@ import axios from 'axios';
 import AnimatedLottieView from 'lottie-react-native';
 import { Animated, Easing } from 'react-native';
 import Modal from 'react-native-modal'
+import { useNavigation } from '@react-navigation/native';
 export default function MakePayment() {
+  const navigation:any = useNavigation();
    const [cardInfo, setCardInfo] = useState(null)
    const [loading, setLoading] = useState(false);
    const [showAnimation,setShowAnimation] =useState(false);
    const [showLoader,setShowLoader] =useState(false);
    const [showBtnTitle,setBtnTitle] =useState("Make Payment");
 
-   const animationProgress = useRef(new Animated.Value(0))
+  //  const animationProgress = useRef(new Animated.Value(0))
 
   // useEffect(() => {
   //   Animated.timing(animationProgress.current, {
   //     toValue: 0,
-  //     duration: 5000,
+  //     duration: 3000,
   //     easing: Easing.linear,
   //     useNativeDriver: false
   //   }).start();
@@ -33,7 +35,7 @@ export default function MakePayment() {
     (state: any) => state.parkingSlotSlice,
 
   );
-  console.log("selectedSpot",selectedSpot)
+  // console.log("selectedSpot",selectedSpot)
   const fetchCardDetails =(cardDetails:any)=>{
     // console.log("my  cardDetails",cardDetails)
     if(cardDetails.complete){
@@ -68,18 +70,20 @@ export default function MakePayment() {
 
           // Alert.alert("Payment Successfully...!!!");
 
-              setShowLoader(false)
+    setShowLoader(false)
     setShowAnimation(true)
+    
       }
     } catch (error) {
       console.log("error",error)
       
     }finally{
- setTimeout(()=>{setShowAnimation(false)},3000)
+    setTimeout(()=>{setShowAnimation(false)
     
-
+      navigation.navigate("ParkingHistory")
+    
+    },1000)
     }
-   
   }
      // if(!!cardInfo){
     //   try {
@@ -114,24 +118,27 @@ export default function MakePayment() {
         <Text style={styles.cardRs}>Total Fee = {"N"+selectedSpot.perHourFee}</Text>
         <Text style={styles.cardDetail}>Select preferred card</Text>
         {/* <Card_purple width={220} height={heightPixel(230)} /> */}
-        <Image source={require("../../assets/img/card_purple.jpeg")} style={{ borderRadius:10,paddingTop:40}}/>
+        <Image source={require("../../assets/img/card_purple.jpeg")} style={{ borderRadius:10,marginVertical:12}}/>
       </View>
       <Text style={styles.cardDetail}>Input new card details</Text>
       <CardField
         postalCodeEnabled={false}
+        
         placeholders={{
           number: '4242 4242 4242 4242',
         }}
         cardStyle={{
-          backgroundColor: '#FFFFFF',
-          textColor: '#000000',
+          backgroundColor: "white",
+          textColor:COLORS.grey,
           borderRadius: 8,
           borderWidth: 1,
           borderColor: '#CCCCCC',
+          placeholderColor:COLORS.grey
+          
         }} 
         style={{
           width: '100%',
-          height: 50,
+          height: 80,
           marginVertical: 30,
         }}
         onCardChange={(cardDetails) => {
@@ -143,7 +150,7 @@ export default function MakePayment() {
         }}
       />
 {  showAnimation ? (
-  <AnimatedLottieView source={require('../../consts/success-lotties.json')}  autoPlay loop  />
+  <AnimatedLottieView source={require('../../consts/success-lotties.json')}     autoPlay loop  />
   ) : (
     <CustomButton  title={showBtnTitle}
     buttonStyle={[styles.buttonStyle,{backgroundColor: cardInfo? COLORS.lightBlue : COLORS.grey}]} 
@@ -179,12 +186,12 @@ const styles = StyleSheet.create({
   mainspace: {
     backgroundColor: 'white',
     paddingTop: 33,
-    paddingHorizontal: 16,
+    paddingHorizontal: 14,
   },
-  cardDetail:{color:COLORS.grey,textAlign:"center",fontSize:16 ,letterSpacing:2},
+  cardDetail:{color:COLORS.grey,textAlign:"center",fontSize:14 ,letterSpacing:2},
   cardRs:{
     color:COLORS.black,
-    fontSize:18,
+    fontSize:14,
     fontFamily:"OpenSans-SemiBold"
   }
 })

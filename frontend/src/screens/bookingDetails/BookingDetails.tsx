@@ -44,7 +44,7 @@ const BookingDetails = () => {
               }}>
               <Text style={styles.CHECKINTIMEDATA}>Booked Space: </Text>
               <Text style={styles.CHECKINTIMETEXT}>
-                {selectedArea} {selectedSpot.parkingLotName}
+                {selectedArea} 
               </Text>
             </View>
             <View style={styles.detailHR}></View>
@@ -132,18 +132,18 @@ const styles = StyleSheet.create({
 },
 CHECKINTIMETEXT:{
   color:COLORS.primary,
-  fontSize:fontPixel(16),
-  fontFamily:"OpenSans-Regular"
+  fontSize:fontPixel(14),
+  fontFamily:"OpenSans-Regular",
   
 },
 CHECKINTIMEDATA:{
   color:COLORS.primary,
-  fontSize:fontPixel(16),
+  fontSize:fontPixel(14),
   fontFamily:"OpenSans-SemiBold"
 },
 CHECKINTIMETOAL:{
   color:COLORS.primary,
-  fontSize:fontPixel(24),
+  fontSize:fontPixel(20),
   fontFamily:"OpenSans-SemiBold"
 },
 title: {

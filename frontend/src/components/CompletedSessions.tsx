@@ -6,7 +6,7 @@ import {
   heightPixel,
 } from '../utils/ResponsiveStyle';
 import COLORS from '../consts/colors';
-const CompletedSessions = ({Icon,}: any) => {
+const CompletedSessions = ({Icon,data}: any) => {
   return (
     <>
      
@@ -14,8 +14,8 @@ const CompletedSessions = ({Icon,}: any) => {
           <View style={styles.jello1}>
             <View style={{marginVertical: 9}}>{Icon}</View>
             <View style={{marginTop: 9, marginRight: 23}}>
-              <Text style={styles.jello2}> Lekki Gardens Car Park A</Text>
-              <Text style={styles.jello4}>Space 4c</Text>
+              <Text style={styles.jello2}>{data?.location}</Text>
+              <Text style={styles.jello4}>{data?.parkingLotName}</Text>
             </View>
           </View>
           <View style={styles.jello6}></View>

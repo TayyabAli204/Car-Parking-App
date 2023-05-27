@@ -29,11 +29,11 @@ const App = () => {
         <Provider store={store}>
           <NavigationContainer>
             <Stack.Navigator
-              initialRouteName="SplashScreen"
+              initialRouteName="ParkingHistory"
               screenOptions={{headerShown: false}}>
               <Stack.Screen name="SplashScreen" component={SplashScreen} />
               <Stack.Screen name="HomeScreen" component={HomeScreen} />
-              <Stack.Screen name="OnBoarding" component={OnBoarding} />
+              <Stack.Screen name="OnBoarding" component={OnBoarding} />     
               <Stack.Screen name="GetStart" component={GetStart} />
               <Stack.Screen name="Login" component={Login} />
               <Stack.Screen name="PhoneNoSignup" component={PhoneNoSignup} />

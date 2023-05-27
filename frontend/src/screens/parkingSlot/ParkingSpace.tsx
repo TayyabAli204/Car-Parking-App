@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import React, {useEffect} from 'react';
 import axios from 'axios';
-import Cars from '../../assets/img/ic-round-directions-car.svg';
+import Cars from '../../assets/img/ic-round-directions-car.svg'; 
 import {
   setParkingSlotData,
   setSelectedSpot,
@@ -44,11 +44,11 @@ const ParkingSpace = () => {
   }, []);
 
   function navigateToBookSpace() {
-    navigation.navigate('BookSpace');
-    // if (Object.keys(selectedSpot).length) {
-    //   Alert.alert('Kindly select an spot');
-    // } else {
-    // }
+    if (Object.keys(selectedSpot).length == 0) {
+      Alert.alert('Kindly select an spot');
+    } else {
+      navigation.navigate('BookSpace');
+    }
   }
   return (
     <>
@@ -111,7 +111,8 @@ export default ParkingSpace;
 
 const styles = StyleSheet.create({
   button: {
-    paddingTop: pixelSizeVertical(50),
+    paddingTop: pixelSizeVertical(40),
+    
   },
   title: {
     backgroundColor: COLORS.secondary,
@@ -123,6 +124,7 @@ const styles = StyleSheet.create({
     color: COLORS.white,
     fontFamily: 'OpenSans-Bold',
     lineHeight: 24,
+    borderRadius:6
   },
   mainspace: {
     flex: 1,

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import {
   View,
   Text,
@@ -20,7 +20,8 @@ import CompletedSessions from '../../components/CompletedSessions';
 import ActiveSession from '../../components/ActiveSession';
 import GreenIcon from '../../assets/img/emojione-check-mark-button.svg';
 import StarIcon from '../../assets/img/Star.svg';
-import { setBookedSlotsHistory } from '../../store/parkingSlotSlice';
+import {setBookedSlotsHistory} from '../../store/parkingSlotSlice';
+import moment from 'moment';
 import {
   fontPixel,
   pixelSizeHorizontal,
@@ -31,27 +32,64 @@ import {
 import {useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
-import { useDispatch,useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
-const ParkingHistory =  () => {
-  const dispatch=useDispatch()
-  const state=useSelector((state:any)=>state.parkingSlotSlice.bookedSlotsHistory)
-  async function getToken() {
-    const token = await AsyncStorage.getItem('token');
-    return token
-  }
-console.log(state,'state')
+const ParkingHistory = () =>{
+  const [Active, setActive] = useState<any>([]);
+  const [Completed, setCompleted] = useState<any>([]);
   const {navigation, route}: any = useNavigation;
   const [first, setfirst] = useState(false);
-useEffect(()=>{
-  async function getUserHistory(){
-  const token=await  getToken();
+  const BookedSlotHistory:any=useSelector((state:any)=>state.parkingSlotSlice.bookedSlotsHistory)
+  console.log("bookedSLot history",BookedSlotHistory)
+  const dispatch =useDispatch();
 
-    const {data}=await axios.get(`http://192.168.50.9:8000/parkingSlot/${token}`)
-    dispatch(setBookedSlotsHistory(data.data))
+  useEffect(() => {
+    async function getUserHistory() {
+      const token = await getToken();
+
+      const {data} = await axios.get(
+        `http://192.168.50.9:8000/parkingSlot/${token}`,
+      );
+      console.log("data dispatch from history screen",data)
+      dispatch(setBookedSlotsHistory(data.data));
+    }
+    getUserHistory();
+  }, []);
+  async function getToken() {
+    const token = await AsyncStorage.getItem('token');
+    return token;
   }
-  getUserHistory()
-},[])
+
+useEffect(()=>{
+  let c:any=[]
+  let a:any=[]
+  BookedSlotHistory.forEach((item:any)=>{
+    const currentDate = new Date();
+    const targetDate = new Date(item.entryTime);
+
+    if(currentDate > targetDate){
+      
+      c.push(item);
+    }else{
+      a.push(item);
+
+      // setActive([...Active,item])
+    }
+    
+  })
+  console.log(a,'activeeeee')
+  console.log(c,'comppppppppppppp')
+  setActive(a)
+  setCompleted(c)
+},[BookedSlotHistory])
+
+
+ 
+
+
+
+
+
   return (
     <View style={{flex: 1}}>
       <StatusBar
@@ -72,31 +110,30 @@ useEffect(()=>{
           <Profile width={widthPixel(32)} height={heightPixel(32)} />
         </View>
         <View style={styles.hi3}>
-          <Text style={styles.hi4}>Sessions :</Text>
-          <ActiveSession />
+          <Text style={styles.hi4}>Active Session :</Text>
+       
+          {
+            Active.map((item:any,index:any)=>{
+             return (
+              <ActiveSession key={index} data={item}/>
+             )
+            })
+          }
         </View>
-{
-  state.map((item:any)=>{
-    return(
-      <>
-      <Text style={styles.hi4}>
-      {  item.BookedTime}
-      {  item.entryTime}
-      {  item.location}
-      {  item.parkingLotName}
-      {  item.perHourFee}
-      {  item.totalParkingTime+" hour"}      </Text>
-      </>
-    )
-  })
-}
+ 
         <View style={styles.hi5}>
           <View style={styles.hel1}>
             <Text style={styles.hel2}>Completed Sessions</Text>
             <Text style={styles.hel3}>View all</Text>
           </View>
-          <CompletedSessions Icon={<GreenIcon />} />
-          <CompletedSessions Icon={<GreenIcon />} />
+          {
+            Completed.map((item:any,index:any)=>{
+              return(
+
+                <CompletedSessions key={index} data={item} Icon={<GreenIcon />} />
+              )
+            })
+          }
         </View>
 
         <View style={styles.hi6}>
@@ -177,7 +214,7 @@ const styles = StyleSheet.create({
   hi4: {
     // marginHorizontal: pixelSizeHorizontal(1),
     color: COLORS.grey,
-    fontSize: fontPixel(22),
+    fontSize: fontPixel(16),
     fontFamily: 'OpenSans-SemiBold',
   },
   hi5: {

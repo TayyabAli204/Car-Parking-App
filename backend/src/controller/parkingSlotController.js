@@ -11,7 +11,7 @@ const parkingSlotData = async (req, res) => {
   });
 };
 const userHistory = async (req, res) => {
-  const data = await CarParking.find({ userName: req.user.email });
+  const data = await CarParking.find({ userName: req.user.email,booked:true });
 
   res.json({
     message: "request success",
