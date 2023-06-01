@@ -9,30 +9,13 @@ import {
 } from '../utils/ResponsiveStyle';
 import COLORS from '../consts/colors';
 const ActiveSession = ({data}: any) => {
-  var entryTime: any = data.entryTime;
-  const estimateReservationHours = data.totalParkingTime;
-  const bookingTime = data.BookedTime; // Format: "hh:mm A"
-
-  // Parse the entry time and booking time
-  const entryMoment = moment(entryTime, 'dddd, M/D/YYYY h:mm A');
-  const bookingMoment = moment(bookingTime, 'hh:mm A');
-
-  // Calculate the check-out time by adding the estimated reservation hours and booking time
-  const checkOutMoment = entryMoment
-    .clone()
-    .add(estimateReservationHours, 'hours')
-    // .set({
-    //   hour: entryMoment.hour(),
-    //   minute: entryMoment.minute(),
-    //   second: 0,
-    //   millisecond: 0,
-    // });
-console.log(checkOutMoment)
-  // Format the check-out time as desired
-  const checkOutTimeFormatted = checkOutMoment.format('h:mm A');
-
-  // console.log(checkOutTimeFormatted);
-
+var entryTime: any = data.entryTime;
+const estimateReservationHours = data.totalParkingTime;
+const entryMoment = moment(entryTime, "dddd, M/D/YYYY h:mm A");
+const checkOutMoment = entryMoment
+  .clone()
+  .add(estimateReservationHours, 'hours')
+const checkOutTimeFormatted = checkOutMoment.format("hh:mm A");
   return (
     <>
       <View style={styles.hello1}>
@@ -47,18 +30,25 @@ console.log(checkOutMoment)
         </View>
         <View style={styles.hello7}></View>
         <View style={styles.hello8}>
-          <View style={{flexDirection:'row', justifyContent: 'space-between'}}>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
             <Text style={styles.hello9}>Check-Out Time</Text>
             <Text style={styles.hello10}>{checkOutTimeFormatted}</Text>
           </View>
-          <View style={{flexDirection:'row', justifyContent: 'space-between'}}>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
             <Text style={styles.hello9}>Check-in Time</Text>
             <Text style={styles.hello10}>{data.entryTime}</Text>
           </View>
-          <View style={{flexDirection:'row', justifyContent: 'space-between'}}>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
             <Text style={styles.hello9}>Estimate Hours</Text>
-            <Text style={styles.hello10}> {data.totalParkingTime + 'hours'} </Text>
+            <Text style={styles.hello10}>
+              {' '}
+              {data.totalParkingTime + 'hours'}{' '}
+            </Text>
           </View>
+          {/* <View style={{flexDirection:'row', justifyContent: 'space-between'}}>
+            <Text style={styles.hello9}>Remaining Time</Text>
+            <Text style={styles.hello10}> {remainingTimeFormatted} </Text>
+          </View> */}
         </View>
       </View>
     </>
@@ -115,12 +105,12 @@ const styles = StyleSheet.create({
   },
   hello8: {
     flexDirection: 'column',
-   
+
     marginHorizontal: pixelSizeHorizontal(15),
     paddingVertical: 8,
   },
   hello9: {
-    fontSize: fontPixel(14),
+    fontSize: fontPixel(15),
     color: COLORS.grey,
     fontFamily: 'OpenSans-Regular',
   },

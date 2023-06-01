@@ -35,7 +35,7 @@ const ParkingSpace = () => {
   useEffect(() => {
     async function getSlotsData() {
       const {data} = await axios.get(
-        `http://192.168.50.9:8000/parkingSlot/data/${selectedArea}`,
+        `http://172.18.1.2/parkingSlot/data/${selectedArea}`,
       );
       console.log(data);
       dispatch(setParkingSlotData(data.data));

@@ -1,5 +1,6 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import moment from 'moment';
 import {
   pixelSizeHorizontal,
   fontPixel,
@@ -7,6 +8,17 @@ import {
 } from '../utils/ResponsiveStyle';
 import COLORS from '../consts/colors';
 const CompletedSessions = ({Icon,data}: any) => {
+  console.log("data,",data)
+  var entryTime: any = data?.entryTime;
+  const estimateReservationHours = data?.totalParkingTime;
+  const entryMoment = moment(entryTime, "dddd, M/D/YYYY h:mm A");  
+  const entryMomentFormatted = entryMoment.format("MM/DD/YYYY");
+  const checkOutMoment:any = entryMoment
+    .clone()
+    .add(estimateReservationHours, 'hours');  
+  const checkOutTimeFormatted:any = checkOutMoment.format("hh:mm A");
+
+  
   return (
     <>
      
@@ -20,9 +32,9 @@ const CompletedSessions = ({Icon,data}: any) => {
           </View>
           <View style={styles.jello6}></View>
           <View style={styles.jello5}>
-            <Text style={styles.jello7}>02/09/2019</Text>
-            <Text style={styles.jello8}>02:00pm</Text>
-            <Text style={styles.jello9}>$100</Text>
+            <Text style={styles.jello7}>{entryMomentFormatted}</Text>
+            <Text style={styles.jello8}>{checkOutTimeFormatted}</Text>
+            <Text style={styles.jello9}>{'N' + data?.perHourFee}</Text>
           </View>
         </View>
       

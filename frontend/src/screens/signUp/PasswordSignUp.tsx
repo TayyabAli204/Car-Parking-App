@@ -63,7 +63,7 @@ const Password = () => {
       // ...
       console.log(password,selector)
       const response:any = await axios.post(
-        'http://192.168.50.9:8000/auth/signup',
+        'http://172.18.1.2/auth/signup',
         {password: password, email: selector},
       );
 await AsyncStorage.setItem('token',response.data.data.token)

@@ -61,7 +61,7 @@ export default function MakePayment() {
     console.log("apiData.amount",apiData)
 
     try {
-      const res = await  axios.post("http://192.168.50.9:8000/payment-sheet",apiData)
+      const res = await  axios.post("http://192.168.50.9/payment-sheet",apiData)
       console.log("payment intent create sucessfully...",res.data)
     
       if(res?.data?.paymentIntent){

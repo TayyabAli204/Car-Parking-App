@@ -48,7 +48,7 @@ const ParkingHistory = () =>{
       const token = await getToken();
 
       const {data} = await axios.get(
-        `http://192.168.50.9:8000/parkingSlot/${token}`,
+        `http://192.168.50.9/parkingSlot/${token}`,
       );
       console.log("data dispatch from history screen",data)
       dispatch(setBookedSlotsHistory(data.data));
@@ -65,20 +65,17 @@ useEffect(()=>{
   let a:any=[]
   BookedSlotHistory.forEach((item:any)=>{
     const currentDate = new Date();
-    const targetDate = new Date(item.entryTime);
+    const dateString = item.entryTime;
+const parsedDate = moment(dateString, "dddd, M/D/YYYY h:mm A").toDate();
 
-    if(currentDate > targetDate){
-      
+
+    if(currentDate > parsedDate){
       c.push(item);
     }else{
       a.push(item);
-
-      // setActive([...Active,item])
-    }
+     }
     
   })
-  console.log(a,'activeeeee')
-  console.log(c,'comppppppppppppp')
   setActive(a)
   setCompleted(c)
 },[BookedSlotHistory])
@@ -134,14 +131,6 @@ useEffect(()=>{
               )
             })
           }
-        </View>
-
-        <View style={styles.hi6}>
-          <View style={styles.hi7}>
-            <Text style={styles.hi8}>Reserved Spots</Text>
-            <Text style={styles.hi9}>View all</Text>
-          </View>
-          <CompletedSessions Icon={<StarIcon />} />
         </View>
         <TouchableOpacity style={styles.touch}>
           <Text style={styles.next}>Go Back to Home Screen</Text>
