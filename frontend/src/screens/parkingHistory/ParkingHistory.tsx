@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import {
   View,
   Text,
@@ -20,7 +20,7 @@ import CompletedSessions from '../../components/CompletedSessions';
 import ActiveSession from '../../components/ActiveSession';
 import GreenIcon from '../../assets/img/emojione-check-mark-button.svg';
 import StarIcon from '../../assets/img/Star.svg';
-import { setBookedSlotsHistory } from '../../store/parkingSlotSlice';
+import {setBookedSlotsHistory} from '../../store/parkingSlotSlice';
 import {
   fontPixel,
   pixelSizeHorizontal,
@@ -31,27 +31,31 @@ import {
 import {useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
-import { useDispatch,useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
-const ParkingHistory =  () => {
-  const dispatch=useDispatch()
-  const state=useSelector((state:any)=>state.parkingSlotSlice.bookedSlotsHistory)
+const ParkingHistory = () => {
+  const dispatch = useDispatch();
+  const state = useSelector(
+    (state: any) => state.parkingSlotSlice.bookedSlotsHistory,
+  );
   async function getToken() {
     const token = await AsyncStorage.getItem('token');
-    return token
+    return token;
   }
-console.log(state,'state')
+  console.log(state, 'state');
   const {navigation, route}: any = useNavigation;
   const [first, setfirst] = useState(false);
-useEffect(()=>{
-  async function getUserHistory(){
-  const token=await  getToken();
+  useEffect(() => {
+    async function getUserHistory() {
+      const token = await getToken();
 
-    const {data}=await axios.get(`http://192.168.50.9:8000/parkingSlot/${token}`)
-    dispatch(setBookedSlotsHistory(data.data))
-  }
-  getUserHistory()
-},[])
+      const {data} = await axios.get(
+        `http://192.168.50.34:8000/parkingSlot/${token}`,
+      );
+      dispatch(setBookedSlotsHistory(data.data));
+    }
+    getUserHistory();
+  }, []);
   return (
     <View style={{flex: 1}}>
       <StatusBar
@@ -75,21 +79,20 @@ useEffect(()=>{
           <Text style={styles.hi4}>Sessions :</Text>
           <ActiveSession />
         </View>
-{
-  state.map((item:any)=>{
-    return(
-      <>
-      <Text style={styles.hi4}>
-      {  item.BookedTime}
-      {  item.entryTime}
-      {  item.location}
-      {  item.parkingLotName}
-      {  item.perHourFee}
-      {  item.totalParkingTime+" hour"}      </Text>
-      </>
-    )
-  })
-}
+        {state.map((item: any) => {
+          return (
+            <>
+              <Text style={styles.hi4}>
+                {item.BookedTime}
+                {item.entryTime}
+                {item.location}
+                {item.parkingLotName}
+                {item.perHourFee}
+                {item.totalParkingTime + ' hour'}{' '}
+              </Text>
+            </>
+          );
+        })}
         <View style={styles.hi5}>
           <View style={styles.hel1}>
             <Text style={styles.hel2}>Completed Sessions</Text>
