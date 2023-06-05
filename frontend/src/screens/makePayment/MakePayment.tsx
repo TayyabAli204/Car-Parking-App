@@ -50,7 +50,7 @@ export default function MakePayment() {
     
     setBtnTitle("Payment Succesful!")
     try {
-      const res = await  axios.post("http://10.62.33.127:8000/payment-sheet",apiData)
+      const res = await  axios.post("http://192.168.50.9:8000/payment-sheet",apiData)
       console.log("payment intent create sucessfully...",res.data)
     
       if(res?.data?.paymentIntent){

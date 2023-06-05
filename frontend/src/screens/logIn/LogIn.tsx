@@ -53,7 +53,7 @@ const LogIn = ({}) => {
     else{
       try {
         console.log(email, password, 'state ma set data');
-        const response = await axios.post('http://10.62.33.127:8000/auth/login',{email: email, password: password});
+        const response = await axios.post('http://192.168.50.9:8000/auth/login',{email: email, password: password});
         console.log(response.data, 'data from db');
         await AsyncStorage.setItem('token', response.data.data.token);
         navigation.navigate('HomeScreen');

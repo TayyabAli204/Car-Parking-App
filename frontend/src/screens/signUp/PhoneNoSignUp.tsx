@@ -35,7 +35,7 @@ const PhoneNo = () => {
     } else {
       try {
         const response = await axios.post(
-          'http://10.62.33.127:8000/auth/sendemail',
+          'http://192.168.50.9:8000/auth/sendemail',
           {email: text},
         );
         console.log(response.data.error, 'data from db', );

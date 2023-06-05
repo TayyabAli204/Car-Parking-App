@@ -86,7 +86,7 @@ const BookSpace = () => {
 
       const token = await AsyncStorage.getItem('token');
       const res = await axios.post(
-        'http://10.62.33.127:8000/parkingSlot/book',
+        'http://192.168.50.9:8000/parkingSlot/book',
         {data, token},
       );
       console.log(res.data);
