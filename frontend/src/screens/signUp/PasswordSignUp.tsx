@@ -66,7 +66,7 @@ const Password = () => {
         'http://10.62.33.127:8000/auth/signup',
         {password: password, email: selector},
       );
-await AsyncStorage.setItem('token',response.data.data.token)
+      await AsyncStorage.setItem('token', response.data.data.token);
       navigation.navigate('HomeScreen');
     }
   };

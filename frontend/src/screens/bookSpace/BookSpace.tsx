@@ -25,21 +25,21 @@ import {Alert} from 'react-native';
 import Modal from 'react-native-modal';
 import DatePicker from 'react-native-date-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { setSelectedSpot } from '../../store/parkingSlotSlice';
+import {setSelectedSpot} from '../../store/parkingSlotSlice';
 const BookSpace = () => {
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
   const [estimatedTime, onChangeText] = useState('');
   const [checkInTime, onChangeNumber] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
-  
+
   const navigation: any = useNavigation();
   const dispatch = useDispatch();
-  const {selectedSpot, selectedArea,parkingSlots} = useSelector(
+  const {selectedSpot, selectedArea, parkingSlots} = useSelector(
     (state: any) => state.parkingSlotSlice,
   );
   // console.log("selectedArea",selectedArea)
-  console.log(selectedSpot,"selectedSpot")
+  console.log(selectedSpot, 'selectedSpot');
   if (modalVisible) {
     setTimeout(() => {
       setModalVisible(false);
@@ -81,8 +81,8 @@ const BookSpace = () => {
         entryTime: convertFormat(selectedDate),
         // parkingLotName:""
       };
-      dispatch(setSelectedSpot(data))
-      console.log("asdkjfhdlas",data)
+      dispatch(setSelectedSpot(data));
+      console.log('asdkjfhdlas', data);
 
       const token = await AsyncStorage.getItem('token');
       const res = await axios.post(
@@ -198,8 +198,7 @@ const styles = StyleSheet.create({
     color: COLORS.white,
     fontFamily: 'OpenSans-Bold',
     lineHeight: 24,
-  borderRadius:6
-
+    borderRadius: 6,
   },
   mainspace: {
     backgroundColor: 'white',
