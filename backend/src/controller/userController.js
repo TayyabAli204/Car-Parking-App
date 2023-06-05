@@ -48,15 +48,11 @@ const doLogin = async (req, res) => {
     const userData = await usersCollection.findOne({
       email: req.body.email,
     });
-
-    console.log("====================================");
     console.log(req.body, userData);
-    console.log("====================================");
-
     if (!userData.email) {
       res.status(501).json({
         message: "email is not found",
-        // data: [],
+        data: [],
       });
     }
     console.log(userData.passwordHash, req.body.password);
@@ -67,29 +63,19 @@ const doLogin = async (req, res) => {
     if (!passwordDecode) {
       res.status(502).json({
         message: "wrong password",
-        // data: [],
       });
     }
 
     const token = await jwt.sign(
       {
         email: userData.email,
-        // firstName: userData.firstName,
-        // lastName: userData.lastName,
       },
       "Secret"
     );
-
-    // console.log("====================================");
-    // console.log("token", token);
-    // console.log("====================================");
-
     res.status(200).json({
       message: "user is sucessfully resgistered!",
       data: {
         email: req.body.email,
-        // firstName: userData.firstName,
-        // lastName: userData.lastName,
         token: token,
       },
     });
@@ -98,10 +84,15 @@ const doLogin = async (req, res) => {
     res.status(600).json({
       message: "failed",
       error: error,
-      // data: [],
     });
   }
 };
+
+
+
+
+
+
 
 //  email wala routes
 const generateToken = () => {
@@ -113,10 +104,25 @@ const generateToken = () => {
 
 const doSendEmail = async (req, resp) => {
   try {
+    const useremail=req.body.email
+    console.log(useremail,'email')
+    const existingUser = await usersCollection.findOne({email:useremail});
+    console.log(existingUser,'user already exit');
+    if (existingUser) {
+       resp.json({ error: 'Email already exists' });
+       return
+    }
     const token = generateToken();
     const email = await sendEmail(req.body.email, token.toString());
+
+    // If the email doesn't exist, proceed with sending the verification code
+    // ... code to send the verification code
+
+    // Save the new user with the email address
+    // const newUser = new usersCollection({ email });
+    // await newUser.save();
     resp.status(200).json({
-      message: "Email has send sucessfully",
+      message: "Verification code sent successfully ",
       data: {
         email: req.body.email,
         token: token,

@@ -44,7 +44,7 @@ const HomeScreen = ({navigation}: any) => {
       const token = await AsyncStorage.getItem('token');
       console.log("token from , that are  login",token)
       const {data} = await axios.get(
-        `http://172.18.1.2/parkingSlot/data/${name.toUpperCase()}/${token}`,
+        `http://10.62.33.127:8000/parkingSlot/data/${name.toUpperCase()}/${token}`,
       );
       console.log(data)
       // // Alert.alert(data.message);

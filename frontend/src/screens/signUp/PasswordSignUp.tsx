@@ -63,7 +63,7 @@ const Password = () => {
       // ...
       console.log(password,selector)
       const response:any = await axios.post(
-        'http://172.18.1.2/auth/signup',
+        'http://10.62.33.127:8000/auth/signup',
         {password: password, email: selector},
       );
 await AsyncStorage.setItem('token',response.data.data.token)
@@ -93,6 +93,7 @@ await AsyncStorage.setItem('token',response.data.data.token)
           value={password}
           onChangeText={handlePasswordChange}
           secureTextEntry={true}
+          placeholderTextColor={COLORS.grey}
         />
         {passwordError ? (
           <Text style={{color: 'red'}}>{passwordError}</Text>
@@ -103,6 +104,8 @@ await AsyncStorage.setItem('token',response.data.data.token)
           value={confirmPassword}
           onChangeText={handleConfirmPasswordChange}
           secureTextEntry={true}
+          placeholderTextColor={COLORS.grey}
+
         />
         {confirmPasswordError ? (
           <Text style={{color: 'red'}}>{confirmPasswordError}</Text>

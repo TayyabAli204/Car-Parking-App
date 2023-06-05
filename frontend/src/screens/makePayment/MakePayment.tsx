@@ -20,16 +20,7 @@ export default function MakePayment() {
    const [showLoader,setShowLoader] =useState(false);
    const [showBtnTitle,setBtnTitle] =useState("Make Payment");
 
-  //  const animationProgress = useRef(new Animated.Value(0))
 
-  // useEffect(() => {
-  //   Animated.timing(animationProgress.current, {
-  //     toValue: 0,
-  //     duration: 3000,
-  //     easing: Easing.linear,
-  //     useNativeDriver: false
-  //   }).start();
-  // }, [])
 
    const {selectedSpot, selectedArea, parkingSlot} = useSelector(
     (state: any) => state.parkingSlotSlice,
@@ -50,18 +41,16 @@ export default function MakePayment() {
 
   const onDone = async ()=>{
     setShowLoader(true)
-
-    setBtnTitle("Payment Succesful!")
-
     console.log("cardInfocardInfocardInfo",cardInfo)
     let apiData = {
-        amount:selectedSpot.perHourFee,
-        currency : "usd"
+      amount:selectedSpot.perHourFee,
+      currency : "usd"
     }
     console.log("apiData.amount",apiData)
-
+    
+    setBtnTitle("Payment Succesful!")
     try {
-      const res = await  axios.post("http://192.168.50.9/payment-sheet",apiData)
+      const res = await  axios.post("http://10.62.33.127:8000/payment-sheet",apiData)
       console.log("payment intent create sucessfully...",res.data)
     
       if(res?.data?.paymentIntent){

@@ -59,11 +59,7 @@ const BookSpace = () => {
     try {
       function convertFormat(date: any) {
         const timestamp: any = date;
-
-        // Step 1: Parse the timestamp
         const dt = new Date(timestamp);
-
-        // Step 2: Extract the components
         const dayOfWeek = dt.toLocaleDateString('en-US', {weekday: 'long'});
         const month = dt.toLocaleDateString('en-US', {month: 'long'});
         const day = dt.toLocaleDateString('en-US', {day: 'numeric'});
@@ -90,7 +86,7 @@ const BookSpace = () => {
 
       const token = await AsyncStorage.getItem('token');
       const res = await axios.post(
-        'http://172.18.1.2/parkingSlot/book',
+        'http://10.62.33.127:8000/parkingSlot/book',
         {data, token},
       );
       console.log(res.data);

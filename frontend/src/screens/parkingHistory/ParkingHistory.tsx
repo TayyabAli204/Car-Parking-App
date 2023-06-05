@@ -48,7 +48,7 @@ const ParkingHistory = () =>{
       const token = await getToken();
 
       const {data} = await axios.get(
-        `http://192.168.50.9/parkingSlot/${token}`,
+        `http://10.62.33.127:8000/parkingSlot/${token}`,
       );
       console.log("data dispatch from history screen",data)
       dispatch(setBookedSlotsHistory(data.data));

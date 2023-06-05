@@ -25,6 +25,7 @@ import {setEmail, setToken} from '../../store/userSlice';
 const PhoneNo = () => {
   const [text, onChangeText] = useState('');
   const [isRequired, setIsRequired] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const navigation: any = useNavigation();
   const dispatch = useDispatch();
 
@@ -34,15 +35,26 @@ const PhoneNo = () => {
     } else {
       try {
         const response = await axios.post(
-          'http://192.168.50.9/auth/sendemail',
+          'http://10.62.33.127:8000/auth/sendemail',
           {email: text},
         );
-        console.log(response.data, 'data from db', response.status);
+        console.log(response.data.error, 'data from db', );
         dispatch(setEmail(text));
         dispatch(setToken(response.data.data.token));
-        navigation.navigate('VerficationCode');
+        // if (response.status === 200) {
+        //   // Success case: navigate to the verification code screen or show a success message
+       
+        // } else {
+        //   // Handle other response statuses and show relevant error messages
+        //   setErrorMessage('Error: Something went wrong');
+        // }
+          navigation.navigate('VerficationCode');
+        
+        
+        
       } catch (error) {
         console.error(error);
+        setErrorMessage('Error: Failed to connect to the server');
       }
 
       console.log('Email submitted:', text);
@@ -51,7 +63,7 @@ const PhoneNo = () => {
 
   return (
     <View style={styles.main}>
-      <View style={styles.main1}>
+      <View style={styles.main1}> 
         <Slogo width={widthPixel(88)} height={heightPixel(60)} />
       </View>
       <StatusBar
@@ -73,10 +85,12 @@ const PhoneNo = () => {
         />
         {isRequired && (
           <Text style={{color: 'red', fontSize: 12}}>
-            Email is required.
+            Email required.
           </Text>
         )
         }
+         {/* Show error message if applicable */}
+      {errorMessage !== '' && <Text style={{ color: 'red' }}>{errorMessage}</Text>}
         <TouchableOpacity style={styles.touch} onPress={doEmail}>
           <Text style={styles.next}> Next </Text>
         </TouchableOpacity>

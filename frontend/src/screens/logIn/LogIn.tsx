@@ -27,14 +27,11 @@ const LogIn = ({}) => {
   const [password, onChangePassword] = useState('');
   const [isRequiredEmail,setIsRequiredEmail] = useState(false);
   const [isRequiredPassword,setIsRequiredPassword] = useState(false);
-  const [isValidEmail,setIsValidEmail] =useState(false);
-  const [isValidPassword,setIsValidPassword] =useState(false);
+
 
 
   const doLogin = async () => {
     const validateEmail = () => {
-      // Email validation logic
-      // Return true if email is valid, false otherwise
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       console.log(emailRegex.test(email))
       return emailRegex.test(email);
@@ -45,14 +42,9 @@ const LogIn = ({}) => {
       return password.length >= 6; // Example: Password must be at least 6 characters long
     };
 
-    if(email.trim() === '' && password.trim() === ''){
-      setIsValidEmail(true)
-      if(password.length===0){
-      setIsValidPassword(true)}
-
-    }
+  
     
-   else if(!validateEmail()){
+  if(!validateEmail()){
       setIsRequiredEmail(true);
 
     } else if(!validatePassword()){
@@ -61,7 +53,7 @@ const LogIn = ({}) => {
     else{
       try {
         console.log(email, password, 'state ma set data');
-        const response = await axios.post('http://192.168.50.9/auth/login',{email: email, password: password});
+        const response = await axios.post('http://10.62.33.127:8000/auth/login',{email: email, password: password});
         console.log(response.data, 'data from db');
         await AsyncStorage.setItem('token', response.data.data.token);
         navigation.navigate('HomeScreen');
@@ -92,22 +84,14 @@ const LogIn = ({}) => {
             placeholder="Enter email"
             placeholderTextColor={COLORS.grey}
             onFocus={()=>{
-              setIsValidEmail(false)
               setIsRequiredEmail(false)
             }}
             onBlur={()=>{
-              setIsValidEmail(false)
               setIsRequiredEmail(false)
             }}
             
           />
-          {
-            isValidEmail && (
-              <Text style={{color: 'red', fontSize: 12}}>
-              Email required
-             </Text>
-            )
-          }
+       
           {
             isRequiredEmail && (
               <Text style={{color: 'red', fontSize: 12}}>
@@ -123,21 +107,12 @@ const LogIn = ({}) => {
             placeholderTextColor={COLORS.grey}
             secureTextEntry
             onFocus={()=>{
-              setIsValidPassword(false)
               setIsRequiredPassword(false)
             }} 
             onBlur={()=>{
-              setIsValidPassword(false)
               setIsRequiredPassword(false)
             }} 
           />
-          {
-            isValidPassword && (
-              <Text style={{color: 'red', fontSize: 12}}>
-         Password required
-          </Text>
-            )
-          }
           {
             isRequiredPassword && (
               <Text style={{color: 'red', fontSize: 12}}>
