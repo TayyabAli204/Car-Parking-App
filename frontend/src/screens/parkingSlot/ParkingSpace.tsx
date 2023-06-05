@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import React, {useEffect} from 'react';
 import axios from 'axios';
-import Cars from '../../assets/img/ic-round-directions-car.svg';
+import Cars from '../../assets/img/ic-round-directions-car.svg'; 
 import {
   setParkingSlotData,
   setSelectedSpot,
@@ -35,7 +35,7 @@ const ParkingSpace = () => {
   useEffect(() => {
     async function getSlotsData() {
       const {data} = await axios.get(
-        `http://192.168.50.34:8000/parkingSlot/data/${selectedArea}`,
+        `http://172.18.1.2/parkingSlot/data/${selectedArea}`,
       );
       console.log(data);
       dispatch(setParkingSlotData(data.data));
@@ -44,7 +44,7 @@ const ParkingSpace = () => {
   }, []);
 
   function navigateToBookSpace() {
-    if (Object.keys(selectedSpot).length) {
+    if (Object.keys(selectedSpot).length == 0) {
       Alert.alert('Kindly select an spot');
     } else {
       navigation.navigate('BookSpace');
@@ -60,7 +60,7 @@ const ParkingSpace = () => {
       <View style={styles.mainspace}>
         <MenuSearchBar
           title={selectedArea}
-          titleSlotName={parkingSlots[0].perHourFee + '$'}
+          titleSlotName={ "N" + parkingSlots[0].perHourFee}
         />
 
         <View>
@@ -111,7 +111,8 @@ export default ParkingSpace;
 
 const styles = StyleSheet.create({
   button: {
-    paddingTop: pixelSizeVertical(50),
+    paddingTop: pixelSizeVertical(40),
+    
   },
   title: {
     backgroundColor: COLORS.secondary,
@@ -123,6 +124,7 @@ const styles = StyleSheet.create({
     color: COLORS.white,
     fontFamily: 'OpenSans-Bold',
     lineHeight: 24,
+    borderRadius:6
   },
   mainspace: {
     flex: 1,

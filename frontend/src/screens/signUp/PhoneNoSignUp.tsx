@@ -34,7 +34,7 @@ const PhoneNo = () => {
     } else {
       try {
         const response = await axios.post(
-          'http://192.168.50.34:8000/auth/sendemail',
+          'http://192.168.50.9/auth/sendemail',
           {email: text},
         );
         console.log(response.data, 'data from db', response.status);
@@ -69,12 +69,14 @@ const PhoneNo = () => {
           }}
           style={styles.input}
           placeholder="Enter your email"
+          placeholderTextColor={COLORS.grey}  
         />
         {isRequired && (
-          <Text style={{color: COLORS.secondary, fontSize: 12}}>
+          <Text style={{color: 'red', fontSize: 12}}>
             Email is required.
           </Text>
-        )}
+        )
+        }
         <TouchableOpacity style={styles.touch} onPress={doEmail}>
           <Text style={styles.next}> Next </Text>
         </TouchableOpacity>

@@ -90,7 +90,7 @@ const BookSpace = () => {
 
       const token = await AsyncStorage.getItem('token');
       const res = await axios.post(
-        'http://192.168.50.34:8000/parkingSlot/book',
+        'http://172.18.1.2/parkingSlot/book',
         {data, token},
       );
       console.log(res.data);
@@ -139,7 +139,7 @@ const BookSpace = () => {
         <View style={{alignItems: 'center', marginTop: 20}}>
           <CalendarIcon onPress={() => setOpen(!open)} />
           <CustomButton
-            title={'Check-in Time'}
+            title={'Set Check-in Time'}
             titleStyle={styles.checkintime}></CustomButton>
         </View>
 
@@ -173,8 +173,10 @@ const BookSpace = () => {
           <Text
             style={{
               color: 'black',
-              fontSize: fontPixel(18),
+              fontSize: fontPixel(14),
               fontFamily: 'OpenSans-SemiBold',
+              textAlign:"center"
+
             }}>
             Space Successfully Booked
           </Text>
@@ -232,9 +234,10 @@ const styles = StyleSheet.create({
     color: COLORS.primary,
     borderWidth: 1,
     padding: 10,
+    borderRadius:6
   },
   checkintime: {
-    fontSize: fontPixel(18),
+    fontSize: fontPixel(16),
     color: 'black',
   },
   modelView: {

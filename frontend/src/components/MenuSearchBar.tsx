@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     gap: 30,
   },
   stext: {
-    fontSize: fontPixel(18),
+    fontSize: fontPixel(16),
     color: COLORS.black,
     fontFamily: 'OpenSans-SemiBold',
   },

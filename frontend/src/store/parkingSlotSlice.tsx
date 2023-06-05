@@ -15,7 +15,6 @@ const parkingSlotSlice = createSlice({
       console.log(action.payload, 'action.payloadaction.payload');
       // if(state.parkingSlots.length==0){
       state.parkingSlots = action.payload;
-      // }
     },
     setSelectedArea: (state, action) => {
       state.selectedArea = action.payload;

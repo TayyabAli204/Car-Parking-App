@@ -5,8 +5,10 @@ import {useSelector} from 'react-redux';
 import {fontPixel,pixelSizeVertical,pixelSizeHorizontal} from '../../utils/ResponsiveStyle';
 import COLORS from '../../consts/colors';
 import CustomButton from '../../components/CustomButton';
+import { useNavigation } from '@react-navigation/native';
 const BookingDetails = () => {
-  const {selectedSpot, selectedArea, parkingSlot} = useSelector(
+  const navigation :any = useNavigation();
+  const {selectedSpot, selectedArea, } = useSelector(
     (state: any) => state.parkingSlotSlice,
   );
   console.log('selectedArea detailsascreen', selectedArea);
@@ -23,6 +25,7 @@ const BookingDetails = () => {
         MenuSearchBarStyle={styles.mainspace}
         title={selectedArea}
         titleSlotName={selectedSpot.parkingLotName}
+
       />
       <View>
         <View style={styles.detailsModel}>
@@ -41,7 +44,7 @@ const BookingDetails = () => {
               }}>
               <Text style={styles.CHECKINTIMEDATA}>Booked Space: </Text>
               <Text style={styles.CHECKINTIMETEXT}>
-                {selectedArea} {selectedSpot.parkingLotName}
+                {selectedArea} 
               </Text>
             </View>
             <View style={styles.detailHR}></View>
@@ -68,12 +71,13 @@ const BookingDetails = () => {
           <View
             style={styles.TOTALFEE}>
             <Text style={styles.CHECKINTIMETOAL}>Total </Text>
-            <Text style={styles.CHECKINTIMETOAL}>{'$' + selectedSpot.perHourFee} </Text>
+            <Text style={styles.CHECKINTIMETOAL}>{"N"+selectedSpot.perHourFee} </Text>
           </View>
         </View>
         <CustomButton
           title={'Pay up'}
           titleStyle={styles.title}
+          onPress={()=>{navigation.navigate("MakePayment")}}
         />
       </View>
     </View>
@@ -128,18 +132,18 @@ const styles = StyleSheet.create({
 },
 CHECKINTIMETEXT:{
   color:COLORS.primary,
-  fontSize:fontPixel(16),
-  fontFamily:"OpenSans-Regular"
+  fontSize:fontPixel(14),
+  fontFamily:"OpenSans-Regular",
   
 },
 CHECKINTIMEDATA:{
   color:COLORS.primary,
-  fontSize:fontPixel(16),
+  fontSize:fontPixel(14),
   fontFamily:"OpenSans-SemiBold"
 },
 CHECKINTIMETOAL:{
   color:COLORS.primary,
-  fontSize:fontPixel(24),
+  fontSize:fontPixel(20),
   fontFamily:"OpenSans-SemiBold"
 },
 title: {

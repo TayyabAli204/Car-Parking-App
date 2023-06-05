@@ -25,20 +25,54 @@ const LogIn = ({}) => {
   const navigation: any = useNavigation();
   const [email, onChangeEmail] = useState('');
   const [password, onChangePassword] = useState('');
+  const [isRequiredEmail,setIsRequiredEmail] = useState(false);
+  const [isRequiredPassword,setIsRequiredPassword] = useState(false);
+  const [isValidEmail,setIsValidEmail] =useState(false);
+  const [isValidPassword,setIsValidPassword] =useState(false);
+
+
   const doLogin = async () => {
-    try {
-      console.log(email, password, 'state ma set data');
-      const response = await axios.post(
-        'http://192.168.50.34:8000/auth/login',
-        {email: email, password: password},
-      );
-      console.log(response.data, 'data from db');
-      await AsyncStorage.setItem('token', response.data.data.token);
-      navigation.navigate('HomeScreen');
-    } catch (error) {
-      console.error(error);
+    const validateEmail = () => {
+      // Email validation logic
+      // Return true if email is valid, false otherwise
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      console.log(emailRegex.test(email))
+      return emailRegex.test(email);
+    };
+    const validatePassword = () => {
+      // Password validation logic
+      // Return true if password is valid, false otherwise
+      return password.length >= 6; // Example: Password must be at least 6 characters long
+    };
+
+    if(email.trim() === '' && password.trim() === ''){
+      setIsValidEmail(true)
+      if(password.length===0){
+      setIsValidPassword(true)}
+
     }
+    
+   else if(!validateEmail()){
+      setIsRequiredEmail(true);
+
+    } else if(!validatePassword()){
+      setIsRequiredPassword(true)
+    } 
+    else{
+      try {
+        console.log(email, password, 'state ma set data');
+        const response = await axios.post('http://192.168.50.9/auth/login',{email: email, password: password});
+        console.log(response.data, 'data from db');
+        await AsyncStorage.setItem('token', response.data.data.token);
+        navigation.navigate('HomeScreen');
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    
   };
+ 
+  
   return (
     <View style={styles.main}>
       <View style={styles.sec}>
@@ -55,14 +89,62 @@ const LogIn = ({}) => {
             onChangeText={onChangeEmail}
             value={email}
             style={styles.input}
-            placeholder="Phone number"
+            placeholder="Enter email"
+            placeholderTextColor={COLORS.grey}
+            onFocus={()=>{
+              setIsValidEmail(false)
+              setIsRequiredEmail(false)
+            }}
+            onBlur={()=>{
+              setIsValidEmail(false)
+              setIsRequiredEmail(false)
+            }}
+            
           />
+          {
+            isValidEmail && (
+              <Text style={{color: 'red', fontSize: 12}}>
+              Email required
+             </Text>
+            )
+          }
+          {
+            isRequiredEmail && (
+              <Text style={{color: 'red', fontSize: 12}}>
+           Enter Valid Email 
+          </Text>
+            )
+          }
           <TextInput
             onChangeText={onChangePassword}
-            value={password}
+            value={password}  
             style={styles.passWord_input}
             placeholder="Password"
+            placeholderTextColor={COLORS.grey}
+            secureTextEntry
+            onFocus={()=>{
+              setIsValidPassword(false)
+              setIsRequiredPassword(false)
+            }} 
+            onBlur={()=>{
+              setIsValidPassword(false)
+              setIsRequiredPassword(false)
+            }} 
           />
+          {
+            isValidPassword && (
+              <Text style={{color: 'red', fontSize: 12}}>
+         Password required
+          </Text>
+            )
+          }
+          {
+            isRequiredPassword && (
+              <Text style={{color: 'red', fontSize: 12}}>
+            Enter 6 Ch Password
+          </Text>
+            )
+          }
           <Text style={styles.forget}>Forgot Password?</Text>
           <TouchableOpacity onPress={doLogin} style={styles.sec1}>
             <Text style={styles.sec2}>Login</Text>
@@ -100,6 +182,7 @@ const styles = StyleSheet.create({
     marginTop: pixelSizeVertical(44),
     marginBottom: pixelSizeVertical(18),
     fontFamily: 'OpenSans-Regular',
+    color:COLORS.grey
   },
   forget: {
     fontSize: fontPixel(16),

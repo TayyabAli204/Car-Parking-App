@@ -61,9 +61,9 @@ const Password = () => {
     if (handleValidation()) {
       // Password and confirm password are valid, perform further actions
       // ...
-      console.log(password, selector);
-      const response: any = await axios.post(
-        'http://192.168.50.34:8000/auth/signup',
+      console.log(password,selector)
+      const response:any = await axios.post(
+        'http://172.18.1.2/auth/signup',
         {password: password, email: selector},
       );
       await AsyncStorage.setItem('token', response.data.data.token);

@@ -4,11 +4,12 @@ const verifyUser = require("../utils/verfyUser");
 
 const {
   parkingSlotData,
-  bookParkingSlot,
-  userHistory
+  bookParkingSlot,getBookedSlots,
+  userHistory,getParkingSlots
 } = require("../controller/parkingSlotController");
 routes.get('/:token',verifyUser,userHistory)
+routes.get('/bookedSlots',getBookedSlots)
 routes.get("/data/:id/:token", verifyUser, parkingSlotData);
 routes.post("/book", verifyUser, bookParkingSlot);
-
+routes.get('/',getParkingSlots)
 module.exports = routes;
