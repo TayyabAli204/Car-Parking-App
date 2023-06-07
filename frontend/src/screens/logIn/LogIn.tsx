@@ -6,6 +6,7 @@ import {
   View,
   TouchableOpacity,
   StatusBar,
+  ToastAndroid,
 } from 'react-native';
 import React, {useState} from 'react';
 import Slogo from '../../assets/img/splashlogo.svg';
@@ -20,20 +21,22 @@ import {
 } from '../../utils/ResponsiveStyle';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
+import {useDispatch} from 'react-redux';
+import {setEmail} from '../../store/userSlice';
 
 const LogIn = ({}) => {
   const navigation: any = useNavigation();
   const [email, onChangeEmail] = useState('');
   const [password, onChangePassword] = useState('');
-  const [isRequiredEmail,setIsRequiredEmail] = useState(false);
-  const [isRequiredPassword,setIsRequiredPassword] = useState(false);
+  const [isRequiredEmail, setIsRequiredEmail] = useState(false);
+  const [isRequiredPassword, setIsRequiredPassword] = useState(false);
 
-
+  const dispatch = useDispatch();
 
   const doLogin = async () => {
     const validateEmail = () => {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      console.log(emailRegex.test(email))
+      console.log(emailRegex.test(email));
       return emailRegex.test(email);
     };
     const validatePassword = () => {
@@ -42,29 +45,37 @@ const LogIn = ({}) => {
       return password.length >= 6; // Example: Password must be at least 6 characters long
     };
 
-  
-    
-  if(!validateEmail()){
+    if (!validateEmail()) {
       setIsRequiredEmail(true);
-
-    } else if(!validatePassword()){
-      setIsRequiredPassword(true)
-    } 
-    else{
+    } else if (!validatePassword()) {
+      setIsRequiredPassword(true);
+    } else {
       try {
         console.log(email, password, 'state ma set data');
-        const response = await axios.post('http://192.168.50.9:8000/auth/login',{email: email, password: password});
+        const response = await axios.post(
+          'http://192.168.50.9:8000/auth/login',
+          {email: email, password: password},
+        );
         console.log(response.data, 'data from db');
-        await AsyncStorage.setItem('token', response.data.data.token);
+        console.log(response.data.data.email, 'email from db');
+        console.log('response', response);
+        dispatch(setEmail(response.data.data.email));
+        const mereResponse = await AsyncStorage.setItem(
+          'token',
+          response.data.data.token,
+        );
+
+        console.log(mereResponse, 'mereResponsemereResponsemereResponse');
+        ToastAndroid.show('User SuccessFully Login', ToastAndroid.TOP);
         navigation.navigate('HomeScreen');
       } catch (error) {
-        console.error(error);
+        ToastAndroid.show('Invalid email or password', ToastAndroid.TOP);
+
+        // console.error(error);
       }
     }
-    
   };
- 
-  
+
   return (
     <View style={styles.main}>
       <View style={styles.sec}>
@@ -83,43 +94,36 @@ const LogIn = ({}) => {
             style={styles.input}
             placeholder="Enter email"
             placeholderTextColor={COLORS.grey}
-            onFocus={()=>{
-              setIsRequiredEmail(false)
+            onFocus={() => {
+              setIsRequiredEmail(false);
             }}
-            onBlur={()=>{
-              setIsRequiredEmail(false)
+            onBlur={() => {
+              setIsRequiredEmail(false);
             }}
-            
           />
-       
-          {
-            isRequiredEmail && (
-              <Text style={{color: 'red', fontSize: 12}}>
-           Enter Valid Email 
-          </Text>
-            )
-          }
+
+          {isRequiredEmail && (
+            <Text style={{color: 'red', fontSize: 12}}>Enter Valid Email</Text>
+          )}
           <TextInput
             onChangeText={onChangePassword}
-            value={password}  
+            value={password}
             style={styles.passWord_input}
             placeholder="Password"
             placeholderTextColor={COLORS.grey}
             secureTextEntry
-            onFocus={()=>{
-              setIsRequiredPassword(false)
-            }} 
-            onBlur={()=>{
-              setIsRequiredPassword(false)
-            }} 
+            onFocus={() => {
+              setIsRequiredPassword(false);
+            }}
+            onBlur={() => {
+              setIsRequiredPassword(false);
+            }}
           />
-          {
-            isRequiredPassword && (
-              <Text style={{color: 'red', fontSize: 12}}>
-            Enter 6 Ch Password
-          </Text>
-            )
-          }
+          {isRequiredPassword && (
+            <Text style={{color: 'red', fontSize: 12}}>
+              Enter 6 Ch Password
+            </Text>
+          )}
           <Text style={styles.forget}>Forgot Password?</Text>
           <TouchableOpacity onPress={doLogin} style={styles.sec1}>
             <Text style={styles.sec2}>Login</Text>
@@ -157,7 +161,7 @@ const styles = StyleSheet.create({
     marginTop: pixelSizeVertical(44),
     marginBottom: pixelSizeVertical(18),
     fontFamily: 'OpenSans-Regular',
-    color:COLORS.grey
+    color: COLORS.grey,
   },
   forget: {
     fontSize: fontPixel(16),

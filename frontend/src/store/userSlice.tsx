@@ -7,6 +7,7 @@ const userSlice = createSlice({
   },
   reducers: {
     setEmail: (state, action) => {
+      console.log("dkjasf",action.payload)
       state.email = action.payload;
     },
     setToken: (state, action) => {

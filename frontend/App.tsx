@@ -21,6 +21,7 @@ import BookSpace from './src/screens/bookSpace/BookSpace';
 import HomeScreen from './src/screens/homeScreen/HomeScreen';
 import BookingDetails from './src/screens/bookingDetails/BookingDetails';
 import MakePayment from './src/screens/makePayment/MakePayment';
+import ChangePassword from './src/screens/userProfile/ChangePassword';
 import TapIcon1 from './src/assets/img/tapIcon1.svg';
 import TapIcon2 from './src/assets/img/tapIcon2.svg';
 import TapIcon3 from './src/assets/img/tapIcon3.svg';
@@ -51,7 +52,7 @@ function Taps() {
           tabBarIcon: ({color, size, focused}) => {
             return <TapIcon1 />;
           },
-          tabBarActiveTintColor: '#6A3EA1',
+          tabBarActiveTintColor: '#613EEA',
           tabBarInactiveTintColor: '#827D89',
         }}
         name="Home"
@@ -62,7 +63,7 @@ function Taps() {
           tabBarIcon: ({color, size, focused}) => {
             return <TapIcon2 />;
           },
-          tabBarActiveTintColor: '#6A3EA1',
+          tabBarActiveTintColor: '#613EEA',
           tabBarInactiveTintColor: '#827D89',
         }}
         name="Wallet"
@@ -76,12 +77,12 @@ function Taps() {
             return <TapIcon3 />;
           },
           tabBarIconStyle: {
-            backgroundColor: '#6A3EA1',
+            backgroundColor: '#613EEA',
             padding: 35,
             borderRadius: 50,
 
             justifyContent: 'center',
-            marginBottom: 15,
+            // marginBottom: 15,
             borderWidth: 5,
             borderColor: 'white',
           },
@@ -93,7 +94,7 @@ function Taps() {
           tabBarIcon: ({color, size, focused}) => {
             return <TapIcon4 />;
           },
-          tabBarActiveTintColor: '#6A3EA1',
+          tabBarActiveTintColor: '#613EEA',
           tabBarInactiveTintColor: '#827D89',
         }}
         name="Vector"
@@ -101,14 +102,14 @@ function Taps() {
       />
       <Tab.Screen
         options={{
-          tabBarActiveTintColor: '#6A3EA1',
+          tabBarActiveTintColor: '#613EEA',
           tabBarInactiveTintColor: '#827D89',
           tabBarIcon: ({color, size, focused}) => {
             return <TapIcon5 />;
           },
         }}
         name="Settings"
-        component={HomeScreen}
+        component={Setting}
       />
     </Tab.Navigator>
   );
@@ -124,7 +125,7 @@ const App = () => {
               initialRouteName="SplashScreen"
               screenOptions={{headerShown: false}}>
               <Stack.Screen name="SplashScreen" component={SplashScreen} />
-              <Stack.Screen name="HomeScreen" component={HomeScreen} />
+              <Stack.Screen name="HomeScreen" component={Taps} />
               <Stack.Screen name="OnBoarding" component={OnBoarding} />     
               <Stack.Screen name="GetStart" component={GetStart} />
               <Stack.Screen name="Login" component={Login} />
@@ -139,6 +140,9 @@ const App = () => {
               <Stack.Screen name="ParkingHistory" component={ParkingHistory} />
               <Stack.Screen name="Setting" component={Setting} />
               <Stack.Screen name="MakePayment" component={MakePayment} />
+              <Stack.Screen name="ChangePassword" component={ChangePassword} />
+
+
             </Stack.Navigator>
           </NavigationContainer>
         </Provider>

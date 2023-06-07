@@ -1,16 +1,15 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const saltRounds = 10;
 const sendEmail = require("../utils/sendEmail");
 const usersCollection = require("../models/userModel");
 const { tokenCollection } = require("../models/emailModel");
 const { emailCollection } = require("../models/emailModel");
 
+const saltRounds = 10;
 const doSignUp = async (req, res) => {
   try {
-  
     const passwordHash = await bcrypt.hash(req.body.password, saltRounds);
-  
+
     const token = await jwt.sign(
       {
         email: req.body.email,
@@ -23,10 +22,10 @@ const doSignUp = async (req, res) => {
     });
 
     const result = await user.save();
-   
-console.log(token)
+
+    console.log(token);
     // posts = [...posts, { ...req.body }]
-    res.status(200).json({
+    return res.status(200).json({
       message: "user is sucessfully resgistered!",
       data: {
         email: req.body.email,
@@ -35,7 +34,7 @@ console.log(token)
     });
   } catch (error) {
     console.log("error", error);
-    res.status(500).json({
+    return res.status(500).json({
       message: "failed",
       error: error,
       data: [],
@@ -50,7 +49,7 @@ const doLogin = async (req, res) => {
     });
     console.log(req.body, userData);
     if (!userData.email) {
-      res.status(501).json({
+      return res.status(501).json({
         message: "email is not found",
         data: [],
       });
@@ -60,8 +59,9 @@ const doLogin = async (req, res) => {
       req.body.password,
       userData.passwordHash
     );
+    console.log(passwordDecode);
     if (!passwordDecode) {
-      res.status(502).json({
+      return res.status(502).json({
         message: "wrong password",
       });
     }
@@ -72,7 +72,7 @@ const doLogin = async (req, res) => {
       },
       "Secret"
     );
-    res.status(200).json({
+    return res.status(200).json({
       message: "user is sucessfully resgistered!",
       data: {
         email: req.body.email,
@@ -81,18 +81,12 @@ const doLogin = async (req, res) => {
     });
   } catch (error) {
     console.log("error", error);
-    res.status(600).json({
+    return res.status(600).json({
       message: "failed",
       error: error,
     });
   }
 };
-
-
-
-
-
-
 
 //  email wala routes
 const generateToken = () => {
@@ -104,13 +98,13 @@ const generateToken = () => {
 
 const doSendEmail = async (req, resp) => {
   try {
-    const useremail=req.body.email
-    console.log(useremail,'email')
-    const existingUser = await usersCollection.findOne({email:useremail});
-    console.log(existingUser,'user already exit');
+    const useremail = req.body.email;
+    console.log(useremail, "email");
+    const existingUser = await usersCollection.findOne({ email: useremail });
+    console.log(existingUser, "user already exit");
     if (existingUser) {
-       resp.json({ error: 'Email already exists' });
-       return
+      resp.json({ error: "Email already exists" });
+      return;
     }
     const token = generateToken();
     const email = await sendEmail(req.body.email, token.toString());
@@ -121,7 +115,7 @@ const doSendEmail = async (req, resp) => {
     // Save the new user with the email address
     // const newUser = new usersCollection({ email });
     // await newUser.save();
-    resp.status(200).json({
+    return resp.status(200).json({
       message: "Verification code sent successfully ",
       data: {
         email: req.body.email,
@@ -130,7 +124,7 @@ const doSendEmail = async (req, resp) => {
     });
   } catch (error) {
     console.log("error", error);
-    resp.status(500).json({
+    resp.status(502).json({
       message: "failed",
       error: error,
       data: [],
@@ -176,10 +170,89 @@ const doSendPassword = async (res, resp) => {
   }
 };
 
+const updateProfile = async (req, res) => {
+  console.log("dskahkjfdkas", req.body);
+  try {
+    const userLogin = await usersCollection.findOne({
+      email: req.body.oldEmail.email,
+    });
+    console.log("userLogin", userLogin);
+    console.log(req.body, userLogin);
+    const updated = await usersCollection.updateOne(
+      { email: userLogin.email },
+      { $set: { email: req.body.newEmail, name: req.body.newName } }
+    );
+    console.log("update hua", updated);
+
+    res.status(200).json({
+      message: "updated ",
+      data: {
+        email: req.body.newEmail,
+      },
+    });
+  } catch (error) {
+    res.status(401).send("something went wrong");
+    console.log("error in updaedi", error);
+  }
+};
+
+const newPassword = async (req, res) => {
+  console.log("req.body", req.body);
+  try {
+    // if (!req.body.currentPassword) {
+    //   console.log("gfgf");
+    //   const hashPassword = await bcrypt.hash(req.body.password, saltRounds);
+    //   console.log("password hash", hashPassword);
+    //   const userLogin = await usersCollection.updateOne(
+    //     { email: req.body.email },
+    //     { $set: { passwordHash: hashPassword } }
+    //   );
+    //   res.status(200).json("success updated");
+    //   console.log("success updated");
+    // } else {
+    //   console.log(req.body, "req ma data aya wali chali");
+
+      const userLogin = await usersCollection.findOne({
+        email: req.body.email,
+      });
+            console.log("userLogin",userLogin);
+      const camparison = await bcrypt.compare(
+        req.body.currentPassword,
+        userLogin.passwordHash
+      );
+      console.log("camparison", camparison);
+      if (!camparison) {
+        return res.status(401).json({
+          message: "incorrect password",
+          data: {
+            // name: req.body.name,
+            email: req.body.email,
+            password: req.body.password,
+          },
+        });
+      } else {
+        const hashPassword = await bcrypt.hash(req.body.password, saltRounds);
+        console.log("password hash", hashPassword);
+        const userLogin = await usersCollection.updateOne(
+          { email: req.body.email },
+          { $set: { passwordHash: hashPassword } }
+        );
+        res.status(200).json("success updated");
+        console.log("success updated by checking old pass");
+      }
+    // }
+  } catch (error) {
+    res.status(401).json("not updated");
+    console.log("not updated", error);
+  }
+};
+
 module.exports = {
   doSignUp,
   doLogin,
   doSendEmail,
   doFindToken,
   doSendPassword,
+  updateProfile,
+  newPassword,
 };
