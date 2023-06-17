@@ -2,9 +2,9 @@ const { CarParking } = require("../models/parkingModel");
 const { connection } = require("../config/dbConfig");
 const { ObjectId } = require("mongodb");
 const parkingSlotData = async (req, res) => {
-  console.log(req.params.id);
+  console.log("req.params.id",req.params.id);
   const data = await CarParking.find({ location: req.params.id });
-
+  console.log("ahsdfj",data)
   res.json({
     message: "request success",
     data,

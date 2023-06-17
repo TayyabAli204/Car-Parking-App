@@ -1,13 +1,11 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import Menu from '../components/MenuButton';
 import {pixelSizeVertical, fontPixel} from '../utils/ResponsiveStyle';
 import {useSelector} from 'react-redux';
 import COLORS from '../consts/colors';
 const MenuSearchBar = (props: any) => {
   return (
     <View style={props.MenuSearchBarStyle}>
-      <Menu />
       <View style={styles.miansearch}>
         <View style={styles.mainouter}>
           <Text style={styles.stext}>{props.title}</Text>

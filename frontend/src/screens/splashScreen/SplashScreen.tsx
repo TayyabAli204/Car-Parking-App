@@ -3,7 +3,6 @@ import {
   Text,
   View,
   Image,
-  ScrollView,
   StatusBar,
 } from 'react-native';
 import React, {useEffect} from 'react';
@@ -27,7 +26,7 @@ const SplashScreen = () => {
       const value = await AsyncStorage.getItem('token');
       console.log(value, 'stored token');
       if (value !== null) {
-        navigation.navigate('HomeScreen');
+        navigation.navigate('MapHomeScreen');
       } else {
         const timeout = setTimeout(() => {
           navigation.navigate('OnBoarding');

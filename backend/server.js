@@ -32,47 +32,6 @@ app.use("/auth", userRoutes);
 app.use("/parkingSlot", parkingSlotRoute);
 app.use("/payment-sheet",stripeRoutes)
 
-// This example sets up an endpoint using the Express framework.
-// Watch this video to get started: https://youtu.be/rPR2aJ6XnAc.
-
-
-
-
-
-// app.post('/payment-sheet', async (req, res) => {
-  
-//   // Use an existing Customer ID if this is a returning customer.
-//   const {amount,currency} = req.body;
-//   const customer = await stripe.customers.create();
-//   const ephemeralKey = await stripe.ephemeralKeys.create(
-//     {customer: customer.id},
-//     {apiVersion: '2022-11-15'}
-//   );
-//   const paymentIntent = await stripe.paymentIntents.create({
-//     amount: amount,
-//     currency:currency,
-//     customer: customer.id,
-//     payment_method_types: ['card'],
-//   });
-
-//   res.json({
-//     paymentIntent: paymentIntent.client_secret,
-//     ephemeralKey: ephemeralKey.secret,
-//     customer: customer.id,
-//   });
-
-  
-// });
-
-
-
-
-
-
-
-
-
-
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

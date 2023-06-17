@@ -3,12 +3,8 @@ import {
   View,
   Text,
   TouchableOpacity,
-  ToastAndroid,
-  Image,
-  TextInput,
   StatusBar,
   StyleSheet,
-  Pressable,
   ScrollView,
 } from 'react-native';
 import Close from '../../assets/img/close.svg';
@@ -19,7 +15,6 @@ import COLORS from '../../consts/colors';
 import CompletedSessions from '../../components/CompletedSessions';
 import ActiveSession from '../../components/ActiveSession';
 import GreenIcon from '../../assets/img/emojione-check-mark-button.svg';
-import StarIcon from '../../assets/img/Star.svg';
 import {setBookedSlotsHistory} from '../../store/parkingSlotSlice';
 import moment from 'moment';
 import {
@@ -33,11 +28,10 @@ import {useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import {useDispatch, useSelector} from 'react-redux';
-
 const ParkingHistory = () =>{
+  const navigation: any = useNavigation();
   const [Active, setActive] = useState<any>([]);
   const [Completed, setCompleted] = useState<any>([]);
-  const {navigation, route}: any = useNavigation;
   const [first, setfirst] = useState(false);
   const BookedSlotHistory:any=useSelector((state:any)=>state.parkingSlotSlice.bookedSlotsHistory)
   console.log("bookedSLot history",BookedSlotHistory)
@@ -79,13 +73,6 @@ const parsedDate = moment(dateString, "dddd, M/D/YYYY h:mm A").toDate();
   setActive(a)
   setCompleted(c)
 },[BookedSlotHistory])
-
-
- 
-
-
-
-
 
   return (
     <View style={{flex: 1}}>
@@ -132,7 +119,7 @@ const parsedDate = moment(dateString, "dddd, M/D/YYYY h:mm A").toDate();
             })
           }
         </View>
-        <TouchableOpacity style={styles.touch}>
+        <TouchableOpacity style={styles.touch} onPress={()=>navigation.navigate("MapHomeScreen")}>
           <Text style={styles.next}>Go Back to Home Screen</Text>
         </TouchableOpacity>
       </ScrollView>

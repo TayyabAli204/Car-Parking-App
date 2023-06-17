@@ -22,6 +22,8 @@ import HomeScreen from './src/screens/homeScreen/HomeScreen';
 import BookingDetails from './src/screens/bookingDetails/BookingDetails';
 import MakePayment from './src/screens/makePayment/MakePayment';
 import ChangePassword from './src/screens/userProfile/ChangePassword';
+import ImagePickerGetBrower from './src/components/ImagePickerCompon';
+import MapHomeScreen from './src/screens/homeScreen/MapHomeScreen';
 import TapIcon1 from './src/assets/img/tapIcon1.svg';
 import TapIcon2 from './src/assets/img/tapIcon2.svg';
 import TapIcon3 from './src/assets/img/tapIcon3.svg';
@@ -40,6 +42,7 @@ function Taps() {
         tabBarStyle: {
           height: 64,
           // zIndex: -2,
+          
           paddingVertical: 10,
           alignItems: 'center',
           justifyContent: 'center',
@@ -54,9 +57,10 @@ function Taps() {
           },
           tabBarActiveTintColor: '#613EEA',
           tabBarInactiveTintColor: '#827D89',
+          tabBarHideOnKeyboard: true,
         }}
         name="Home"
-        component={HomeScreen}
+        component={MapHomeScreen}
       />
       <Tab.Screen
         options={{
@@ -67,7 +71,7 @@ function Taps() {
           tabBarInactiveTintColor: '#827D89',
         }}
         name="Wallet"
-        component={HomeScreen}
+        component={MapHomeScreen}
       />
       <Tab.Screen
         name="Add"
@@ -117,7 +121,7 @@ function Taps() {
 
 const App = () => {
   return (
-    <>
+    <>    
       <StripeProvider publishableKey={SP_KEY}>
         <Provider store={store}>
           <NavigationContainer>
@@ -125,7 +129,7 @@ const App = () => {
               initialRouteName="SplashScreen"
               screenOptions={{headerShown: false}}>
               <Stack.Screen name="SplashScreen" component={SplashScreen} />
-              <Stack.Screen name="HomeScreen" component={Taps} />
+              <Stack.Screen name="MapHomeScreen" component={Taps} />
               <Stack.Screen name="OnBoarding" component={OnBoarding} />     
               <Stack.Screen name="GetStart" component={GetStart} />
               <Stack.Screen name="Login" component={Login} />
@@ -141,6 +145,10 @@ const App = () => {
               <Stack.Screen name="Setting" component={Setting} />
               <Stack.Screen name="MakePayment" component={MakePayment} />
               <Stack.Screen name="ChangePassword" component={ChangePassword} />
+              <Stack.Screen name="ImagePickerGetBrower" component={ImagePickerGetBrower} />
+              {/* <Stack.Screen name="MapHomeScreen" component={MapHomeScreen} /> */}
+
+
 
 
             </Stack.Navigator>

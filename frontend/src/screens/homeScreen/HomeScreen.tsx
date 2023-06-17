@@ -47,7 +47,7 @@ const HomeScreen = ({navigation}: any) => {
       const {data} = await axios.get(
         `http://192.168.50.9:8000/parkingSlot/data/${name.toUpperCase()}/${token}`,
       );
-      console.log(data);
+      console.log("dataasfhsadjkfhasf",data);
       // // Alert.alert(data.message);
       dispatch(setSelectedArea(name));
       dispatch(setParkingSlotData(data.data));

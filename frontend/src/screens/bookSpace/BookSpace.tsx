@@ -4,8 +4,7 @@ import {
   View,
   StatusBar,
   TextInput,
-  ActivityIndicator,
-  Button,
+ 
 } from 'react-native';
 import React, {useState} from 'react';
 import axios from 'axios';
@@ -30,24 +29,19 @@ const BookSpace = () => {
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
   const [estimatedTime, onChangeText] = useState('');
-  const [checkInTime, onChangeNumber] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
 
   const navigation: any = useNavigation();
   const dispatch = useDispatch();
-  const {selectedSpot, selectedArea, parkingSlots} = useSelector(
+  const {selectedSpot, selectedArea} = useSelector(
     (state: any) => state.parkingSlotSlice,
   );
-  // console.log("selectedArea",selectedArea)
   console.log(selectedSpot, 'selectedSpot');
   if (modalVisible) {
     setTimeout(() => {
       setModalVisible(false);
       navigation.navigate('BookingDetails');
     }, 1500);
-    // setTimeout(()=>{
-
-    // },200)
   }
 
   const handleConfirm = async () => {

@@ -40,9 +40,7 @@ const LogIn = ({}) => {
       return emailRegex.test(email);
     };
     const validatePassword = () => {
-      // Password validation logic
-      // Return true if password is valid, false otherwise
-      return password.length >= 6; // Example: Password must be at least 6 characters long
+      return password.length >= 6; 
     };
 
     if (!validateEmail()) {
@@ -67,11 +65,10 @@ const LogIn = ({}) => {
 
         console.log(mereResponse, 'mereResponsemereResponsemereResponse');
         ToastAndroid.show('User SuccessFully Login', ToastAndroid.TOP);
-        navigation.navigate('HomeScreen');
+        navigation.navigate('MapHomeScreen');
       } catch (error) {
         ToastAndroid.show('Invalid email or password', ToastAndroid.TOP);
 
-        // console.error(error);
       }
     }
   };

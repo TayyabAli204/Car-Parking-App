@@ -11,7 +11,7 @@ import {
 import { DemoButton } from './DemoButton';
 import { DemoResponse } from './DemoResponse';
 import { DemoTitle } from './DemoTitle';
-import ImagePicker  from 'react-native-image-picker';
+import {launchCamera,launchImageLibrary}  from 'react-native-image-picker';
 /* toggle includeExtra */
 const includeExtra = true;
 
@@ -20,9 +20,9 @@ export default function ImagePickerGetBrower() {
 
   const onButtonPress = React.useCallback((type:any, options:any) => {
     if (type === 'capture') {
-      ImagePicker.launchCamera(options, setResponse);
+      launchCamera(options, setResponse);
     } else {
-      ImagePicker.launchImageLibrary(options, setResponse);
+    launchImageLibrary(options, setResponse);
     }
   }, []);
 

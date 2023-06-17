@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, Pressable, ViewStyle, TextStyle} from 'react-native';
-
+import EditIcon from '../assets/img/setting/editIcon.svg'
 interface Props {
   onPress: () => void;
 }
@@ -12,12 +12,8 @@ export function DemoButton({
   return (
     <Pressable
       onPress={onPress}
-      style={({pressed}) => [
-        {
-          backgroundColor: pressed ? 'skyblue' : 'steelblue',
-        },
-        styles.container,
-      ]}>
+      style={ styles.container}>
+        <EditIcon/>
       <Text style={styles.text}>{children}</Text>
     </Pressable>
   );
@@ -30,18 +26,21 @@ interface Styles {
 
 const styles = StyleSheet.create<Styles>({
   container: {
-    flex: 1,
-    justifyContent: 'center',
+    display: 'flex',
+    flexDirection: 'row',
     alignItems: 'center',
-    height: 45,
-    minWidth: '45%',
-    maxWidth: '100%',
-    marginHorizontal: 8,
-    marginVertical: 4,
-    borderRadius: 8,
+    justifyContent: 'center',
+    marginHorizontal: 100,
+    gap: 10,
+    paddingVertical: 10,
+    borderColor: '#613EEA',
+    borderWidth: 1,
+    borderRadius: 25,
+    backgroundColor:'white'
   },
   text: {
     textAlign: 'center',
-    color: 'white',
+    color: '#613EEA',
+    
   },
 });

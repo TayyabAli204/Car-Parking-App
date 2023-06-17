@@ -124,15 +124,6 @@ import {
   Switch,
 } from 'react-native';
 import React, {useState} from 'react';
-// import BackIcon from '../assets/imgs/setting/leftIcon.svg';
-// import EditIcon from '../assets/imgs//editIcon.svg';
-// import MailIcon from '../assets/imgs/svg/mailIcon.svg';
-// import LockIcon from '../assets/imgs/svg/lock.svg';
-// import Notification from '../assets/imgs/svg/notificationIcon.svg';
-// import LogoutIcon from '../assets/imgs/svg/logoutIcon.svg';
-// import RightIcon from '../assets/imgs/svg/rightIcon.svg';
-// import TextSize from '../assets/imgs/svg/text-size.svg';
-// import Cross from '../assets/imgs/svg/crossIcon.svg';
 import BackIcon from '../../assets/img/setting/leftIcon.svg'
 import EditIcon from '../../assets/img/setting/editIcon.svg'
 import MailIcon from '../../assets/img/setting/mailIcon.svg'
@@ -141,7 +132,6 @@ import Notification from '../../assets/img/setting/notificationIcon.svg'
 import LogoutIcon from '../../assets/img/setting/logoutIcon.svg'
 import RightIcon from '../../assets/img/setting/rightIcon.svg'
 import Cross from '../../assets/img/setting/crossIcon.svg'
-// import CustomButton from '../components/button/Button';
 import CustomButton from '../../components/CustomButton';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import COLORS from '../../consts/colors';
@@ -157,7 +147,6 @@ const Settings = ({navigation}: any) => {
     navigation.navigate('Login');
   };
   return (
-    // <View>
     <View style={styles.parent}>
       <View style={styles.header}>
         <View style={styles.headerChild}>
@@ -345,7 +334,6 @@ export default Settings;
 const styles = StyleSheet.create({
   parent: {
     flex: 1,
-    // backgroundColor: 'red',
   },
   header: {
     display: 'flex',
@@ -407,7 +395,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    // marginHorizontal: 16,
     marginTop: 32,
     gap: 10,
     paddingVertical: 8,
@@ -521,8 +508,6 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     fontFamily: 'Inter-Medium',
     marginTop: 8,
-    // textAlign: 'center',
-    // paddingHorizontal: 24,
   },
 });
 

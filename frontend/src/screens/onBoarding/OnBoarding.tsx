@@ -1,5 +1,5 @@
-import {StyleSheet, Text, View, Image, StatusBar} from 'react-native';
-import React, {useEffect} from 'react';
+import {Image, StatusBar} from 'react-native';
+import React from 'react';
 import COLORS from '../../consts/colors';
 import {
   fontPixel,
