@@ -417,9 +417,11 @@ const initialData = [
 const CarParking = mongoose.model("carParkingData", carParkingSchema);
 // // Insert the initial data into the database
 async function storingData(req, res, next) {
+
   const data = await CarParking.insertMany(initialData);
   console.log(data);
-  res.end("done");0}
+  res.end("done");
+}
 
 module.exports = {
   storingData,
