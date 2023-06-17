@@ -24,6 +24,17 @@ const adminSlice = createSlice({
         state.parkingSlots=action.payload;
 
     }).addCase(getSlotsDataAsync.rejected,(state,action)=>{
+      console.log(action)
+      state.showLoader=false
+
+    })
+    builder.addCase(addLocationAsync.pending,(state,action)=>{
+      state.showLoader=true
+
+    }).addCase(addLocationAsync.fulfilled,(state,action)=>{
+      state.showLoader=false
+
+    }).addCase(addLocationAsync.rejected,(state,action)=>{
       state.showLoader=false
 
     })
@@ -31,7 +42,18 @@ const adminSlice = createSlice({
 });
 export const {setParkingSlotData} = adminSlice.actions;
 export const getSlotsDataAsync=createAsyncThunk('adminSlice/slotsData', async(state,thunkAPI)=>{
-const {data}=await axios.get('http://192.168.1.4:8000/parkingSlot')
-return data;
+  const {data}=await axios.get('http://192.168.50.65:8000/parkingSlot');
+  return data;
+})
+export const addLocationAsync:any=createAsyncThunk('adminSlice/addLocation', async(dispatchedData,thunkAPI)=>{
+
+const data=await axios.post('http://192.168.50.65:8000/addLocation',{
+  location:dispatchedData
+});
+return ;
 })
 export default adminSlice.reducer;
+
+  // const {data}=await axios.post('http://192.168.50.65:8000/parkingSlot',
+  // );
+  // return data;

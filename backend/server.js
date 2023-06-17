@@ -10,6 +10,7 @@ const postRoutes = require("./src/routes/postRoutes");
 const userRoutes = require("./src/routes/userRoutes");
 const { storingData } = require("./src/models/parkingModel");
 const parkingSlotRoute = require("./src/routes/parkingSlotRoutes");
+const adminRoutes = require("./src/routes/adminRoutes");
 const stripeRoutes = require('./src/routes/stripeRoutes')
 db.connection();
 
@@ -31,6 +32,7 @@ app.use("/post", postRoutes);
 app.use("/auth", userRoutes);
 app.use("/parkingSlot", parkingSlotRoute);
 app.use("/payment-sheet",stripeRoutes)
+app.use("/",adminRoutes)
 
 
 app.listen(port, () => {
