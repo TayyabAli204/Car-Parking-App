@@ -29,10 +29,9 @@ import TapIcon2 from './src/assets/img/tapIcon2.svg';
 import TapIcon3 from './src/assets/img/tapIcon3.svg';
 import TapIcon4 from './src/assets/img/tapIcon4.svg';
 import TapIcon5 from './src/assets/img/tapIcon5.svg';
-import {SP_KEY} from '@env';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
-
+import { SP_KEY } from '@env';
 function Taps() {
   return (
     <Tab.Navigator

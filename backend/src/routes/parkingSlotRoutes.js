@@ -5,8 +5,10 @@ const verifyUser = require("../utils/verfyUser");
 const {
   parkingSlotData,
   bookParkingSlot,getBookedSlots,
-  userHistory,getParkingSlots
+  userHistory,getParkingSlots,
+  getParkingLocation
 } = require("../controller/parkingSlotController");
+routes.get('/location',getParkingLocation)
 routes.get('/:token',verifyUser,userHistory)
 routes.get('/bookedSlots',getBookedSlots)
 routes.get("/data/:id/:token", verifyUser, parkingSlotData);

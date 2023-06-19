@@ -1,13 +1,11 @@
-
 import {
   StyleSheet,
   Text,
   View,
   PermissionsAndroid,
-  Image,
   Modal,
   StatusBar,
-  Alert,
+  TouchableOpacity,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
@@ -17,36 +15,56 @@ import COLORS from '../../consts/colors';
 import CarModelSvg from '../../assets/img/homeimg/modelCar.svg';
 import {Region} from 'react-native-maps';
 import axios from 'axios';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {
   setParkingSlotData,
   setSelectedArea,
 } from '../../store/parkingSlotSlice';
+import {useRef} from 'react';
+import Cross from '../../assets/img/CrossIcon.svg';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 const MapHomeScreen = ({navigation}: any) => {
-  const [inputSearchText, setInputSearch] = useState('');
+  const [parkingLocation, setParkingLocation] = useState([]);
   const [currentLocation, setCurrentLocation] = useState<null | {
     latitude: number;
     longitude: number;
   }>(null);
   const [showModal, setShowModal] = useState(false);
-
-  const defaultLocation = {
-    latitude: 0,
-    longitude: 0,
-  };
+  const [noParkingModal, setNoParkingModal] = useState(false);
+  const googlePlacesAutocompleteRef = useRef(null);
+  const defaultLocation = {latitude: 0, longitude: 0};
   const dispatch = useDispatch();
-  // Define the type for the currentLocation variable
-  const currentLocationS: {
-    latitude: number;
-    longitude: number;
-  } = defaultLocation;
+  const currentLocationS: {latitude: number; longitude: number} =
+    defaultLocation;
   const [region, setRegion] = useState<Region>({
     latitude: currentLocationS?.latitude,
     longitude: currentLocationS?.longitude,
     latitudeDelta: 0.01,
     longitudeDelta: 0.01,
   });
+
+  async function getDbData(name: String) {
+    try {
+      const token = await AsyncStorage.getItem('token');
+      console.log('token from , that are  login', token);
+      const {data} = await axios.get(
+        `http://192.168.50.9:8000/parkingSlot/data/${name}/${token}`,
+      );
+      dispatch(setSelectedArea(name));
+      dispatch(setParkingSlotData(data.data));
+      navigation.navigate('parkingSpace');
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowModal(false); 
+    }, 5000);
+
+    return () => clearTimeout(timer); 
+  }, []);
 
   useEffect(() => {
     const requestLocationPermission = async () => {
@@ -84,66 +102,78 @@ const MapHomeScreen = ({navigation}: any) => {
     setShowModal(true);
   }, []);
 
-
-  async function getDbData(name: String) {
+  const getCoordinatesForAddress = async (address: string) => {
     try {
-      const token = await AsyncStorage.getItem('token');
-      console.log('token from , that are  login', token);
-      const {data} = await axios.get(
-        `http://192.168.50.9:8000/parkingSlot/data/${name}/${token}`,
+      const response = await fetch(
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
+          address,
+        )}&key=AIzaSyBRXj2DhUtd9c-hvmKWDJm4DIv-YUgWvjw`,
       );
-      console.log("datasadhfsahf",data);
-      // // Alert.alert(data.message);
-      dispatch(setSelectedArea(name));
-      dispatch(setParkingSlotData(data.data));
-      navigation.navigate('parkingSpace');
-    } catch (err) {
-      console.log(err);
-    }
-  }
+      const data = await response.json();
+      if (data.status === 'OK') {
+        const location = data.results[0].geometry.location;
+        console.log('insieeeeeeeeee', location);
 
-  useEffect(() => {
-    // ...
-    const timer = setTimeout(() => {
-      setShowModal(false); // Hide the modal
-    }, 5000);
-
-    return () => clearTimeout(timer); // Clear the timer on unmount
-  }, []);
-
-  const checkIfParkingAvailable = (details: any) => {
-    // Assuming you have an array of parking areas with their coordinates
-    const parkingAreas = [
-      {
-        latitude: 31.4330517,
-        longitude: 73.1232943,
-      },
-      {
-        latitude: 31.4382708,
-        longitude: 73.1318905,
-      },
-      {
-        latitude: 31.4289572,
-        longitude: 73.0822738,
-      },
-    ];
-
-    // Iterate through the parking areas and check if the selected place matches any of them
-    for (let i = 0; i < parkingAreas.length; i++) {
-      const parkingArea = parkingAreas[i];
-      if (
-        parkingArea.latitude === details.geometry.location.lat &&
-        parkingArea.longitude === details.geometry.location.lng
-      ) {
-        return true; // Parking is available in the selected area
+        return location;
+      } else {
+        console.log('Geocoding error:', data.status);
       }
+    } catch (error) {
+      console.log('Error:', error);
     }
-
-    return false; // Parking is not available in the selected area
   };
 
 
- 
+  const setParkingSlotsLocation = async () => {
+    const {data} = await axios.get(
+      'http://192.168.50.9:8000/parkingSlot/location',
+    );
+    const parkingAreas = data.map((item: any) => {
+      return new Promise(async (resolve: any, reject) => {
+        try {
+          const data = await getCoordinatesForAddress(item);
+          resolve(data);
+        } catch (error) {
+          reject(error);
+        }
+      });
+    });
+
+    Promise.all(parkingAreas)
+      .then(resolvedValues => {
+        console.log('Coordinates fetched for all parking areas');
+        const updatedArr: any = resolvedValues.map((item, index) => {
+          const location: any = data[index];
+          return {
+            location,
+            ...item,
+          };
+        });
+        setParkingLocation(updatedArr);
+      })
+      .catch(error => {
+        console.error('Error fetching coordinates:', error);
+      });
+  };
+  useEffect(() => {
+    setParkingSlotsLocation();
+  }, []);
+
+
+  // Usage example
+
+  const checkIfParkingAvailable = (details: any) => {
+    for (let i = 0; i < parkingLocation.length; i++) {
+      const parkingArea: any = parkingLocation[i];
+      if (
+        parkingArea?.lat === details.geometry.location.lat &&
+        parkingArea?.lng === details.geometry.location.lng
+      ) {
+        return true;
+      }
+    }
+    return false; // Parking is not available in the selected area
+  };
 
   return (
     <View style={styles.container}>
@@ -153,6 +183,18 @@ const MapHomeScreen = ({navigation}: any) => {
         barStyle={'dark-content'}
       />
       <GooglePlacesAutocomplete
+        ref={googlePlacesAutocompleteRef}
+        renderRightButton={():any =>
+          googlePlacesAutocompleteRef.current?.getAddressText() ? (
+            <TouchableOpacity
+              style={{position: 'absolute', right: 2, top: 16}}
+              onPress={() => {
+                googlePlacesAutocompleteRef.current?.setAddressText('');
+              }}>
+              <Cross/>
+            </TouchableOpacity>
+          ) : null
+        }
         placeholder="Where are you going to?"
         textInputProps={{
           placeholderTextColor: '#A6AAB4',
@@ -168,11 +210,7 @@ const MapHomeScreen = ({navigation}: any) => {
           rankby: 'distance',
         }}
         onPress={(data: any, details: any) => {
-          // 'details' is provided when fetchDetails = true
-          console.log('data from user search on search bar', data);
-          console.log('details from user search on search bar', details);
-          const isParkingAvailable = checkIfParkingAvailable(details); // Implement this function to check if parking is available
-
+          const isParkingAvailable: any = checkIfParkingAvailable(details); // Implement this function to check if parking is available
           if (isParkingAvailable) {
             setRegion({
               latitude: details.geometry.location.lat,
@@ -181,9 +219,11 @@ const MapHomeScreen = ({navigation}: any) => {
               longitudeDelta: 0.01,
             });
           } else {
-            Alert.alert('This area has no parking available');
-            // Show a message that parking is not available in the selected area
-            // alert('This area has no parking available');
+            setNoParkingModal(true);
+            const timer = setTimeout(() => {
+              setNoParkingModal(false);
+            }, 5000);
+            return () => clearTimeout(timer);
           }
         }}
         query={{
@@ -222,7 +262,7 @@ const MapHomeScreen = ({navigation}: any) => {
           longitudeDelta: 0.01,
         }}
         onRegionChange={region => {
-          console.log('Region change:', region);
+          // console.log('Region change:', region);
         }}>
         {currentLocation && (
           <Marker
@@ -234,39 +274,24 @@ const MapHomeScreen = ({navigation}: any) => {
             style={{height: 40, width: 40}}
           />
         )}
-        <Marker
-          coordinate={{
-            latitude: 31.4330517,
-            longitude: 73.1232943,
-          }}
-          title="The Boulevard Mall"
-          description="East, Canal Rd,Faisalabad"
-          image={require('../../assets/img/homeimg/parkinglocation.png')}
-          onPress={()=>getDbData('The Boulevard Mall')}
-        />
-        <Marker
-          coordinate={{
-            latitude: 31.4382708,
-            longitude: 73.1318905,
-          }}
-          title="Lyallpur Galleria"
-          description="Galleria, E Canal Rd,Faisalabad"
-          image={require('../../assets/img/homeimg/parkinglocation.png')}
-          style={styles.CarPark}
-          onPress={()=>getDbData('Lyallpur Galleria')}
-        />
 
-        <Marker
-          coordinate={{
-            latitude: 31.4289572,
-            longitude: 73.0822738,
-          }}
-          title="Faisalabad Serena Hotel"
-          description="Club Rd, Civil Lines, Faisalabad, Punjab, Pakistan"
-          image={require('../../assets/img/homeimg/parkinglocation.png')}
-          style={styles.CarPark}
-          onPress={()=>getDbData('Faisalabad Serena Hotel')}
-        />
+        {parkingLocation.map((item: any, index) => {
+          {
+            console.log(item, 'insdieeee parkiing mappp');
+          }
+          return (
+            <Marker
+              coordinate={{
+                latitude: item?.lat,
+                longitude: item?.lng,
+              }}
+              title={item.location}
+              // description={item.location}
+              image={require('../../assets/img/homeimg/parkinglocation.png')}
+              onPress={() => getDbData(item.location)}
+            />
+          );
+        })}
       </MapView>
 
       <Modal
@@ -281,6 +306,21 @@ const MapHomeScreen = ({navigation}: any) => {
             available
           </Text>
           <CarModelSvg />
+        </View>
+      </Modal>
+
+      <Modal
+        visible={noParkingModal}
+        transparent={true}
+        animationType="fade"
+        onRequestClose={() => setNoParkingModal(false)}>
+        <View style={styles.modalContainer}>
+          <Text style={styles.modalText12}>Only these Areas are Available</Text>
+          {parkingLocation.map((item: any) => (
+            <>
+              <Text style={styles.areaText}>{item.location}</Text>
+            </>
+          ))}
         </View>
       </Modal>
     </View>
@@ -352,5 +392,21 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     paddingHorizontal: 10,
     paddingVertical: 12,
+  },
+  // modalContainer: {
+  //   backgroundColor: 'white',
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  // },
+  modalText12: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: COLORS.grey,
+    marginBottom: 20,
+  },
+  areaText: {
+    fontSize: 16,
+    color: 'black',
+    marginBottom: 10,
   },
 });

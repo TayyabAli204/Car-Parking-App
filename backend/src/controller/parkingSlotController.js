@@ -34,14 +34,27 @@ const getParkingSlots = async (req, res) => {
   const data = await CarParking.find();
   res.json(data);
 };
-const getBookedSlots = async (req, res) => {
+const getBookedSlots = async (req, res) => { 
   const data = await CarParking.find({booked:true});
   res.json(data);
+};
+const getParkingLocation = async (req, res) => {  
+console.log('inside')
+  const data = await CarParking.find();
+  const updatedData=[]
+  data.forEach((item,index)=>{
+
+    if(!updatedData.find(location=>location==item.location)){
+updatedData.push(item.location)
+    }
+  })
+  res.json(updatedData);
 };
 module.exports = {
   parkingSlotData,
   bookParkingSlot,
   userHistory,
   getParkingSlots,
-  getBookedSlots
+  getBookedSlots,
+  getParkingLocation
 };
