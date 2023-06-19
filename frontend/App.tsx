@@ -24,6 +24,9 @@ import MakePayment from './src/screens/makePayment/MakePayment';
 import ChangePassword from './src/screens/userProfile/ChangePassword';
 import ImagePickerGetBrower from './src/components/ImagePickerCompon';
 import MapHomeScreen from './src/screens/homeScreen/MapHomeScreen';
+import AddParkingArea from './src/adminScreens/addSlots/AddSlots'
+import ParkingSlots from './src/adminScreens/parkingSlots/ParkingSlots'
+
 import TapIcon1 from './src/assets/img/tapIcon1.svg';
 import TapIcon2 from './src/assets/img/tapIcon2.svg';
 import TapIcon3 from './src/assets/img/tapIcon3.svg';
@@ -125,7 +128,7 @@ const App = () => {
         <Provider store={store}>
           <NavigationContainer>
             <Stack.Navigator
-              initialRouteName="SplashScreen"
+              initialRouteName="AddParkingArea"
               screenOptions={{headerShown: false}}>
               <Stack.Screen name="SplashScreen" component={SplashScreen} />
               <Stack.Screen name="MapHomeScreen" component={Taps} />
@@ -145,7 +148,8 @@ const App = () => {
               <Stack.Screen name="MakePayment" component={MakePayment} />
               <Stack.Screen name="ChangePassword" component={ChangePassword} />
               <Stack.Screen name="ImagePickerGetBrower" component={ImagePickerGetBrower} />
-              {/* <Stack.Screen name="MapHomeScreen" component={MapHomeScreen} /> */}
+              <Stack.Screen name="ParkingSlots" component={ParkingSlots} />
+              <Stack.Screen name="AddParkingArea" component={AddParkingArea} />
 
 
 
@@ -154,6 +158,8 @@ const App = () => {
           </NavigationContainer>
         </Provider>
       </StripeProvider>
+      {/* <Add */}
+      {/* <AddSlot/> */}
     </>
   );
 };
