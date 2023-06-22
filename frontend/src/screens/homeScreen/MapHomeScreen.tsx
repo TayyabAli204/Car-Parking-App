@@ -24,7 +24,30 @@ import {useRef} from 'react';
 import Cross from '../../assets/img/CrossIcon.svg';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import GooglePlacesAutoCompleteComp from '../../components/GooglePlacesAutoComplete';
+import useGooglePlaces from '../../hooks/useGooglePlaces';
 const MapHomeScreen = ({navigation}: any) => {
+
+
+  // const {
+  //   parkingLocation,
+  //   setCurrentLocation,
+  //   setParkingLocation,
+  //   currentLocation,
+  //   noParkingModal,
+  //   setNoParkingModal,
+  //   showModal,
+  //   setShowModal,
+  //   region,
+  //   setRegion,
+  //   checkIfParkingAvailable,
+  //   googlePlacesAutocompleteRef,
+  //   getDbData,
+  // }=useGooglePlaces();
+    
+
+
   const [parkingLocation, setParkingLocation] = useState([]);
   const [currentLocation, setCurrentLocation] = useState<null | {
     latitude: number;
@@ -128,6 +151,7 @@ const MapHomeScreen = ({navigation}: any) => {
     const {data} = await axios.get(
       'http://192.168.50.9:8000/parkingSlot/location',
     );
+    console.log("data from db",data)
     const parkingAreas = data.map((item: any) => {
       return new Promise(async (resolve: any, reject) => {
         try {
@@ -138,7 +162,7 @@ const MapHomeScreen = ({navigation}: any) => {
         }
       });
     });
-
+      console.log("parkingAreas user has selected",parkingAreas)
     Promise.all(parkingAreas)
       .then(resolvedValues => {
         console.log('Coordinates fetched for all parking areas');
@@ -182,6 +206,7 @@ const MapHomeScreen = ({navigation}: any) => {
         backgroundColor={'white'}
         barStyle={'dark-content'}
       />
+      {/* <GooglePlacesAutoCompleteComp/> */}
       <GooglePlacesAutocomplete
         ref={googlePlacesAutocompleteRef}
         renderRightButton={():any =>

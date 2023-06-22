@@ -42,7 +42,7 @@ const adminSlice = createSlice({
 });
 export const {setParkingSlotData} = adminSlice.actions;
 export const getSlotsDataAsync=createAsyncThunk('adminSlice/slotsData', async(state,thunkAPI)=>{
-  const {data}=await axios.get('http://192.168.50.65:8000/parkingSlot');
+  const {data}=await axios.get('http://192.168.50.9:8000/parkingSlot');
   return data;
 })
 export const addLocationAsync:any=createAsyncThunk('adminSlice/addLocation', async(dispatchedData,thunkAPI)=>{

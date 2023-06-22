@@ -26,7 +26,6 @@ import ImagePickerGetBrower from './src/components/ImagePickerCompon';
 import MapHomeScreen from './src/screens/homeScreen/MapHomeScreen';
 import AddParkingArea from './src/adminScreens/addSlots/AddSlots'
 import ParkingSlots from './src/adminScreens/parkingSlots/ParkingSlots'
-
 import TapIcon1 from './src/assets/img/tapIcon1.svg';
 import TapIcon2 from './src/assets/img/tapIcon2.svg';
 import TapIcon3 from './src/assets/img/tapIcon3.svg';
@@ -43,8 +42,6 @@ function Taps() {
         headerShown: false,
         tabBarStyle: {
           height: 64,
-          // zIndex: -2,
-          
           paddingVertical: 10,
           alignItems: 'center',
           justifyContent: 'center',
@@ -128,7 +125,7 @@ const App = () => {
         <Provider store={store}>
           <NavigationContainer>
             <Stack.Navigator
-              initialRouteName="AddParkingArea"
+              initialRouteName="ParkingSlots"
               screenOptions={{headerShown: false}}>
               <Stack.Screen name="SplashScreen" component={SplashScreen} />
               <Stack.Screen name="MapHomeScreen" component={Taps} />
