@@ -1,0 +1,26 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.carparkingapp-mergeReleaseResources-90:/values-en-rSG/values-en-rSG.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\TayyabAli\\.gradle\\caches\\transforms-3\\1510b2e5bb9ef1c224fa80531a13a56f\\transformed\\jetified-play-services-wallet-19.2.0-beta01\\res\\values-en-rSG\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "206",
+                        "endColumns": "70",
+                        "endOffsets": "276"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "74",
+                        "endOffsets": "125"
+                    }
+                }
+            ]
+        }
+    ]
+}

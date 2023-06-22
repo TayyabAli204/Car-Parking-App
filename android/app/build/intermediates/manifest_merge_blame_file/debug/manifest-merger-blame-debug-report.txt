@@ -1,0 +1,794 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.carparkingapp"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+9        android:targetSdkVersion="33" />
+10
+11    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+11-->D:\carparking\frontend\android\app\src\debug\AndroidManifest.xml:5:5-77
+11-->D:\carparking\frontend\android\app\src\debug\AndroidManifest.xml:5:22-75
+12    <uses-permission android:name="android.permission.CAMERA" />
+12-->D:\carparking\frontend\android\app\src\debug\AndroidManifest.xml:6:7-66
+12-->D:\carparking\frontend\android\app\src\debug\AndroidManifest.xml:6:24-64
+13    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+13-->D:\carparking\frontend\android\app\src\debug\AndroidManifest.xml:8:4-79
+13-->D:\carparking\frontend\android\app\src\debug\AndroidManifest.xml:8:21-77
+14    <uses-permission android:name="android.permission.INTERNET" />
+14-->D:\carparking\frontend\android\app\src\main\AndroidManifest.xml:3:5-67
+14-->D:\carparking\frontend\android\app\src\main\AndroidManifest.xml:3:22-64
+15    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+15-->D:\carparking\frontend\android\app\src\main\AndroidManifest.xml:4:5-79
+15-->D:\carparking\frontend\android\app\src\main\AndroidManifest.xml:4:22-76
+16    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- See https://developer.android.com/training/package-visibility/declaring for more details. -->
+16-->[com.facebook.flipper:flipper:0.125.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\1de5dee59d1627955e42d3d6205f726e\transformed\jetified-flipper-0.125.0\AndroidManifest.xml:16:5-76
+16-->[com.facebook.flipper:flipper:0.125.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\1de5dee59d1627955e42d3d6205f726e\transformed\jetified-flipper-0.125.0\AndroidManifest.xml:16:22-73
+17    <queries>
+17-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:8:5-12:15
+18
+19        <!-- Added to check if Chrome is installed for browser-based payment authentication (e.g. 3DS1). -->
+20        <package android:name="com.android.chrome" />
+20-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:11:9-54
+20-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:11:18-51
+21        <!-- Needs to be explicitly declared on Android R+ -->
+22        <package android:name="com.google.android.apps.maps" /> <!-- Added to check the default browser that will host the AuthFlow. -->
+22-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\TayyabAli\.gradle\caches\transforms-3\cb51dd71c8a226eb9d6f62630c536387\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:33:9-64
+22-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\TayyabAli\.gradle\caches\transforms-3\cb51dd71c8a226eb9d6f62630c536387\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:33:18-61
+23        <intent>
+23-->[com.stripe:financial-connections:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\bad9ce35c09dea681528a0453e9bc7c6\transformed\jetified-financial-connections-20.25.7\AndroidManifest.xml:13:9-17:18
+24            <action android:name="android.intent.action.VIEW" />
+24-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:21:17-69
+24-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:21:25-66
+25
+26            <data android:scheme="http" />
+26-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:26:17-29:51
+26-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:29:21-48
+27        </intent>
+28    </queries> <!-- Include required permissions for Google Maps API to run. -->
+29    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+29-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\TayyabAli\.gradle\caches\transforms-3\cb51dd71c8a226eb9d6f62630c536387\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:23:5-79
+29-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\TayyabAli\.gradle\caches\transforms-3\cb51dd71c8a226eb9d6f62630c536387\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:23:22-76
+30
+31    <uses-feature
+31-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\TayyabAli\.gradle\caches\transforms-3\cb51dd71c8a226eb9d6f62630c536387\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:26:5-28:35
+32        android:glEsVersion="0x00020000"
+32-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\TayyabAli\.gradle\caches\transforms-3\cb51dd71c8a226eb9d6f62630c536387\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:27:9-41
+33        android:required="true" />
+33-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\TayyabAli\.gradle\caches\transforms-3\cb51dd71c8a226eb9d6f62630c536387\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:28:9-32
+34
+35    <uses-permission android:name="android.permission.WAKE_LOCK" />
+35-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:25:5-68
+35-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:25:22-65
+36    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+36-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:27:5-81
+36-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:27:22-78
+37    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+37-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:28:5-77
+37-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:28:22-74
+38
+39    <permission
+39-->[androidx.core:core:1.9.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\0e6853a40e5f355179ac35160c6e4dee\transformed\core-1.9.0\AndroidManifest.xml:22:5-24:47
+40        android:name="com.carparkingapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+40-->[androidx.core:core:1.9.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\0e6853a40e5f355179ac35160c6e4dee\transformed\core-1.9.0\AndroidManifest.xml:23:9-81
+41        android:protectionLevel="signature" />
+41-->[androidx.core:core:1.9.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\0e6853a40e5f355179ac35160c6e4dee\transformed\core-1.9.0\AndroidManifest.xml:24:9-44
+42
+43    <uses-permission android:name="com.carparkingapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+43-->[androidx.core:core:1.9.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\0e6853a40e5f355179ac35160c6e4dee\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
+43-->[androidx.core:core:1.9.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\0e6853a40e5f355179ac35160c6e4dee\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
+44
+45    <application
+45-->D:\carparking\frontend\android\app\src\main\AndroidManifest.xml:6:5-31:19
+46        android:name="com.carparkingapp.MainApplication"
+46-->D:\carparking\frontend\android\app\src\main\AndroidManifest.xml:7:7-38
+47        android:allowBackup="false"
+47-->D:\carparking\frontend\android\app\src\main\AndroidManifest.xml:11:7-34
+48        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+48-->[androidx.core:core:1.9.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\0e6853a40e5f355179ac35160c6e4dee\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
+49        android:debuggable="true"
+50        android:icon="@mipmap/ic_launcher"
+50-->D:\carparking\frontend\android\app\src\main\AndroidManifest.xml:9:7-41
+51        android:label="@string/app_name"
+51-->D:\carparking\frontend\android\app\src\main\AndroidManifest.xml:8:7-39
+52        android:roundIcon="@mipmap/ic_launcher_round"
+52-->D:\carparking\frontend\android\app\src\main\AndroidManifest.xml:10:7-52
+53        android:theme="@style/AppTheme"
+53-->D:\carparking\frontend\android\app\src\main\AndroidManifest.xml:12:7-38
+54        android:usesCleartextTraffic="true" >
+54-->D:\carparking\frontend\android\app\src\debug\AndroidManifest.xml:11:9-44
+55        <activity
+55-->D:\carparking\frontend\android\app\src\debug\AndroidManifest.xml:14:9-111
+56            android:name="com.facebook.react.devsupport.DevSettingsActivity"
+56-->D:\carparking\frontend\android\app\src\debug\AndroidManifest.xml:14:19-83
+57            android:exported="false" />
+57-->D:\carparking\frontend\android\app\src\debug\AndroidManifest.xml:14:84-108
+58        <activity
+58-->D:\carparking\frontend\android\app\src\main\AndroidManifest.xml:13:7-26:18
+59            android:name="com.carparkingapp.MainActivity"
+59-->D:\carparking\frontend\android\app\src\main\AndroidManifest.xml:14:9-37
+60            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+60-->D:\carparking\frontend\android\app\src\main\AndroidManifest.xml:16:9-118
+61            android:exported="true"
+61-->D:\carparking\frontend\android\app\src\main\AndroidManifest.xml:19:9-32
+62            android:label="@string/app_name"
+62-->D:\carparking\frontend\android\app\src\main\AndroidManifest.xml:15:9-41
+63            android:launchMode="singleTask"
+63-->D:\carparking\frontend\android\app\src\main\AndroidManifest.xml:17:9-40
+64            android:windowSoftInputMode="adjustResize" >
+64-->D:\carparking\frontend\android\app\src\main\AndroidManifest.xml:18:9-51
+65            <intent-filter>
+65-->D:\carparking\frontend\android\app\src\main\AndroidManifest.xml:22:9-25:25
+66                <action android:name="android.intent.action.MAIN" />
+66-->D:\carparking\frontend\android\app\src\main\AndroidManifest.xml:23:13-65
+66-->D:\carparking\frontend\android\app\src\main\AndroidManifest.xml:23:21-62
+67
+68                <category android:name="android.intent.category.LAUNCHER" />
+68-->D:\carparking\frontend\android\app\src\main\AndroidManifest.xml:24:13-73
+68-->D:\carparking\frontend\android\app\src\main\AndroidManifest.xml:24:23-70
+69            </intent-filter>
+70        </activity>
+71
+72        <meta-data
+72-->D:\carparking\frontend\android\app\src\main\AndroidManifest.xml:28:7-30:63
+73            android:name="com.google.android.geo.API_KEY"
+73-->D:\carparking\frontend\android\app\src\main\AndroidManifest.xml:29:6-51
+74            android:value="AIzaSyBRXj2DhUtd9c-hvmKWDJm4DIv-YUgWvjw" />
+74-->D:\carparking\frontend\android\app\src\main\AndroidManifest.xml:30:6-61
+75
+76        <provider
+76-->[:react-native-image-picker] D:\carparking\frontend\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-18:20
+77            android:name="com.imagepicker.ImagePickerProvider"
+77-->[:react-native-image-picker] D:\carparking\frontend\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-63
+78            android:authorities="com.carparkingapp.imagepickerprovider"
+78-->[:react-native-image-picker] D:\carparking\frontend\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-71
+79            android:exported="false"
+79-->[:react-native-image-picker] D:\carparking\frontend\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-37
+80            android:grantUriPermissions="true" >
+80-->[:react-native-image-picker] D:\carparking\frontend\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-47
+81            <meta-data
+81-->[:react-native-image-picker] D:\carparking\frontend\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-17:70
+82                android:name="android.support.FILE_PROVIDER_PATHS"
+82-->[:react-native-image-picker] D:\carparking\frontend\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:16:17-67
+83                android:resource="@xml/imagepicker_provider_paths" />
+83-->[:react-native-image-picker] D:\carparking\frontend\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:17:17-67
+84        </provider>
+85
+86        <activity
+86-->[com.stripe:paymentsheet:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\8e32af460fcd7dd7e12ff1b79edb86dd\transformed\jetified-paymentsheet-20.25.7\AndroidManifest.xml:8:9-12:58
+87            android:name="com.stripe.android.paymentsheet.PaymentSheetActivity"
+87-->[com.stripe:paymentsheet:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\8e32af460fcd7dd7e12ff1b79edb86dd\transformed\jetified-paymentsheet-20.25.7\AndroidManifest.xml:9:13-80
+88            android:exported="false"
+88-->[com.stripe:paymentsheet:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\8e32af460fcd7dd7e12ff1b79edb86dd\transformed\jetified-paymentsheet-20.25.7\AndroidManifest.xml:10:13-37
+89            android:theme="@style/StripePaymentSheetDefaultTheme"
+89-->[com.stripe:paymentsheet:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\8e32af460fcd7dd7e12ff1b79edb86dd\transformed\jetified-paymentsheet-20.25.7\AndroidManifest.xml:11:13-66
+90            android:windowSoftInputMode="adjustResize" />
+90-->[com.stripe:paymentsheet:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\8e32af460fcd7dd7e12ff1b79edb86dd\transformed\jetified-paymentsheet-20.25.7\AndroidManifest.xml:12:13-55
+91        <activity
+91-->[com.stripe:paymentsheet:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\8e32af460fcd7dd7e12ff1b79edb86dd\transformed\jetified-paymentsheet-20.25.7\AndroidManifest.xml:13:9-17:58
+92            android:name="com.stripe.android.paymentsheet.PaymentOptionsActivity"
+92-->[com.stripe:paymentsheet:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\8e32af460fcd7dd7e12ff1b79edb86dd\transformed\jetified-paymentsheet-20.25.7\AndroidManifest.xml:14:13-82
+93            android:exported="false"
+93-->[com.stripe:paymentsheet:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\8e32af460fcd7dd7e12ff1b79edb86dd\transformed\jetified-paymentsheet-20.25.7\AndroidManifest.xml:15:13-37
+94            android:theme="@style/StripePaymentSheetDefaultTheme"
+94-->[com.stripe:paymentsheet:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\8e32af460fcd7dd7e12ff1b79edb86dd\transformed\jetified-paymentsheet-20.25.7\AndroidManifest.xml:16:13-66
+95            android:windowSoftInputMode="adjustResize" />
+95-->[com.stripe:paymentsheet:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\8e32af460fcd7dd7e12ff1b79edb86dd\transformed\jetified-paymentsheet-20.25.7\AndroidManifest.xml:17:13-55
+96        <activity
+96-->[com.stripe:paymentsheet:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\8e32af460fcd7dd7e12ff1b79edb86dd\transformed\jetified-paymentsheet-20.25.7\AndroidManifest.xml:18:9-22:58
+97            android:name="com.stripe.android.customersheet.CustomerSheetActivity"
+97-->[com.stripe:paymentsheet:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\8e32af460fcd7dd7e12ff1b79edb86dd\transformed\jetified-paymentsheet-20.25.7\AndroidManifest.xml:19:13-82
+98            android:exported="false"
+98-->[com.stripe:paymentsheet:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\8e32af460fcd7dd7e12ff1b79edb86dd\transformed\jetified-paymentsheet-20.25.7\AndroidManifest.xml:20:13-37
+99            android:theme="@style/StripePaymentSheetDefaultTheme"
+99-->[com.stripe:paymentsheet:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\8e32af460fcd7dd7e12ff1b79edb86dd\transformed\jetified-paymentsheet-20.25.7\AndroidManifest.xml:21:13-66
+100            android:windowSoftInputMode="adjustResize" />
+100-->[com.stripe:paymentsheet:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\8e32af460fcd7dd7e12ff1b79edb86dd\transformed\jetified-paymentsheet-20.25.7\AndroidManifest.xml:22:13-55
+101        <activity
+101-->[com.stripe:paymentsheet:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\8e32af460fcd7dd7e12ff1b79edb86dd\transformed\jetified-paymentsheet-20.25.7\AndroidManifest.xml:23:9-26:69
+102            android:name="com.stripe.android.paymentsheet.addresselement.AddressElementActivity"
+102-->[com.stripe:paymentsheet:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\8e32af460fcd7dd7e12ff1b79edb86dd\transformed\jetified-paymentsheet-20.25.7\AndroidManifest.xml:24:13-97
+103            android:exported="false"
+103-->[com.stripe:paymentsheet:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\8e32af460fcd7dd7e12ff1b79edb86dd\transformed\jetified-paymentsheet-20.25.7\AndroidManifest.xml:25:13-37
+104            android:theme="@style/StripePaymentSheetDefaultTheme" />
+104-->[com.stripe:paymentsheet:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\8e32af460fcd7dd7e12ff1b79edb86dd\transformed\jetified-paymentsheet-20.25.7\AndroidManifest.xml:26:13-66
+105        <activity
+105-->[com.stripe:paymentsheet:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\8e32af460fcd7dd7e12ff1b79edb86dd\transformed\jetified-paymentsheet-20.25.7\AndroidManifest.xml:27:9-30:69
+106            android:name="com.stripe.android.paymentsheet.paymentdatacollection.polling.PollingActivity"
+106-->[com.stripe:paymentsheet:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\8e32af460fcd7dd7e12ff1b79edb86dd\transformed\jetified-paymentsheet-20.25.7\AndroidManifest.xml:28:13-105
+107            android:exported="false"
+107-->[com.stripe:paymentsheet:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\8e32af460fcd7dd7e12ff1b79edb86dd\transformed\jetified-paymentsheet-20.25.7\AndroidManifest.xml:29:13-37
+108            android:theme="@style/StripePaymentSheetDefaultTheme" />
+108-->[com.stripe:paymentsheet:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\8e32af460fcd7dd7e12ff1b79edb86dd\transformed\jetified-paymentsheet-20.25.7\AndroidManifest.xml:30:13-66
+109        <activity
+109-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:8:9-13:61
+110            android:name="com.stripe.android.link.LinkForegroundActivity"
+110-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:9:13-74
+111            android:autoRemoveFromRecents="true"
+111-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:10:13-49
+112            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout|screenSize|smallestScreenSize"
+112-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:11:13-115
+113            android:launchMode="singleTop"
+113-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:12:13-43
+114            android:theme="@style/StripeTransparentTheme" />
+114-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:13:13-58
+115        <activity
+115-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:14:9-31:20
+116            android:name="com.stripe.android.link.LinkRedirectHandlerActivity"
+116-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:15:13-79
+117            android:autoRemoveFromRecents="true"
+117-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:16:13-49
+118            android:exported="true"
+118-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:17:13-36
+119            android:launchMode="singleInstance"
+119-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:18:13-48
+120            android:theme="@style/StripeTransparentTheme" >
+120-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:19:13-58
+121            <intent-filter>
+121-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:20:13-30:29
+122                <action android:name="android.intent.action.VIEW" />
+122-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:21:17-69
+122-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:21:25-66
+123
+124                <category android:name="android.intent.category.DEFAULT" />
+124-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:23:17-76
+124-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:23:27-73
+125                <category android:name="android.intent.category.BROWSABLE" />
+125-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:24:17-78
+125-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:24:27-75
+126
+127                <data
+127-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:26:17-29:51
+128                    android:host="complete"
+128-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:27:21-44
+129                    android:path="/com.carparkingapp"
+129-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:28:21-53
+130                    android:scheme="link-popup" />
+130-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:29:21-48
+131            </intent-filter>
+132        </activity>
+133        <activity
+133-->[com.stripe:payments-ui-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\04c8c3381e4046a37a73ff5ae3775153\transformed\jetified-payments-ui-core-20.25.7\AndroidManifest.xml:8:9-11:69
+134            android:name="com.stripe.android.ui.core.cardscan.CardScanActivity"
+134-->[com.stripe:payments-ui-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\04c8c3381e4046a37a73ff5ae3775153\transformed\jetified-payments-ui-core-20.25.7\AndroidManifest.xml:9:13-80
+135            android:exported="false"
+135-->[com.stripe:payments-ui-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\04c8c3381e4046a37a73ff5ae3775153\transformed\jetified-payments-ui-core-20.25.7\AndroidManifest.xml:10:13-37
+136            android:theme="@style/StripePaymentSheetDefaultTheme" />
+136-->[com.stripe:payments-ui-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\04c8c3381e4046a37a73ff5ae3775153\transformed\jetified-payments-ui-core-20.25.7\AndroidManifest.xml:11:13-66
+137        <activity
+137-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:15:9-18:57
+138            android:name="com.stripe.android.view.AddPaymentMethodActivity"
+138-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:16:13-76
+139            android:exported="false"
+139-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:17:13-37
+140            android:theme="@style/StripeDefaultTheme" />
+140-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:18:13-54
+141        <activity
+141-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:19:9-22:57
+142            android:name="com.stripe.android.view.PaymentMethodsActivity"
+142-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:20:13-74
+143            android:exported="false"
+143-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:21:13-37
+144            android:theme="@style/StripeDefaultTheme" />
+144-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:22:13-54
+145        <activity
+145-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:23:9-26:57
+146            android:name="com.stripe.android.view.PaymentFlowActivity"
+146-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:24:13-71
+147            android:exported="false"
+147-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:25:13-37
+148            android:theme="@style/StripeDefaultTheme" />
+148-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:26:13-54
+149        <activity
+149-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:27:9-31:58
+150            android:name="com.stripe.android.view.PaymentAuthWebViewActivity"
+150-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:28:13-78
+151            android:exported="false"
+151-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:29:13-37
+152            android:theme="@style/StripeDefaultTheme"
+152-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:30:13-54
+153            android:windowSoftInputMode="adjustResize" />
+153-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:31:13-55
+154        <activity
+154-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:32:9-35:61
+155            android:name="com.stripe.android.view.PaymentRelayActivity"
+155-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:33:13-72
+156            android:exported="false"
+156-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:34:13-37
+157            android:theme="@style/StripeTransparentTheme" />
+157-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:35:13-58
+158        <!--
+159        Set android:launchMode="singleTop" so that the StripeBrowserLauncherActivity instance that
+160        launched the browser Activity will also handle the return URL deep link.
+161        -->
+162        <activity
+162-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:41:9-45:61
+163            android:name="com.stripe.android.payments.StripeBrowserLauncherActivity"
+163-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:42:13-85
+164            android:exported="false"
+164-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:43:13-37
+165            android:launchMode="singleTask"
+165-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:44:13-44
+166            android:theme="@style/StripeTransparentTheme" />
+166-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:45:13-58
+167        <activity
+167-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:46:9-63:20
+168            android:name="com.stripe.android.payments.StripeBrowserProxyReturnActivity"
+168-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:47:13-88
+169            android:exported="true"
+169-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:48:13-36
+170            android:launchMode="singleTask"
+170-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:49:13-44
+171            android:theme="@style/StripeTransparentTheme" >
+171-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:50:13-58
+172            <intent-filter>
+172-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:51:13-62:29
+173                <action android:name="android.intent.action.VIEW" />
+173-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:21:17-69
+173-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:21:25-66
+174
+175                <category android:name="android.intent.category.DEFAULT" />
+175-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:23:17-76
+175-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:23:27-73
+176                <category android:name="android.intent.category.BROWSABLE" />
+176-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:24:17-78
+176-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:24:27-75
+177
+178                <!-- Must match `DefaultReturnUrl#value`. -->
+179                <data
+179-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:26:17-29:51
+180                    android:host="payment_return_url"
+180-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:27:21-44
+181                    android:path="/com.carparkingapp"
+181-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:28:21-53
+182                    android:scheme="stripesdk" />
+182-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:29:21-48
+183            </intent-filter>
+184        </activity>
+185        <activity
+185-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:64:9-67:57
+186            android:name="com.stripe.android.payments.core.authentication.threeds2.Stripe3ds2TransactionActivity"
+186-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:65:13-114
+187            android:exported="false"
+187-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:66:13-37
+188            android:theme="@style/StripeDefaultTheme" />
+188-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:67:13-54
+189        <activity
+189-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:68:9-71:66
+190            android:name="com.stripe.android.googlepaylauncher.GooglePayLauncherActivity"
+190-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:69:13-90
+191            android:exported="false"
+191-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:70:13-37
+192            android:theme="@style/StripeGooglePayDefaultTheme" />
+192-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:71:13-63
+193        <activity
+193-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:72:9-75:66
+194            android:name="com.stripe.android.googlepaylauncher.GooglePayPaymentMethodLauncherActivity"
+194-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:73:13-103
+195            android:exported="false"
+195-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:74:13-37
+196            android:theme="@style/StripeGooglePayDefaultTheme" />
+196-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:75:13-63
+197        <activity
+197-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:76:9-79:68
+198            android:name="com.stripe.android.payments.paymentlauncher.PaymentLauncherConfirmationActivity"
+198-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:77:13-107
+199            android:exported="false"
+199-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:78:13-37
+200            android:theme="@style/StripePayLauncherDefaultTheme" />
+200-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:79:13-65
+201        <activity
+201-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:80:9-83:61
+202            android:name="com.stripe.android.payments.bankaccount.ui.CollectBankAccountActivity"
+202-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:81:13-97
+203            android:exported="false"
+203-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:82:13-37
+204            android:theme="@style/StripeTransparentTheme" /> <!-- Needs to be explicitly declared on P+ -->
+204-->[com.stripe:payments-core:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\AndroidManifest.xml:83:13-58
+205        <uses-library
+205-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\TayyabAli\.gradle\caches\transforms-3\cb51dd71c8a226eb9d6f62630c536387\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:39:9-41:40
+206            android:name="org.apache.http.legacy"
+206-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\TayyabAli\.gradle\caches\transforms-3\cb51dd71c8a226eb9d6f62630c536387\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:40:13-50
+207            android:required="false" />
+207-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\TayyabAli\.gradle\caches\transforms-3\cb51dd71c8a226eb9d6f62630c536387\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:41:13-37
+208
+209        <activity
+209-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\4f703550170bfa754497acecfa6ac4ec\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
+210            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+210-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\4f703550170bfa754497acecfa6ac4ec\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:19-85
+211            android:exported="false"
+211-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\4f703550170bfa754497acecfa6ac4ec\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:22:19-43
+212            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+212-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\4f703550170bfa754497acecfa6ac4ec\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:21:19-78
+213        <activity
+213-->[com.stripe:financial-connections:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\bad9ce35c09dea681528a0453e9bc7c6\transformed\jetified-financial-connections-20.25.7\AndroidManifest.xml:21:9-64:20
+214            android:name="com.stripe.android.financialconnections.FinancialConnectionsSheetRedirectActivity"
+214-->[com.stripe:financial-connections:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\bad9ce35c09dea681528a0453e9bc7c6\transformed\jetified-financial-connections-20.25.7\AndroidManifest.xml:22:13-109
+215            android:exported="true" >
+215-->[com.stripe:financial-connections:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\bad9ce35c09dea681528a0453e9bc7c6\transformed\jetified-financial-connections-20.25.7\AndroidManifest.xml:23:13-36
+216            <intent-filter>
+216-->[com.stripe:financial-connections:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\bad9ce35c09dea681528a0453e9bc7c6\transformed\jetified-financial-connections-20.25.7\AndroidManifest.xml:24:13-63:29
+217                <action android:name="android.intent.action.VIEW" />
+217-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:21:17-69
+217-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:21:25-66
+218
+219                <category android:name="android.intent.category.DEFAULT" />
+219-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:23:17-76
+219-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:23:27-73
+220                <category android:name="android.intent.category.BROWSABLE" />
+220-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:24:17-78
+220-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:24:27-75
+221
+222                <!-- Returning from app2app: return_url is triggered to reopen web AuthFlow and poll accounts. -->
+223                <data
+223-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:26:17-29:51
+224                    android:host="link-accounts"
+224-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:27:21-44
+225                    android:pathPrefix="/com.carparkingapp/authentication_return"
+226                    android:scheme="stripe-auth" />
+226-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:29:21-48
+227
+228                <!-- Returning from app2app: return_url is triggered to reopen native AuthFlow and poll accounts. -->
+229                <data
+229-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:26:17-29:51
+230                    android:host="link-native-accounts"
+230-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:27:21-44
+231                    android:pathPrefix="/com.carparkingapp/authentication_return"
+232                    android:scheme="stripe-auth" />
+232-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:29:21-48
+233
+234                <!-- End of web AuthFlow success and cancel URIs that begin with "stripe-auth://link-accounts/{app-id}/...” -->
+235                <data
+235-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:26:17-29:51
+236                    android:host="link-accounts"
+236-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:27:21-44
+237                    android:path="/com.carparkingapp/success"
+237-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:28:21-53
+238                    android:scheme="stripe-auth" />
+238-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:29:21-48
+239                <data
+239-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:26:17-29:51
+240                    android:host="link-accounts"
+240-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:27:21-44
+241                    android:path="/com.carparkingapp/cancel"
+241-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:28:21-53
+242                    android:scheme="stripe-auth" />
+242-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:29:21-48
+243
+244                <!-- Opening app2app: Web flow triggers stripe-auth://native-redirect/{app-id}/http://web-that-redirects-to-native -->
+245                <data
+245-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:26:17-29:51
+246                    android:host="native-redirect"
+246-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:27:21-44
+247                    android:pathPrefix="/com.carparkingapp"
+248                    android:scheme="stripe-auth" />
+248-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:29:21-48
+249
+250                <!-- Accepts success/cancel/fail URIs that begin with "stripe://auth-redirect” -->
+251                <data
+251-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:26:17-29:51
+252                    android:host="auth-redirect"
+252-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:27:21-44
+253                    android:pathPrefix="/com.carparkingapp"
+254                    android:scheme="stripe" />
+254-->[com.stripe:link:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\AndroidManifest.xml:29:21-48
+255            </intent-filter>
+256        </activity>
+257        <activity
+257-->[com.stripe:financial-connections:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\bad9ce35c09dea681528a0453e9bc7c6\transformed\jetified-financial-connections-20.25.7\AndroidManifest.xml:65:9-68:57
+258            android:name="com.stripe.android.financialconnections.FinancialConnectionsSheetActivity"
+258-->[com.stripe:financial-connections:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\bad9ce35c09dea681528a0453e9bc7c6\transformed\jetified-financial-connections-20.25.7\AndroidManifest.xml:66:13-101
+259            android:exported="false"
+259-->[com.stripe:financial-connections:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\bad9ce35c09dea681528a0453e9bc7c6\transformed\jetified-financial-connections-20.25.7\AndroidManifest.xml:67:13-37
+260            android:theme="@style/StripeDefaultTheme" />
+260-->[com.stripe:financial-connections:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\bad9ce35c09dea681528a0453e9bc7c6\transformed\jetified-financial-connections-20.25.7\AndroidManifest.xml:68:13-54
+261        <activity
+261-->[com.stripe:financial-connections:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\bad9ce35c09dea681528a0453e9bc7c6\transformed\jetified-financial-connections-20.25.7\AndroidManifest.xml:69:9-73:58
+262            android:name="com.stripe.android.financialconnections.ui.FinancialConnectionsSheetNativeActivity"
+262-->[com.stripe:financial-connections:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\bad9ce35c09dea681528a0453e9bc7c6\transformed\jetified-financial-connections-20.25.7\AndroidManifest.xml:70:13-110
+263            android:exported="false"
+263-->[com.stripe:financial-connections:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\bad9ce35c09dea681528a0453e9bc7c6\transformed\jetified-financial-connections-20.25.7\AndroidManifest.xml:71:13-37
+264            android:theme="@style/StripeDefaultTheme"
+264-->[com.stripe:financial-connections:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\bad9ce35c09dea681528a0453e9bc7c6\transformed\jetified-financial-connections-20.25.7\AndroidManifest.xml:72:13-54
+265            android:windowSoftInputMode="adjustResize" />
+265-->[com.stripe:financial-connections:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\bad9ce35c09dea681528a0453e9bc7c6\transformed\jetified-financial-connections-20.25.7\AndroidManifest.xml:73:13-55
+266
+267        <provider
+267-->[com.stripe:financial-connections:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\bad9ce35c09dea681528a0453e9bc7c6\transformed\jetified-financial-connections-20.25.7\AndroidManifest.xml:75:9-79:43
+268            android:name="com.stripe.android.financialconnections.appinitializer.FinancialConnectionsInitializer"
+268-->[com.stripe:financial-connections:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\bad9ce35c09dea681528a0453e9bc7c6\transformed\jetified-financial-connections-20.25.7\AndroidManifest.xml:76:13-114
+269            android:authorities="com.carparkingapp.financialconnections-init"
+269-->[com.stripe:financial-connections:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\bad9ce35c09dea681528a0453e9bc7c6\transformed\jetified-financial-connections-20.25.7\AndroidManifest.xml:77:13-77
+270            android:exported="false"
+270-->[com.stripe:financial-connections:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\bad9ce35c09dea681528a0453e9bc7c6\transformed\jetified-financial-connections-20.25.7\AndroidManifest.xml:78:13-37
+271            android:multiprocess="true" />
+271-->[com.stripe:financial-connections:20.25.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\bad9ce35c09dea681528a0453e9bc7c6\transformed\jetified-financial-connections-20.25.7\AndroidManifest.xml:79:13-40
+272
+273        <activity
+273-->[com.stripe:stripe-3ds2-android:6.1.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\64fc0743870084a073aa9ea92531796b\transformed\jetified-stripe-3ds2-android-6.1.7\AndroidManifest.xml:8:9-11:54
+274            android:name="com.stripe.android.stripe3ds2.views.ChallengeActivity"
+274-->[com.stripe:stripe-3ds2-android:6.1.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\64fc0743870084a073aa9ea92531796b\transformed\jetified-stripe-3ds2-android-6.1.7\AndroidManifest.xml:9:13-81
+275            android:exported="false"
+275-->[com.stripe:stripe-3ds2-android:6.1.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\64fc0743870084a073aa9ea92531796b\transformed\jetified-stripe-3ds2-android-6.1.7\AndroidManifest.xml:10:13-37
+276            android:theme="@style/Stripe3DS2Theme" />
+276-->[com.stripe:stripe-3ds2-android:6.1.7] C:\Users\TayyabAli\.gradle\caches\transforms-3\64fc0743870084a073aa9ea92531796b\transformed\jetified-stripe-3ds2-android-6.1.7\AndroidManifest.xml:11:13-51
+277
+278        <provider
+278-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:31:9-39:20
+279            android:name="androidx.startup.InitializationProvider"
+279-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:32:13-67
+280            android:authorities="com.carparkingapp.androidx-startup"
+280-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:33:13-68
+281            android:exported="false" >
+281-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:34:13-37
+282            <meta-data
+282-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:36:13-38:52
+283                android:name="androidx.work.WorkManagerInitializer"
+283-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:37:17-68
+284                android:value="androidx.startup" />
+284-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:38:17-49
+285            <meta-data
+285-->[androidx.emoji2:emoji2:1.3.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\fe8430385f709e9248c8895b135603a8\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
+286                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+286-->[androidx.emoji2:emoji2:1.3.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\fe8430385f709e9248c8895b135603a8\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:30:17-75
+287                android:value="androidx.startup" />
+287-->[androidx.emoji2:emoji2:1.3.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\fe8430385f709e9248c8895b135603a8\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:31:17-49
+288            <meta-data
+288-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\56127c03caba64ac1189053909477acc\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:29:13-31:52
+289                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+289-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\56127c03caba64ac1189053909477acc\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:30:17-78
+290                android:value="androidx.startup" />
+290-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\56127c03caba64ac1189053909477acc\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:31:17-49
+291            <meta-data
+291-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\29985f0df3b4d44d717d2e71aaba6f47\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
+292                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+292-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\29985f0df3b4d44d717d2e71aaba6f47\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
+293                android:value="androidx.startup" />
+293-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\29985f0df3b4d44d717d2e71aaba6f47\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
+294        </provider>
+295
+296        <service
+296-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:41:9-46:35
+297            android:name="androidx.work.impl.background.systemalarm.SystemAlarmService"
+297-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:42:13-88
+298            android:directBootAware="false"
+298-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:43:13-44
+299            android:enabled="@bool/enable_system_alarm_service_default"
+299-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:44:13-72
+300            android:exported="false" />
+300-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:45:13-37
+301        <service
+301-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:47:9-53:35
+302            android:name="androidx.work.impl.background.systemjob.SystemJobService"
+302-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:48:13-84
+303            android:directBootAware="false"
+303-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:49:13-44
+304            android:enabled="@bool/enable_system_job_service_default"
+304-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:50:13-70
+305            android:exported="true"
+305-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:51:13-36
+306            android:permission="android.permission.BIND_JOB_SERVICE" />
+306-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:52:13-69
+307        <service
+307-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:54:9-59:35
+308            android:name="androidx.work.impl.foreground.SystemForegroundService"
+308-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:55:13-81
+309            android:directBootAware="false"
+309-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:56:13-44
+310            android:enabled="@bool/enable_system_foreground_service_default"
+310-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:57:13-77
+311            android:exported="false" />
+311-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:58:13-37
+312
+313        <receiver
+313-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:61:9-66:35
+314            android:name="androidx.work.impl.utils.ForceStopRunnable$BroadcastReceiver"
+314-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:62:13-88
+315            android:directBootAware="false"
+315-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:63:13-44
+316            android:enabled="true"
+316-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:64:13-35
+317            android:exported="false" />
+317-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:65:13-37
+318        <receiver
+318-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:67:9-77:20
+319            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy"
+319-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:68:13-106
+320            android:directBootAware="false"
+320-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:69:13-44
+321            android:enabled="false"
+321-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:70:13-36
+322            android:exported="false" >
+322-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:71:13-37
+323            <intent-filter>
+323-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:73:13-76:29
+324                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+324-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:74:17-87
+324-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:74:25-84
+325                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+325-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:75:17-90
+325-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:75:25-87
+326            </intent-filter>
+327        </receiver>
+328        <receiver
+328-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:78:9-88:20
+329            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy"
+329-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:79:13-104
+330            android:directBootAware="false"
+330-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:80:13-44
+331            android:enabled="false"
+331-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:81:13-36
+332            android:exported="false" >
+332-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:82:13-37
+333            <intent-filter>
+333-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:84:13-87:29
+334                <action android:name="android.intent.action.BATTERY_OKAY" />
+334-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:85:17-77
+334-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:85:25-74
+335                <action android:name="android.intent.action.BATTERY_LOW" />
+335-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:86:17-76
+335-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:86:25-73
+336            </intent-filter>
+337        </receiver>
+338        <receiver
+338-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:89:9-99:20
+339            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy"
+339-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:90:13-104
+340            android:directBootAware="false"
+340-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:91:13-44
+341            android:enabled="false"
+341-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:92:13-36
+342            android:exported="false" >
+342-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:93:13-37
+343            <intent-filter>
+343-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:95:13-98:29
+344                <action android:name="android.intent.action.DEVICE_STORAGE_LOW" />
+344-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:96:17-83
+344-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:96:25-80
+345                <action android:name="android.intent.action.DEVICE_STORAGE_OK" />
+345-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:97:17-82
+345-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:97:25-79
+346            </intent-filter>
+347        </receiver>
+348        <receiver
+348-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:100:9-109:20
+349            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy"
+349-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:101:13-103
+350            android:directBootAware="false"
+350-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:102:13-44
+351            android:enabled="false"
+351-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:103:13-36
+352            android:exported="false" >
+352-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:104:13-37
+353            <intent-filter>
+353-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:106:13-108:29
+354                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+354-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:107:17-79
+354-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:107:25-76
+355            </intent-filter>
+356        </receiver>
+357        <receiver
+357-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:110:9-121:20
+358            android:name="androidx.work.impl.background.systemalarm.RescheduleReceiver"
+358-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:111:13-88
+359            android:directBootAware="false"
+359-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:112:13-44
+360            android:enabled="false"
+360-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:113:13-36
+361            android:exported="false" >
+361-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:114:13-37
+362            <intent-filter>
+362-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:116:13-120:29
+363                <action android:name="android.intent.action.BOOT_COMPLETED" />
+363-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:117:17-79
+363-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:117:25-76
+364                <action android:name="android.intent.action.TIME_SET" />
+364-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:118:17-73
+364-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:118:25-70
+365                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+365-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:119:17-81
+365-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:119:25-78
+366            </intent-filter>
+367        </receiver>
+368        <receiver
+368-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:122:9-131:20
+369            android:name="androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver"
+369-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:123:13-99
+370            android:directBootAware="false"
+370-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:124:13-44
+371            android:enabled="@bool/enable_system_alarm_service_default"
+371-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:125:13-72
+372            android:exported="false" >
+372-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:126:13-37
+373            <intent-filter>
+373-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:128:13-130:29
+374                <action android:name="androidx.work.impl.background.systemalarm.UpdateProxies" />
+374-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:129:17-98
+374-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:129:25-95
+375            </intent-filter>
+376        </receiver>
+377        <receiver
+377-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:132:9-142:20
+378            android:name="androidx.work.impl.diagnostics.DiagnosticsReceiver"
+378-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:133:13-78
+379            android:directBootAware="false"
+379-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:134:13-44
+380            android:enabled="true"
+380-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:135:13-35
+381            android:exported="true"
+381-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:136:13-36
+382            android:permission="android.permission.DUMP" >
+382-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:137:13-57
+383            <intent-filter>
+383-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:139:13-141:29
+384                <action android:name="androidx.work.diagnostics.REQUEST_DIAGNOSTICS" />
+384-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:140:17-88
+384-->[androidx.work:work-runtime:2.7.1] C:\Users\TayyabAli\.gradle\caches\transforms-3\dcb624b9163c550f3a17cb4219ba2b64\transformed\work-runtime-2.7.1\AndroidManifest.xml:140:25-85
+385            </intent-filter>
+386        </receiver>
+387
+388        <service
+388-->[androidx.room:room-runtime:2.2.5] C:\Users\TayyabAli\.gradle\caches\transforms-3\1e7a401f8dafa783025872987662021e\transformed\room-runtime-2.2.5\AndroidManifest.xml:25:9-28:40
+389            android:name="androidx.room.MultiInstanceInvalidationService"
+389-->[androidx.room:room-runtime:2.2.5] C:\Users\TayyabAli\.gradle\caches\transforms-3\1e7a401f8dafa783025872987662021e\transformed\room-runtime-2.2.5\AndroidManifest.xml:26:13-74
+390            android:directBootAware="true"
+390-->[androidx.room:room-runtime:2.2.5] C:\Users\TayyabAli\.gradle\caches\transforms-3\1e7a401f8dafa783025872987662021e\transformed\room-runtime-2.2.5\AndroidManifest.xml:27:13-43
+391            android:exported="false" />
+391-->[androidx.room:room-runtime:2.2.5] C:\Users\TayyabAli\.gradle\caches\transforms-3\1e7a401f8dafa783025872987662021e\transformed\room-runtime-2.2.5\AndroidManifest.xml:28:13-37
+392
+393        <meta-data
+393-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\88e71071474df70f59a579fca9732c5c\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:21:9-23:69
+394            android:name="com.google.android.gms.version"
+394-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\88e71071474df70f59a579fca9732c5c\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:22:13-58
+395            android:value="@integer/google_play_services_version" />
+395-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\88e71071474df70f59a579fca9732c5c\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:23:13-66
+396
+397        <receiver
+397-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\29985f0df3b4d44d717d2e71aaba6f47\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
+398            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+398-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\29985f0df3b4d44d717d2e71aaba6f47\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
+399            android:directBootAware="false"
+399-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\29985f0df3b4d44d717d2e71aaba6f47\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
+400            android:enabled="true"
+400-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\29985f0df3b4d44d717d2e71aaba6f47\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
+401            android:exported="true"
+401-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\29985f0df3b4d44d717d2e71aaba6f47\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
+402            android:permission="android.permission.DUMP" >
+402-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\29985f0df3b4d44d717d2e71aaba6f47\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
+403            <intent-filter>
+403-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\29985f0df3b4d44d717d2e71aaba6f47\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
+404                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+404-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\29985f0df3b4d44d717d2e71aaba6f47\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
+404-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\29985f0df3b4d44d717d2e71aaba6f47\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
+405            </intent-filter>
+406            <intent-filter>
+406-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\29985f0df3b4d44d717d2e71aaba6f47\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
+407                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+407-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\29985f0df3b4d44d717d2e71aaba6f47\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
+407-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\29985f0df3b4d44d717d2e71aaba6f47\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
+408            </intent-filter>
+409            <intent-filter>
+409-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\29985f0df3b4d44d717d2e71aaba6f47\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
+410                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+410-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\29985f0df3b4d44d717d2e71aaba6f47\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
+410-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\29985f0df3b4d44d717d2e71aaba6f47\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
+411            </intent-filter>
+412            <intent-filter>
+412-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\29985f0df3b4d44d717d2e71aaba6f47\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
+413                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+413-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\29985f0df3b4d44d717d2e71aaba6f47\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
+413-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\29985f0df3b4d44d717d2e71aaba6f47\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
+414            </intent-filter>
+415        </receiver>
+416
+417        <meta-data
+417-->[com.google.android.instantapps:instantapps:1.1.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\dc64866cebcdc45085d9200dc92d8251\transformed\jetified-instantapps-1.1.0\AndroidManifest.xml:10:9-12:33
+418            android:name="aia-compat-api-min-version"
+418-->[com.google.android.instantapps:instantapps:1.1.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\dc64866cebcdc45085d9200dc92d8251\transformed\jetified-instantapps-1.1.0\AndroidManifest.xml:11:13-54
+419            android:value="1" />
+419-->[com.google.android.instantapps:instantapps:1.1.0] C:\Users\TayyabAli\.gradle\caches\transforms-3\dc64866cebcdc45085d9200dc92d8251\transformed\jetified-instantapps-1.1.0\AndroidManifest.xml:12:13-30
+420    </application>
+421
+422</manifest>

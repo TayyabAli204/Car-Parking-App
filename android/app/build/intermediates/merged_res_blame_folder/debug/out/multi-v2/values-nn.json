@@ -1,0 +1,43 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.carparkingapp-mergeDebugResources-90:/values-nn/values-nn.xml",
+            "map": [
+                {
+                    "source": "D:\\carparking\\frontend\\node_modules\\react-native-date-picker\\android\\build\\intermediates\\packaged_res\\debug\\values-nn\\values-nn.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,110,164,216,270,312,371,418,474,521,566",
+                        "endColumns": "54,53,51,53,41,58,46,55,46,44,51",
+                        "endOffsets": "105,159,211,265,307,366,413,469,516,561,613"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,18,19",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,110,164,216,270,312,371,418,474,1046,1091",
+                        "endColumns": "54,53,51,53,41,58,46,55,46,44,51",
+                        "endOffsets": "105,159,211,265,307,366,413,469,516,1086,1138"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\TayyabAli\\.gradle\\caches\\transforms-3\\64fc0743870084a073aa9ea92531796b\\transformed\\jetified-stripe-3ds2-android-6.1.7\\res\\values-nn\\values-nn.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "55,142,244,311,378,442,513",
+                        "endColumns": "86,101,66,66,63,70,66",
+                        "endOffsets": "137,239,306,373,437,508,575"
+                    },
+                    "to": {
+                        "startLines": "11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "521,608,710,777,844,908,979",
+                        "endColumns": "86,101,66,66,63,70,66",
+                        "endOffsets": "603,705,772,839,903,974,1041"
+                    }
+                }
+            ]
+        }
+    ]
+}

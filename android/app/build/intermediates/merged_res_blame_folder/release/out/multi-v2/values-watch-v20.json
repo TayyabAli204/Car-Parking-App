@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.carparkingapp-mergeReleaseResources-90:/values-watch-v20/values-watch-v20.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\TayyabAli\\.gradle\\caches\\transforms-3\\e7a13cdad2590aa9422e09640675dac7\\transformed\\appcompat-1.6.1\\res\\values-watch-v20\\values-watch-v20.xml",
+                    "from": {
+                        "startLines": "2,5,8",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,214,385",
+                        "endLines": "4,7,10",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "209,380,553"
+                    }
+                }
+            ]
+        }
+    ]
+}

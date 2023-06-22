@@ -1,0 +1,13 @@
+#Thu Jun 22 12:59:17 PKT 2023
+path.3=classes4.dex
+path.2=classes3.dex
+path.1=classes2.dex
+path.0=classes.dex
+base.3=D\:\\carparking\\frontend\\android\\app\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes4.dex
+base.2=D\:\\carparking\\frontend\\android\\app\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes3.dex
+base.1=D\:\\carparking\\frontend\\android\\app\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes2.dex
+base.0=D\:\\carparking\\frontend\\android\\app\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes.dex
+renamed.3=classes4.dex
+renamed.2=classes3.dex
+renamed.1=classes2.dex
+renamed.0=classes.dex
