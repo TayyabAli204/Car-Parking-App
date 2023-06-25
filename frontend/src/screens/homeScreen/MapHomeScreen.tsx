@@ -300,13 +300,13 @@ const MapHomeScreen = ({navigation}: any) => {
           />
         )}
 
-        {parkingLocation.map((item: any, index) => {
+        {parkingLocation.map((item: any, index:any) => {
           {
             console.log(item, 'insdieeee parkiing mappp');
           }
           return (
             <Marker
-            key={item.index}
+            key={index}
               coordinate={{
                 latitude: item?.lat,
                 longitude: item?.lng,

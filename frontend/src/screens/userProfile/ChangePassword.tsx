@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View, ScrollView, TextInput} from 'react-native';
+import {StyleSheet, Text, View, ScrollView, TextInput,ActivityIndicator } from 'react-native';
 import React, {useState} from 'react';
 import BackIcon from '../../assets/img/setting/leftIcon.svg'
 import RightArrow from '../../assets/img/setting/whiteIcon.svg'
@@ -15,10 +15,12 @@ const ChangePassword = ({navigation}: any) => {
   const [error, setError] = useState(false);
   const [currentPassword, onChangeCurrentPassword] = useState('');
   const [msg, setMsg] = useState('');
+  const [loading, setLoading] = useState(false);
   const NewPasswordHandler = async () => {
     console.log(storeEmail, 'store ma se email'); 
     if (password === confirmPassword) {
       try {
+        setLoading(true); 
         const res = await axios.post(
           'https://long-jade-wasp-robe.cyclic.app/auth/newPassword',
           {
@@ -29,7 +31,11 @@ const ChangePassword = ({navigation}: any) => {
         );
         console.log(res.data);
         navigation.navigate('Login'), setMsg(res.data.data.message);
-      } catch (error) {}
+      } catch (error) {
+        
+      }finally{
+       setLoading(false)
+      }
     } else {
       setError(true);
       // setMsg(res.data.data.message);
@@ -85,8 +91,8 @@ const ChangePassword = ({navigation}: any) => {
             onPress={NewPasswordHandler}
             buttonStyle={styles.button}
             titleStyle={styles.text}
-            title={'Submit New Password'}
-            Imgg={<RightArrow />}
+            title={loading ? <ActivityIndicator color="white" /> : 'Submit New Password'}
+  Imgg={<RightArrow />}
           />
         </View>
       </ScrollView>

@@ -1,4 +1,3 @@
-
 import {
   StyleSheet,
   Text,
@@ -8,7 +7,7 @@ import {
   ScrollView,
   Platform,
 } from 'react-native';
-import React, {useState,useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import BackIcon from '../../assets/img/setting/leftIcon.svg';
 import ButtonWithImg from '../../components/ButtonWithText';
 import TickIcon from '../../assets/img/setting/tickIcon.svg';
@@ -37,18 +36,17 @@ const EditProfile = ({navigation}: any) => {
     });
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     async function name() {
-      
       const storedImageUri = await AsyncStorage.getItem('imageUri');
-      console.log(storedImageUri)
+      console.log(storedImageUri);
       setImage({
-        uri:storedImageUri
-      })
-    } 
-name()
+        uri: storedImageUri,
+      });
+    }
+    name();
     // updateProfile()
-  },[])
+  }, []);
 
   const updateProfile = async () => {
     const validateEmail = () => {
@@ -70,19 +68,18 @@ name()
           },
         );
         if (imageData?.uri) {
-          console.log(imageData.uri)
+          console.log(imageData.uri);
           await AsyncStorage.setItem('imageUri', imageData.uri);
         }
-       
-            const storedImageUri = await AsyncStorage.getItem('imageUri');
-            if (storedImageUri !== null) {
-              setImage({
-                uri:storedImageUri
-              })
-              console.log("storeImageURI",storedImageUri)
-            }
 
-        
+        const storedImageUri = await AsyncStorage.getItem('imageUri');
+        if (storedImageUri !== null) {
+          setImage({
+            uri: storedImageUri,
+          });
+          console.log('storeImageURI', storedImageUri);
+        }
+
         await AsyncStorage.removeItem('token');
         navigation.navigate('Login');
       } catch (error) {
@@ -93,7 +90,8 @@ name()
   return (
     <View style={styles.parent}>
       <View style={styles.header}>
-        <View style={styles.headerChild}>JAKFSD
+        <View style={styles.headerChild}>
+          
           <BackIcon />
           <Text style={styles.headerText1}>Settings</Text>
         </View>

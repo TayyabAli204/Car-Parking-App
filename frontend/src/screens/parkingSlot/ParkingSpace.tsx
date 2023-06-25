@@ -35,8 +35,7 @@ const ParkingSpace = () => {
   useEffect(() => {
     async function getSlotsData() {
       const {data} = await axios.get(
-        `https://long-jade-wasp-robe.cyclic.app/parkingSlot/data/${selectedArea}`,
-      );
+        `https://long-jade-wasp-robe.cyclic.app/parkingSlot/data/${selectedArea}`);
       console.log(data);
       dispatch(setParkingSlotData(data.data));
     }

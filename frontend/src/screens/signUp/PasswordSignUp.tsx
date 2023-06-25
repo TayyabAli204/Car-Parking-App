@@ -62,12 +62,18 @@ const Password = () => {
       // Password and confirm password are valid, perform further actions
       // ...
       console.log(password,selector)
-      const response:any = await axios.post(
-        'https://long-jade-wasp-robe.cyclic.app/auth/signup',
-        {password: password, email: selector},
-      );
-      await AsyncStorage.setItem('token', response.data.data.token);
-      navigation.navigate('HomeScreen');
+      try {
+        const response:any = await axios.post(
+          'https://long-jade-wasp-robe.cyclic.app/auth/signup',
+          {password: password, email: selector},
+        );
+        await AsyncStorage.setItem('token', response.data.data.token);
+        navigation.navigate('MapHomeScreen');
+        
+      } catch (error) {
+        console.log(error)
+      }
+      
     }
   };
   return (

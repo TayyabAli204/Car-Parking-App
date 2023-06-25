@@ -36,7 +36,7 @@ import { SP_KEY } from '@env';
 function Taps() {
   return (
     <Tab.Navigator
-      initialRouteName="Home"
+      initialRouteName="MapHomeScreen"
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
@@ -57,7 +57,7 @@ function Taps() {
           tabBarInactiveTintColor: '#827D89',
           tabBarHideOnKeyboard: true,
         }}
-        name="Home"
+        name="MapHomeScreen"
         component={MapHomeScreen}
       />
       <Tab.Screen
@@ -127,7 +127,7 @@ const App = () => {
               initialRouteName="SplashScreen"
               screenOptions={{headerShown: false}}>
               <Stack.Screen name="SplashScreen" component={SplashScreen} />
-              <Stack.Screen name="MapHomeScreen" component={Taps} />
+              <Stack.Screen name="Taps" component={Taps} />
               <Stack.Screen name="OnBoarding" component={OnBoarding} />     
               <Stack.Screen name="GetStart" component={GetStart} />
               <Stack.Screen name="Login" component={Login} />
