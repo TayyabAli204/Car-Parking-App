@@ -6,6 +6,7 @@ import {
   View,
   TouchableOpacity,
   StatusBar,
+  ActivityIndicator,
 } from 'react-native';
 import React, {useState} from 'react';
 import Slogo from '../../assets/img/splashlogo.svg';
@@ -19,15 +20,17 @@ import {
 } from '../../utils/ResponsiveStyle';
 import {useNavigation} from '@react-navigation/native';
 import axios from 'axios';
-import {useSelector} from 'react-redux';
+import {useSelector,useDispatch} from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { setName } from '../../store/userSlice';
 const Password = () => {
+  const dispatch= useDispatch();
   const navigation: any = useNavigation();
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
+  const [loader, setLoader] = useState(false);
 
   const selector = useSelector((state: any) => state.userSlice.email);
 
@@ -59,21 +62,22 @@ const Password = () => {
 
   const handleSubmit = async () => {
     if (handleValidation()) {
-      // Password and confirm password are valid, perform further actions
-      // ...
-      console.log(password,selector)
+      console.log(password, selector);
       try {
-        const response:any = await axios.post(
+        setLoader(true);
+        const response = await axios.post(
           'https://long-jade-wasp-robe.cyclic.app/auth/signup',
           {password: password, email: selector},
         );
+        console.log(response.data.error, 'error aaya ha');
+        setLoader(false);
         await AsyncStorage.setItem('token', response.data.data.token);
-        navigation.navigate('MapHomeScreen');
-        
+        dispatch(setName(''))
+        navigation.navigate('Taps');
+
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
-      
     }
   };
   return (
@@ -111,14 +115,18 @@ const Password = () => {
           onChangeText={handleConfirmPasswordChange}
           secureTextEntry={true}
           placeholderTextColor={COLORS.grey}
-
         />
         {confirmPasswordError ? (
           <Text style={{color: 'red'}}>{confirmPasswordError}</Text>
         ) : null}
-
         <TouchableOpacity style={styles.touch} onPress={handleSubmit}>
-          <Text style={styles.next}> Create Account </Text>
+          {!loader ? (
+            <Text style={styles.next}>Create Account</Text>
+          ) : (
+            <View>
+              <ActivityIndicator size="small" color="#ffffff" />
+            </View>
+          )}
         </TouchableOpacity>
       </ScrollView>
     </View>

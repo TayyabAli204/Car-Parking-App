@@ -119,7 +119,7 @@ const parsedDate = moment(dateString, "dddd, M/D/YYYY h:mm A").toDate();
             })
           }
         </View>
-        <TouchableOpacity style={styles.touch} onPress={()=>navigation.navigate("MapHomeScreen")}>
+        <TouchableOpacity style={styles.touch} onPress={()=>navigation.navigate("Taps")}>
           <Text style={styles.next}>Go Back to Home Screen</Text>
         </TouchableOpacity>
       </ScrollView>

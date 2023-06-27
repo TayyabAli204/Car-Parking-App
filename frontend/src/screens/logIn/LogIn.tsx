@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   StatusBar,
   ToastAndroid,
+  ActivityIndicator,
 } from 'react-native';
 import React, {useState} from 'react';
 import Slogo from '../../assets/img/splashlogo.svg';
@@ -22,7 +23,7 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
-import {setEmail} from '../../store/userSlice';
+import {setEmail, setToken, setName} from '../../store/userSlice';
 
 const LogIn = ({}) => {
   const navigation: any = useNavigation();
@@ -30,6 +31,7 @@ const LogIn = ({}) => {
   const [password, onChangePassword] = useState('');
   const [isRequiredEmail, setIsRequiredEmail] = useState(false);
   const [isRequiredPassword, setIsRequiredPassword] = useState(false);
+  const [loader, setLoader] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -40,7 +42,7 @@ const LogIn = ({}) => {
       return emailRegex.test(email);
     };
     const validatePassword = () => {
-      return password.length >= 6; 
+      return password.length >= 6;
     };
 
     if (!validateEmail()) {
@@ -49,26 +51,39 @@ const LogIn = ({}) => {
       setIsRequiredPassword(true);
     } else {
       try {
+        setLoader(true);
         console.log(email, password, 'state ma set data');
         const response = await axios.post(
           'https://long-jade-wasp-robe.cyclic.app/auth/login',
           {email: email, password: password},
         );
-        console.log(response.data, 'data from db');
-        console.log(response.data.data.email, 'email from db');
-        console.log('response', response);
-        dispatch(setEmail(response.data.data.email));
-        const mereResponse = await AsyncStorage.setItem(
-          'token',
-          response.data.data.token,
+        setLoader(false);
+        // console.log(response.data, 'data from db');
+        // console.log(response.data.data.email, 'email from db');
+        console.log(
+          'response',
+          response.data,
+          'from loginnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn',
         );
+        dispatch(setEmail(response.data.data.email));
+        dispatch(setToken(response.data.data.token));
+        if (response.data.data.name) {
+          dispatch(setName(response.data.data.name));
+        } else {
+          dispatch(setName(''));
+          return;
 
-        console.log(mereResponse, 'mereResponsemereResponsemereResponse');
+        }
+
+        await AsyncStorage.setItem('token', response.data.data.token);
+        await AsyncStorage.setItem('userName', response.data.data.name);
+        await AsyncStorage.setItem('userEmail', response.data.data.email);
+        console.log('Token stored successfully');
+        navigation.navigate('Taps');
         ToastAndroid.show('User SuccessFully Login', ToastAndroid.TOP);
-        navigation.navigate('MapHomeScreen');
       } catch (error) {
         ToastAndroid.show('Invalid email or password', ToastAndroid.TOP);
-
+        setLoader(false)
       }
     }
   };
@@ -122,8 +137,14 @@ const LogIn = ({}) => {
             </Text>
           )}
           <Text style={styles.forget}>Forgot Password?</Text>
-          <TouchableOpacity onPress={doLogin} style={styles.sec1}>
-            <Text style={styles.sec2}>Login</Text>
+          <TouchableOpacity style={styles.sec1} onPress={doLogin}>
+            {!loader ? (
+              <Text style={styles.sec2}>Login</Text>
+            ) : (
+              <View>
+                <ActivityIndicator size="small" color="#ffffff" />
+              </View>
+            )}
           </TouchableOpacity>
           <View style={styles.sec3}>
             <Text style={styles.or}>or</Text>

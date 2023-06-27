@@ -890,10 +890,10 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="com.stripe:stripe-android:20.25.7@aar"
-      jars="C:\Users\TayyabAli\.gradle\caches\transforms-3\391e84bad854d2ff9a8103617cdda133\transformed\jetified-stripe-android-20.25.7\jars\classes.jar"
-      resolved="com.stripe:stripe-android:20.25.7"
-      folder="C:\Users\TayyabAli\.gradle\caches\transforms-3\391e84bad854d2ff9a8103617cdda133\transformed\jetified-stripe-android-20.25.7"
+      name="com.stripe:stripe-android:20.25.8@aar"
+      jars="C:\Users\TayyabAli\.gradle\caches\transforms-3\c672b2214f45bb386724ff91d3011b8d\transformed\jetified-stripe-android-20.25.8\jars\classes.jar"
+      resolved="com.stripe:stripe-android:20.25.8"
+      folder="C:\Users\TayyabAli\.gradle\caches\transforms-3\c672b2214f45bb386724ff91d3011b8d\transformed\jetified-stripe-android-20.25.8"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -903,10 +903,10 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="com.stripe:paymentsheet:20.25.7@aar"
-      jars="C:\Users\TayyabAli\.gradle\caches\transforms-3\8e32af460fcd7dd7e12ff1b79edb86dd\transformed\jetified-paymentsheet-20.25.7\jars\classes.jar"
-      resolved="com.stripe:paymentsheet:20.25.7"
-      folder="C:\Users\TayyabAli\.gradle\caches\transforms-3\8e32af460fcd7dd7e12ff1b79edb86dd\transformed\jetified-paymentsheet-20.25.7"
+      name="com.stripe:paymentsheet:20.25.8@aar"
+      jars="C:\Users\TayyabAli\.gradle\caches\transforms-3\eb6a37fda80aba02df18121ee62ce445\transformed\jetified-paymentsheet-20.25.8\jars\classes.jar"
+      resolved="com.stripe:paymentsheet:20.25.8"
+      folder="C:\Users\TayyabAli\.gradle\caches\transforms-3\eb6a37fda80aba02df18121ee62ce445\transformed\jetified-paymentsheet-20.25.8"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -916,10 +916,10 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="com.stripe:link:20.25.7@aar"
-      jars="C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7\jars\classes.jar"
-      resolved="com.stripe:link:20.25.7"
-      folder="C:\Users\TayyabAli\.gradle\caches\transforms-3\f9366dc6c86793e9a54e8fb01d87f744\transformed\jetified-link-20.25.7"
+      name="com.stripe:link:20.25.8@aar"
+      jars="C:\Users\TayyabAli\.gradle\caches\transforms-3\5e2b3922a16a8121c986f0ae2fa31ac2\transformed\jetified-link-20.25.8\jars\classes.jar"
+      resolved="com.stripe:link:20.25.8"
+      folder="C:\Users\TayyabAli\.gradle\caches\transforms-3\5e2b3922a16a8121c986f0ae2fa31ac2\transformed\jetified-link-20.25.8"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -929,10 +929,10 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="com.stripe:payments-ui-core:20.25.7@aar"
-      jars="C:\Users\TayyabAli\.gradle\caches\transforms-3\04c8c3381e4046a37a73ff5ae3775153\transformed\jetified-payments-ui-core-20.25.7\jars\classes.jar"
-      resolved="com.stripe:payments-ui-core:20.25.7"
-      folder="C:\Users\TayyabAli\.gradle\caches\transforms-3\04c8c3381e4046a37a73ff5ae3775153\transformed\jetified-payments-ui-core-20.25.7"
+      name="com.stripe:payments-ui-core:20.25.8@aar"
+      jars="C:\Users\TayyabAli\.gradle\caches\transforms-3\806dafb5639c1a688682e92bcb60f3c8\transformed\jetified-payments-ui-core-20.25.8\jars\classes.jar"
+      resolved="com.stripe:payments-ui-core:20.25.8"
+      folder="C:\Users\TayyabAli\.gradle\caches\transforms-3\806dafb5639c1a688682e92bcb60f3c8\transformed\jetified-payments-ui-core-20.25.8"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -942,10 +942,10 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="com.stripe:payments-core:20.25.7@aar"
-      jars="C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7\jars\classes.jar"
-      resolved="com.stripe:payments-core:20.25.7"
-      folder="C:\Users\TayyabAli\.gradle\caches\transforms-3\b7844ad6a3a9cb43b37b872291e0b2c1\transformed\jetified-payments-core-20.25.7"
+      name="com.stripe:payments-core:20.25.8@aar"
+      jars="C:\Users\TayyabAli\.gradle\caches\transforms-3\be9f4340494335838710df245fb98a96\transformed\jetified-payments-core-20.25.8\jars\classes.jar"
+      resolved="com.stripe:payments-core:20.25.8"
+      folder="C:\Users\TayyabAli\.gradle\caches\transforms-3\be9f4340494335838710df245fb98a96\transformed\jetified-payments-core-20.25.8"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -981,10 +981,10 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="com.stripe:financial-connections:20.25.7@aar"
-      jars="C:\Users\TayyabAli\.gradle\caches\transforms-3\bad9ce35c09dea681528a0453e9bc7c6\transformed\jetified-financial-connections-20.25.7\jars\classes.jar"
-      resolved="com.stripe:financial-connections:20.25.7"
-      folder="C:\Users\TayyabAli\.gradle\caches\transforms-3\bad9ce35c09dea681528a0453e9bc7c6\transformed\jetified-financial-connections-20.25.7"
+      name="com.stripe:financial-connections:20.25.8@aar"
+      jars="C:\Users\TayyabAli\.gradle\caches\transforms-3\a7288fd0395935efebc004f495cd9e11\transformed\jetified-financial-connections-20.25.8\jars\classes.jar"
+      resolved="com.stripe:financial-connections:20.25.8"
+      folder="C:\Users\TayyabAli\.gradle\caches\transforms-3\a7288fd0395935efebc004f495cd9e11\transformed\jetified-financial-connections-20.25.8"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -1007,10 +1007,10 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="com.stripe:payments-model:20.25.7@aar"
-      jars="C:\Users\TayyabAli\.gradle\caches\transforms-3\1abefaa1c05564fb3db9548196e7926c\transformed\jetified-payments-model-20.25.7\jars\classes.jar"
-      resolved="com.stripe:payments-model:20.25.7"
-      folder="C:\Users\TayyabAli\.gradle\caches\transforms-3\1abefaa1c05564fb3db9548196e7926c\transformed\jetified-payments-model-20.25.7"
+      name="com.stripe:payments-model:20.25.8@aar"
+      jars="C:\Users\TayyabAli\.gradle\caches\transforms-3\f41f3eb51cfcd59915c0443bfe234c21\transformed\jetified-payments-model-20.25.8\jars\classes.jar"
+      resolved="com.stripe:payments-model:20.25.8"
+      folder="C:\Users\TayyabAli\.gradle\caches\transforms-3\f41f3eb51cfcd59915c0443bfe234c21\transformed\jetified-payments-model-20.25.8"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -1085,10 +1085,10 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="com.stripe:stripe-ui-core:20.25.7@aar"
-      jars="C:\Users\TayyabAli\.gradle\caches\transforms-3\0b1c51d1ed3748d1347f214d311f3a00\transformed\jetified-stripe-ui-core-20.25.7\jars\classes.jar"
-      resolved="com.stripe:stripe-ui-core:20.25.7"
-      folder="C:\Users\TayyabAli\.gradle\caches\transforms-3\0b1c51d1ed3748d1347f214d311f3a00\transformed\jetified-stripe-ui-core-20.25.7"
+      name="com.stripe:stripe-ui-core:20.25.8@aar"
+      jars="C:\Users\TayyabAli\.gradle\caches\transforms-3\fd026d801d9912c86d91d290efc03aea\transformed\jetified-stripe-ui-core-20.25.8\jars\classes.jar"
+      resolved="com.stripe:stripe-ui-core:20.25.8"
+      folder="C:\Users\TayyabAli\.gradle\caches\transforms-3\fd026d801d9912c86d91d290efc03aea\transformed\jetified-stripe-ui-core-20.25.8"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -1358,10 +1358,10 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="com.stripe:stripe-core:20.25.7@aar"
-      jars="C:\Users\TayyabAli\.gradle\caches\transforms-3\4fe6c6242994e1864a1524516520cdb9\transformed\jetified-stripe-core-20.25.7\jars\classes.jar"
-      resolved="com.stripe:stripe-core:20.25.7"
-      folder="C:\Users\TayyabAli\.gradle\caches\transforms-3\4fe6c6242994e1864a1524516520cdb9\transformed\jetified-stripe-core-20.25.7"
+      name="com.stripe:stripe-core:20.25.8@aar"
+      jars="C:\Users\TayyabAli\.gradle\caches\transforms-3\02132c062bea09523dee157de8447a5b\transformed\jetified-stripe-core-20.25.8\jars\classes.jar"
+      resolved="com.stripe:stripe-core:20.25.8"
+      folder="C:\Users\TayyabAli\.gradle\caches\transforms-3\02132c062bea09523dee157de8447a5b\transformed\jetified-stripe-core-20.25.8"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"

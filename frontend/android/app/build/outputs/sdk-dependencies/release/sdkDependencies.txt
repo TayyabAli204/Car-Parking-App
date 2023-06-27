@@ -1621,7 +1621,7 @@ library {
   maven_library {
     groupId: "com.stripe"
     artifactId: "stripe-android"
-    version: "20.25.7"
+    version: "20.25.8"
   }
   digests {
     sha256: "\355Y7\263\233\t\026\3014\221[\226<\001\0260\244/-\210\221F*\273L\325\243&\020\274\320:"
@@ -1634,10 +1634,10 @@ library {
   maven_library {
     groupId: "com.stripe"
     artifactId: "payments-core"
-    version: "20.25.7"
+    version: "20.25.8"
   }
   digests {
-    sha256: "\247e\367 X9\002]Q\2249I\211\277\021\263Q\356=W]\304\304U\235`\315\004\340\370D\212"
+    sha256: "m\231\337\247\031\374\035\037:\203\212\362\t\237\022\343s\341\357\253`\376l\227\367\344\354\016w_\207\352"
   }
   repo_index {
     value: 1
@@ -1647,10 +1647,10 @@ library {
   maven_library {
     groupId: "com.stripe"
     artifactId: "stripe-core"
-    version: "20.25.7"
+    version: "20.25.8"
   }
   digests {
-    sha256: "{\"-C\306SI\006\2353\274\317\023\256J\224\265\302\227LUw\235\374z\325\350w\327p+B"
+    sha256: "\370\270\320\027\304\006|\244\027\210#\204\266W\375\n\220\213U\177\037\031\341\3569\216\210\250\374.\337\031"
   }
   repo_index {
     value: 1
@@ -1742,10 +1742,10 @@ library {
   maven_library {
     groupId: "com.stripe"
     artifactId: "payments-model"
-    version: "20.25.7"
+    version: "20.25.8"
   }
   digests {
-    sha256: "\225Iv\276C\347\352\334t,Rq\030\354}\202\262b\253\236\212\305Q\216\234\214\277\320\266y\255\037"
+    sha256: "\233l\204\240\275\3023\373\352\222D\337J\353\341\207\367)\261\327\021H\3668\303\277\n?G\373\321\001"
   }
   repo_index {
     value: 1
@@ -2054,10 +2054,10 @@ library {
   maven_library {
     groupId: "com.stripe"
     artifactId: "paymentsheet"
-    version: "20.25.7"
+    version: "20.25.8"
   }
   digests {
-    sha256: "\313\247l\f\225\316\242\250\216\354\205\240%\216\304/\353\321\000\310\rviJC\316\357p\016\247\324\337"
+    sha256: "\371n\211\302\352\006\372M\356\202\v\030\224R\361\351\005K{bll\2443\243\002 \222\023\352\301S"
   }
   repo_index {
     value: 1
@@ -2067,10 +2067,10 @@ library {
   maven_library {
     groupId: "com.stripe"
     artifactId: "link"
-    version: "20.25.7"
+    version: "20.25.8"
   }
   digests {
-    sha256: "*y|^\000\220\214\322Q\2536\377\324\270\033\177\353\025\273\327L\220\271\005\2763\237x0\3370\363"
+    sha256: "\325L\276\301\373\377\201N\033\263\311EG1d\360\345\347G\247\222F|\261\021\036E\343\355\315\\#"
   }
   repo_index {
     value: 1
@@ -2080,10 +2080,10 @@ library {
   maven_library {
     groupId: "com.stripe"
     artifactId: "payments-ui-core"
-    version: "20.25.7"
+    version: "20.25.8"
   }
   digests {
-    sha256: "Ng,\322\3379fX\347\213\306\202d\323\324\321\237^\026\031\vV\251\355\024\315\037\276\307\361\307\f"
+    sha256: "\355\267\227`\272\363\031\221<\v\271\233f\277\224\003\021v\325mr3_\237@\231\274k\327z\362F"
   }
   repo_index {
     value: 1
@@ -2093,7 +2093,7 @@ library {
   maven_library {
     groupId: "com.stripe"
     artifactId: "stripe-ui-core"
-    version: "20.25.7"
+    version: "20.25.8"
   }
   digests {
     sha256: "\001\260\225\350\022(\262\207Ip\305\377\277\000\301\226G<J\241F\252\b\360\037\27184%Y\343$"
@@ -2171,10 +2171,10 @@ library {
   maven_library {
     groupId: "com.stripe"
     artifactId: "financial-connections"
-    version: "20.25.7"
+    version: "20.25.8"
   }
   digests {
-    sha256: "\177\272\260h\0051\276:2\366\005\201\020\260\337\t\267\214\020\326}\201\v(K\260\221\377\211\311\265,"
+    sha256: "\251&\2566.\304\001\a{\030\020c\204\242`\001\242Jl\314\'\332\214\307lj\307Zc\333\356a"
   }
   repo_index {
     value: 1

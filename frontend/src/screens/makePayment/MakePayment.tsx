@@ -16,23 +16,19 @@ import MenuSearchBar from '../../components/MenuSearchBar';
 import COLORS from '../../consts/colors';
 import {useSelector} from 'react-redux';
 import axios from 'axios';
-import AnimatedLottieView from 'lottie-react-native';
 import Modal from 'react-native-modal';
 import {useNavigation} from '@react-navigation/native';
 export default function MakePayment() {
   const navigation: any = useNavigation();
   const [cardInfo, setCardInfo] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [showAnimation, setShowAnimation] = useState(false);
   const [showLoader, setShowLoader] = useState(false);
   const [showBtnTitle, setBtnTitle] = useState('Make Payment');
 
   const {selectedSpot, selectedArea, parkingSlot} = useSelector(
     (state: any) => state.parkingSlotSlice,
   );
-  // console.log("selectedSpot",selectedSpot)
   const fetchCardDetails = (cardDetails: any) => {
-    // console.log("my  cardDetails",cardDetails)
     if (cardDetails.complete) {
       setCardInfo(cardDetails);
     } else {
@@ -47,47 +43,29 @@ export default function MakePayment() {
       amount: selectedSpot.perHourFee,
       currency: 'usd',
     };
-    console.log('apiData.amount', apiData);
-
-    setBtnTitle('Payment Succesful!');
     try {
       const res = await axios.post(
         'https://long-jade-wasp-robe.cyclic.app/payment-sheet',
         apiData,
       );
-      console.log('payment intent create sucessfully...', res.data);
 
       if (res?.data?.paymentIntent) {
         var paymentConfrmR: any = await confirmPayment(
           res?.data?.paymentIntent,
           {paymentMethodType: 'Card'},
         );
-        console.log('paymentConfrmR', paymentConfrmR);
-
-        // Alert.alert("Payment Successfully...!!!");
-
         setShowLoader(false);
-        setShowAnimation(true);
+        
       }
     } catch (error) {
       console.log('error', error);
     } finally {
       setTimeout(() => {
-        setShowAnimation(false);
-
+        setBtnTitle('Payment Succesful!');
         navigation.navigate('ParkingHistory');
-      }, 1000);
+      }, 1500);
     }
   };
-  // if(!!cardInfo){
-  //   try {
-  //     const getToken = await createToken( {cardInfo,type:"Card" })
-  //     console.log("getToken",getToken)
-
-  //   } catch (error) {
-
-  //   }
-  // }
 
   return (
     <View style={styles.container}>
@@ -144,13 +122,7 @@ export default function MakePayment() {
           console.log('focusField', focusedField);
         }}
       />
-      {/* {showAnimation ? (
-        <AnimatedLottieView
-          source={require('../../consts/success-lotties.json')}
-          autoPlay
-          loop
-        />
-      ) : ( */}
+
         <CustomButton
           title={showBtnTitle}
           buttonStyle={[
@@ -161,7 +133,6 @@ export default function MakePayment() {
           titleStyle={styles.titleStyle}
           disabled={!cardInfo && !loading}
         />
-      {/* )} */}
     </View>
   );
 }

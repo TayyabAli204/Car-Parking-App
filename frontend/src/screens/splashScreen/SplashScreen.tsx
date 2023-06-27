@@ -8,6 +8,8 @@ import {
 import React, {useEffect} from 'react';
 import Slogo from '../../assets/img/splashlogo.svg';
 import COLORS from '../../consts/colors';
+import { useDispatch } from 'react-redux';
+import { setEmail,setName } from '../../store/userSlice';
 import {
   fontPixel,
   heightPixel,
@@ -16,6 +18,7 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 const SplashScreen = () => {
+  const dispatch=useDispatch()
   const navigation: any = useNavigation();
   useEffect(() => {
     //  AsyncStorage.clear()
@@ -24,15 +27,24 @@ const SplashScreen = () => {
   const checkToken = async () => {
     try {
       const value = await AsyncStorage.getItem('token');
+      const userName = await AsyncStorage.getItem('userName');
+      const userEmail = await AsyncStorage.getItem('userEmail');
       console.log(value, 'stored token');
       if (value !== null) {
-        navigation.navigate('MapHomeScreen');
+        navigation.navigate('Taps');
+        dispatch(setEmail(userEmail));
+        // dispatch(setToken(response.data.data.token));
+        if (userName) {
+          dispatch(setName(userName));
+        } else {
+          dispatch(setName(''));
+
+        }
       } else {
         const timeout = setTimeout(() => {
           navigation.navigate('OnBoarding');
         }, 2000);
         return () => clearTimeout(timeout);
-        console.log(value, 'stored token');
       }
     } catch (e) {
       console.log(e, 'error');

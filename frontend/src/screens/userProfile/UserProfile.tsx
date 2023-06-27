@@ -21,7 +21,6 @@ const includeExtra = true;
 
 const EditProfile = ({navigation}: any) => {
   const oldEmail = useSelector((state: any) => state.userSlice);
-
   console.log('dkjashfkljdashn', oldEmail);
 
   const [name, onChangeName] = useState('');
@@ -67,6 +66,20 @@ const EditProfile = ({navigation}: any) => {
             oldEmail: oldEmail,
           },
         );
+        await AsyncStorage.setItem('userName', name)
+          .then(() => {
+            console.log('name stored successfully');
+          })
+          .catch(error => {
+            console.log('Error storing name:', error);
+          });
+          await AsyncStorage.setItem('userEmail', email)
+          .then(() => {
+            console.log('name stored successfully');
+          })
+          .catch(error => {
+            console.log('Error storing name:', error);
+          });
         if (imageData?.uri) {
           console.log(imageData.uri);
           await AsyncStorage.setItem('imageUri', imageData.uri);
@@ -91,7 +104,6 @@ const EditProfile = ({navigation}: any) => {
     <View style={styles.parent}>
       <View style={styles.header}>
         <View style={styles.headerChild}>
-          
           <BackIcon />
           <Text style={styles.headerText1}>Settings</Text>
         </View>

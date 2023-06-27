@@ -61,6 +61,7 @@ const ChangePassword = ({navigation}: any) => {
             onChangeText={onChangeCurrentPassword}
             value={currentPassword}
             placeholder="********"
+            secureTextEntry
             placeholderTextColor={'#C8C5CB'}
             style={styles.emailInput}></TextInput>
         </View>
@@ -71,6 +72,7 @@ const ChangePassword = ({navigation}: any) => {
             onChangeText={onChangePassword}
             value={password}
             placeholder="********"
+            secureTextEntry
             placeholderTextColor={'#C8C5CB'}
             style={styles.emailInput}></TextInput>
           <Text style={styles.inputTitle}>
@@ -81,6 +83,7 @@ const ChangePassword = ({navigation}: any) => {
             onChangeText={onChangeConfirmPassword}
             value={confirmPassword}
             placeholder="*********"
+            secureTextEntry
             placeholderTextColor={'#C8C5CB'}
             style={styles.emailInput}></TextInput>
           {error ? (

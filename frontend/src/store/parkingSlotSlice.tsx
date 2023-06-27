@@ -21,7 +21,7 @@ const parkingSlotSlice = createSlice({
     },
     setSelectedSpot: (state, {payload}) => {
       console.log(payload, 'payload');
-      // console.log(state.parkingSlots)
+      console.log(state.parkingSlots,"ADSFKJ")
       if (
         state.parkingSlots.find(
           (item: any) => item?._id == payload._id && item.booked,

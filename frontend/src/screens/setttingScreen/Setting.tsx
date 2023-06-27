@@ -1,4 +1,3 @@
-
 import {
   StyleSheet,
   Text,
@@ -10,19 +9,22 @@ import {
   Modal,
   Switch,
 } from 'react-native';
-import React, {useState} from 'react';
-import BackIcon from '../../assets/img/setting/leftIcon.svg'
-import EditIcon from '../../assets/img/setting/editIcon.svg'
-import MailIcon from '../../assets/img/setting/mailIcon.svg'
-import LockIcon from '../../assets/img/setting/leftIcon.svg'
-import Notification from '../../assets/img/setting/notificationIcon.svg'
-import LogoutIcon from '../../assets/img/setting/logoutIcon.svg'
-import RightIcon from '../../assets/img/setting/rightIcon.svg'
-import Cross from '../../assets/img/setting/crossIcon.svg'
+import React, {useState, useEffect} from 'react';
+import BackIcon from '../../assets/img/setting/leftIcon.svg';
+import EditIcon from '../../assets/img/setting/editIcon.svg';
+import MailIcon from '../../assets/img/setting/mailIcon.svg';
+import LockIcon from '../../assets/img/setting/leftIcon.svg';
+import Notification from '../../assets/img/setting/notificationIcon.svg';
+import LogoutIcon from '../../assets/img/setting/logoutIcon.svg';
+import RightIcon from '../../assets/img/setting/rightIcon.svg';
+import Cross from '../../assets/img/setting/crossIcon.svg';
 import CustomButton from '../../components/CustomButton';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import COLORS from '../../consts/colors';
+import { useSelector } from 'react-redux';
 const Settings = ({navigation}: any) => {
+  const userName=useSelector((state:any)=>state.userSlice.name)
+  const userEmail=useSelector((state:any)=>state.userSlice.email)
   const [logoutModal, setLogoutModal] = useState(false);
   const [notificationModal, setNotificationModal] = useState(false);
   const [isEnabled1, setIsEnabled1] = useState(true);
@@ -30,9 +32,35 @@ const Settings = ({navigation}: any) => {
   const [isEnabled, setIsEnabled] = useState(true);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   const logout = async () => {
-    const logOut = await AsyncStorage.removeItem('token');
+    await AsyncStorage.removeItem('userName')
+      .then(() => console.log('del ho gya name'))
+      .catch(() => {
+        console.log('error aa gya name ma');
+      });
+    await AsyncStorage.removeItem('token')
+      .then(() => console.log('del ho gya token'))
+      .catch(() => {
+        console.log('error aa gya token ma');
+      });
+      await AsyncStorage.removeItem('userEmail')
+      .then(() => console.log('del ho gya email'))
+      .catch(() => {
+        console.log('error aa gya email ma');
+      });
+
     navigation.navigate('Login');
   };
+  const [name, setName] = useState('');
+  // useEffect(() => {
+  //   async function name() {
+  //     const userName: any = await AsyncStorage.getItem('userName');
+  //     console.log(userName, 'userName');
+  //     setName(userName);
+  //   }
+  //   name();
+  // }, []);
+  console.log(name, 'state ma set name');
+
   return (
     <View style={styles.parent}>
       <View style={styles.header}>
@@ -49,7 +77,9 @@ const Settings = ({navigation}: any) => {
           style={{height: 64, width: 64}}
           source={require('../../assets/img/ProfilePicture.png')}></Image>
         <View style={styles.headerChild1}>
-          <Text style={styles.headerText2}>Michael Antonio</Text>
+          <Text style={styles.headerText2}>
+            {userName === '' ? 'Michel' : userName}
+          </Text>
           <View
             style={{
               display: 'flex',
@@ -58,7 +88,7 @@ const Settings = ({navigation}: any) => {
               gap: 9,
             }}>
             <MailIcon />
-            <Text style={styles.headerText3}>anto_michael@gmail.com</Text>
+            <Text style={styles.headerText3}>{userEmail===''?"anto_michael@gmail.com":userEmail}</Text>
           </View>
         </View>
       </View>
@@ -397,5 +427,3 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
 });
-
-

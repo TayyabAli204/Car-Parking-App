@@ -6,7 +6,7 @@ import {
   View,
   TouchableOpacity,
   StatusBar,
-  Alert,
+  ActivityIndicator,
 } from 'react-native';
 import React, {useState} from 'react';
 import axios from 'axios';
@@ -22,48 +22,53 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
 import {setEmail, setToken} from '../../store/userSlice';
+import { replace } from 'formik';
 const PhoneNo = () => {
-  const [text, onChangeText] = useState('');
+  const [email, setEmails] = useState('');
   const [isRequired, setIsRequired] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [loader, setLoader] = useState(false);
   const navigation: any = useNavigation();
   const dispatch = useDispatch();
+ 
+  const validateEmail = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setErrorMessage('Please enter a valid email address.');
+      return false;
+    }
+    return true;
+  };
 
+  const onChangeText = (text:string) => {
+    setEmails(text);
+    setErrorMessage('');
+  };
+ 
   const doEmail = async () => {
-    if (text.trim() === '') {
-      setIsRequired(true);
+    if (!validateEmail()) {
+      return;
     } else {
       try {
+        setLoader(true);
         const response = await axios.post(
           'https://long-jade-wasp-robe.cyclic.app/auth/sendemail',
-          {email: text},
+          {email: email},
         );
-        console.log(response.data.error, 'data from db', );
-        dispatch(setEmail(text));
+        setLoader(false);
+        dispatch(setEmail(email));
         dispatch(setToken(response.data.data.token));
-        // if (response.status === 200) {
-        //   // Success case: navigate to the verification code screen or show a success message
-       
-        // } else {
-        //   // Handle other response statuses and show relevant error messages
-        //   setErrorMessage('Error: Something went wrong');
-        // }
-          navigation.navigate('VerficationCode');
-        
-        
-        
+        navigation.navigate('VerficationCode');
       } catch (error) {
         console.error(error);
-        setErrorMessage('Error: Failed to connect to the server');
+        setErrorMessage("Email Already exits")
       }
-
-      console.log('Email submitted:', text);
     }
   };
 
   return (
     <View style={styles.main}>
-      <View style={styles.main1}> 
+      <View style={styles.main1}>
         <Slogo width={widthPixel(88)} height={heightPixel(60)} />
       </View>
       <StatusBar
@@ -74,26 +79,33 @@ const PhoneNo = () => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={styles.phone}>Enter your Email</Text>
         <TextInput
-          onChangeText={onChangeText}
-          value={text}
-          onFocus={() => {
-            setIsRequired(false);
-          }}
-          style={styles.input}
-          placeholder="Enter your email"
-          placeholderTextColor={COLORS.grey}  
-        />
-        {isRequired && (
-          <Text style={{color: 'red', fontSize: 12}}>
-            Email required.
-          </Text>
-        )
-        }
-         {/* Show error message if applicable */}
-      {errorMessage !== '' && <Text style={{ color: 'red' }}>{errorMessage}</Text>}
-        <TouchableOpacity style={styles.touch} onPress={doEmail}>
-          <Text style={styles.next}> Next </Text>
-        </TouchableOpacity>
+        onChangeText={onChangeText}
+        value={email}
+        onFocus={() => {
+          setIsRequired(false);
+        }}
+        style={styles.input}
+        placeholder="Enter your email"
+        placeholderTextColor={COLORS.grey}
+      />
+      {isRequired && (
+        <Text style={{ color: 'red', fontSize: 12 }}>Email required.</Text>
+      )}
+      {errorMessage !== '' && (
+        <Text style={{ color: 'red' }}>{errorMessage}</Text>
+      )}
+      <TouchableOpacity style={styles.touch} onPress={doEmail}>
+        {!loader ? (
+          <Text style={styles.next}>Next</Text>
+        ) : (
+          <View>
+            <ActivityIndicator
+              size="small"
+              color="#ffffff"
+            />
+          </View>
+        )}
+      </TouchableOpacity>
       </ScrollView>
     </View>
   );
@@ -116,7 +128,6 @@ const styles = StyleSheet.create({
     fontSize: fontPixel(16),
     color: COLORS.white,
     fontFamily: 'OpenSans-Bold',
-    lineHeight: 24,
   },
 
   touch: {
@@ -138,4 +149,5 @@ const styles = StyleSheet.create({
     marginTop: pixelSizeVertical(93),
     marginBottom: pixelSizeVertical(64),
   },
+
 });

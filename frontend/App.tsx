@@ -14,113 +14,19 @@ import ParkingHistory from './src/screens/parkingHistory/ParkingHistory';
 import Setting from './src/screens/setttingScreen/Setting';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import parkingSpace from './src/screens/parkingSlot/ParkingSpace';
 import BookSpace from './src/screens/bookSpace/BookSpace';
-import HomeScreen from './src/screens/homeScreen/HomeScreen';
 import BookingDetails from './src/screens/bookingDetails/BookingDetails';
 import MakePayment from './src/screens/makePayment/MakePayment';
 import ChangePassword from './src/screens/userProfile/ChangePassword';
 import ImagePickerGetBrower from './src/components/ImagePickerCompon';
-import MapHomeScreen from './src/screens/homeScreen/MapHomeScreen';
-import AddParkingArea from './src/adminScreens/addSlots/AddSlots'
-import ParkingSlots from './src/adminScreens/parkingSlots/ParkingSlots'
-import TapIcon1 from './src/assets/img/tapIcon1.svg';
-import TapIcon2 from './src/assets/img/tapIcon2.svg';
-import TapIcon3 from './src/assets/img/tapIcon3.svg';
-import TapIcon4 from './src/assets/img/tapIcon4.svg';
-import TapIcon5 from './src/assets/img/tapIcon5.svg';
-const Stack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
-import { SP_KEY } from '@env';
-function Taps() {
-  return (
-    <Tab.Navigator
-      initialRouteName="MapHomeScreen"
-      screenOptions={{
-        headerShown: false,
-        tabBarStyle: {
-          height: 64,
-          paddingVertical: 10,
-          alignItems: 'center',
-          justifyContent: 'center',
-          elevation: 0,
-          shadowOpacity: 0.1,
-        },
-      }}>
-      <Tab.Screen
-        options={{
-          tabBarIcon: ({color, size, focused}) => {
-            return <TapIcon1 />;
-          },
-          tabBarActiveTintColor: '#613EEA',
-          tabBarInactiveTintColor: '#827D89',
-          tabBarHideOnKeyboard: true,
-        }}
-        name="MapHomeScreen"
-        component={MapHomeScreen}
-      />
-      <Tab.Screen
-        options={{
-          tabBarIcon: ({color, size, focused}) => {
-            return <TapIcon2 />;
-          },
-          tabBarActiveTintColor: '#613EEA',
-          tabBarInactiveTintColor: '#827D89',
-        }}
-        name="Wallet"
-        component={MapHomeScreen}
-      />
-      <Tab.Screen
-        name="Add"
-        component={HomeScreen}
-        options={{
-          tabBarIcon: ({color, size, focused}) => {
-            return <TapIcon3 />;
-          },
-          tabBarIconStyle: {
-            backgroundColor: '#613EEA',
-            padding: 35,
-            borderRadius: 50,
-
-            justifyContent: 'center',
-            // marginBottom: 15,
-            borderWidth: 5,
-            borderColor: 'white',
-          },
-          tabBarLabel: '',
-        }}
-      />
-      <Tab.Screen
-        options={{
-          tabBarIcon: ({color, size, focused}) => {
-            return <TapIcon4 />;
-          },
-          tabBarActiveTintColor: '#613EEA',
-          tabBarInactiveTintColor: '#827D89',
-        }}
-        name="Vector"
-        component={HomeScreen}
-      />
-      <Tab.Screen
-        options={{
-          tabBarActiveTintColor: '#613EEA',
-          tabBarInactiveTintColor: '#827D89',
-          tabBarIcon: ({color, size, focused}) => {
-            return <TapIcon5 />;
-          },
-        }}
-        name="Settings"
-        component={Setting}
-      />
-    </Tab.Navigator>
-  );
-}
-
+import Taps from './src/components/TabNavigation';
+import { REACT_APP_STRIPE_PUBLISHABLE_KEY } from '@env';
+const Stack = createNativeStackNavigator(); 
 const App = () => {
   return (
     <>    
-      <StripeProvider publishableKey={SP_KEY}>
+      <StripeProvider publishableKey={REACT_APP_STRIPE_PUBLISHABLE_KEY}>
         <Provider store={store}>
           <NavigationContainer>
             <Stack.Navigator
@@ -143,16 +49,11 @@ const App = () => {
               <Stack.Screen name="MakePayment" component={MakePayment} />
               <Stack.Screen name="ChangePassword" component={ChangePassword} />
               <Stack.Screen name="ImagePickerGetBrower" component={ImagePickerGetBrower} />
-
-
-
-
             </Stack.Navigator>
           </NavigationContainer>
         </Provider>
       </StripeProvider>
-      {/* <Add */}
-      {/* <AddSlot/> */}
+    
     </>
   );
 };

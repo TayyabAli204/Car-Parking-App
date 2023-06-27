@@ -6,6 +6,7 @@ import {
   Modal,
   StatusBar,
   TouchableOpacity,
+  BackHandler
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
@@ -29,25 +30,21 @@ import GooglePlacesAutoCompleteComp from '../../components/GooglePlacesAutoCompl
 import useGooglePlaces from '../../hooks/useGooglePlaces';
 const MapHomeScreen = ({navigation}: any) => {
 
+  // useEffect(() => {
+  //   const handleBackPress = () => {
+  //     // BackHandler.exitApp();
+  //     return true; // Prevent the default back button behavior
+  //   };
 
-  // const {
-  //   parkingLocation,
-  //   setCurrentLocation,
-  //   setParkingLocation,
-  //   currentLocation,
-  //   noParkingModal,
-  //   setNoParkingModal,
-  //   showModal,
-  //   setShowModal,
-  //   region,
-  //   setRegion,
-  //   checkIfParkingAvailable,
-  //   googlePlacesAutocompleteRef,
-  //   getDbData,
-  // }=useGooglePlaces();
-    
+  //   const backHandler = BackHandler.addEventListener(
+  //     'hardwareBackPress',
+  //     handleBackPress,
+  //   );
 
-
+  //   return () => {
+  //     backHandler.remove(); // Clean up the event listener
+  //   };
+  // }, [navigation]);
   const [parkingLocation, setParkingLocation] = useState([]);
   const [currentLocation, setCurrentLocation] = useState<null | {
     latitude: number;
@@ -301,20 +298,16 @@ const MapHomeScreen = ({navigation}: any) => {
         )}
 
         {parkingLocation.map((item: any, index:any) => {
-          {
-            console.log(item, 'insdieeee parkiing mappp');
-          }
           return (
             <Marker
-            key={index}
-              coordinate={{
-                latitude: item?.lat,
-                longitude: item?.lng,
-              }}
-              title={item.location}
-              // description={item.location}
-              image={require('../../assets/img/homeimg/parkinglocation.png')}
-              onPress={() => getDbData(item.location)}
+            key={item?.lat * item?.lng}
+            coordinate={{
+              latitude: item?.lat,
+              longitude: item?.lng,
+            }}
+            title={item.location}
+            image={require('../../assets/img/homeimg/parkinglocation.png')}
+            onPress={() => getDbData(item.location)}
             />
           );
         })}

@@ -45,13 +45,18 @@ const BookSpace = () => {
   }
 
   const handleConfirm = async () => {
-    if (+estimatedTime > 10) {
+    if (+estimatedTime === 0) {
       return Alert.alert(
-        'you can only book parking slot for maximun 10 hours ',
+        "You cannot book a parking slot for 0 hours",
+      );
+    } else if (+estimatedTime > 10) {
+      return Alert.alert(
+        "You can only book a parking slot for a maximum of 10 hours",
       );
     }
+    
     try {
-      function convertFormat(date: any) {
+      function convertFormat(date: any) { 
         const timestamp: any = date;
         const dt = new Date(timestamp);
         const dayOfWeek = dt.toLocaleDateString('en-US', {weekday: 'long'});
@@ -75,6 +80,7 @@ const BookSpace = () => {
         entryTime: convertFormat(selectedDate),
         // parkingLotName:""
       };
+      console.log(data,"entry time")
       dispatch(setSelectedSpot(data));
       console.log('asdkjfhdlas', data);
 
@@ -105,12 +111,7 @@ const BookSpace = () => {
     }
   };
 
-  //   if(modalVisible){
-  // console.log("modsaf")
-  //     const timeout = setTimeout(() => {
-  //       navigation.navigate('UserProfile');
-  //     }, 2000);
-  //   }
+
 
   return (
     <>
@@ -122,7 +123,7 @@ const BookSpace = () => {
       <MenuSearchBar
         MenuSearchBarStyle={styles.mainspace}
         title={selectedArea}
-        titleSlotName={selectedSpot.parkingLotName}
+        titleSlotName={"N" +selectedSpot.perHourFee}
       />
 
       <View style={styles.contain}>
@@ -149,6 +150,7 @@ const BookSpace = () => {
           value={estimatedTime}
           placeholderTextColor={COLORS.primary}
           placeholder="Estimate Hours:"
+          keyboardType='numeric'
         />
 
         <CustomButton
