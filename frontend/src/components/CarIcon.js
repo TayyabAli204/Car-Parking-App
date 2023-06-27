@@ -1,4 +1,3 @@
-import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { Svg,Path,SvgXml } from 'react-native-svg'
 const CarIcon = ({color}) => {
@@ -11,5 +10,3 @@ const CarIcon = ({color}) => {
 }
 
 export default CarIcon
-
-const styles = StyleSheet.create({})

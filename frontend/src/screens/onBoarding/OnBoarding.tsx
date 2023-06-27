@@ -25,7 +25,6 @@ const Boarding = () => {
       <Onboarding
         onDone={onNavigate}
         onSkip={onNavigate}
-        
         pages={[
           {
             backgroundColor: '#fff',

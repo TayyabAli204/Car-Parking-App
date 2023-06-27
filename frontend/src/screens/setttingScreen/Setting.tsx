@@ -10,6 +10,7 @@ import {
   Switch,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
+import {styles} from './style';
 import BackIcon from '../../assets/img/setting/leftIcon.svg';
 import EditIcon from '../../assets/img/setting/editIcon.svg';
 import MailIcon from '../../assets/img/setting/mailIcon.svg';
@@ -20,11 +21,11 @@ import RightIcon from '../../assets/img/setting/rightIcon.svg';
 import Cross from '../../assets/img/setting/crossIcon.svg';
 import CustomButton from '../../components/CustomButton';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import COLORS from '../../consts/colors';
-import { useSelector } from 'react-redux';
+
+import {useSelector} from 'react-redux';
 const Settings = ({navigation}: any) => {
-  const userName=useSelector((state:any)=>state.userSlice.name)
-  const userEmail=useSelector((state:any)=>state.userSlice.email)
+  const userName = useSelector((state: any) => state.userSlice.name);
+  const userEmail = useSelector((state: any) => state.userSlice.email);
   const [logoutModal, setLogoutModal] = useState(false);
   const [notificationModal, setNotificationModal] = useState(false);
   const [isEnabled1, setIsEnabled1] = useState(true);
@@ -42,7 +43,7 @@ const Settings = ({navigation}: any) => {
       .catch(() => {
         console.log('error aa gya token ma');
       });
-      await AsyncStorage.removeItem('userEmail')
+    await AsyncStorage.removeItem('userEmail')
       .then(() => console.log('del ho gya email'))
       .catch(() => {
         console.log('error aa gya email ma');
@@ -50,16 +51,6 @@ const Settings = ({navigation}: any) => {
 
     navigation.navigate('Login');
   };
-  const [name, setName] = useState('');
-  // useEffect(() => {
-  //   async function name() {
-  //     const userName: any = await AsyncStorage.getItem('userName');
-  //     console.log(userName, 'userName');
-  //     setName(userName);
-  //   }
-  //   name();
-  // }, []);
-  console.log(name, 'state ma set name');
 
   return (
     <View style={styles.parent}>
@@ -71,7 +62,6 @@ const Settings = ({navigation}: any) => {
         <Text style={styles.headerText}>Settings</Text>
         <View style={{height: 16, width: 60}}></View>
       </View>
-
       <View style={styles.header1}>
         <Image
           style={{height: 64, width: 64}}
@@ -80,15 +70,11 @@ const Settings = ({navigation}: any) => {
           <Text style={styles.headerText2}>
             {userName === '' ? 'Michel' : userName}
           </Text>
-          <View
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: 9,
-            }}>
+          <View style={styles.changeEmail}>
             <MailIcon />
-            <Text style={styles.headerText3}>{userEmail===''?"anto_michael@gmail.com":userEmail}</Text>
+            <Text style={styles.headerText3}>
+              {userEmail === '' ? 'anto_michael@gmail.com' : userEmail}
+            </Text>
           </View>
         </View>
       </View>
@@ -101,12 +87,7 @@ const Settings = ({navigation}: any) => {
         </TouchableOpacity>
       </View>
       <Text style={[styles.appSetting, {marginBottom: 8}]}>APP SETTINGS</Text>
-      <View
-        style={{
-          marginHorizontal: 16,
-          borderBottomColor: '#EFEEF0',
-          borderBottomWidth: 1,
-        }}>
+      <View style={styles.change}>
         <View style={styles.listParent}>
           <Pressable
             onPress={() => navigation.navigate('ChangePassword')}
@@ -137,25 +118,12 @@ const Settings = ({navigation}: any) => {
       </View>
       <Modal visible={logoutModal} animationType="slide" transparent={true}>
         <View style={styles.logoutModal}>
-          <View
-            style={{
-              backgroundColor: 'white',
-              display: 'flex',
-              alignItems: 'center',
-              borderRadius: 20,
-            }}>
+          <View style={styles.logoutout}>
             <Text style={styles.logout}>Log Out</Text>
             <Text style={styles.logoutText}>
               Are you sure you want to log out from the application?
             </Text>
-            <View
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                marginTop: 48,
-                marginBottom: 32,
-                gap: 16,
-              }}>
+            <View style={styles.cancel}>
               <CustomButton
                 titleStyle={{color: '#6A3EA1'}}
                 onPress={() => setLogoutModal(false)}
@@ -166,6 +134,7 @@ const Settings = ({navigation}: any) => {
                 onPress={logout}
                 title={'Yes'}
                 buttonStyle={styles.modelButton1}
+                titleStyle={{color: '#ffffff'}}
               />
             </View>
           </View>
@@ -175,42 +144,16 @@ const Settings = ({navigation}: any) => {
         visible={notificationModal}
         transparent={true}
         animationType="slide">
-        <View
-          style={{
-            flex: 1,
-            justifyContent: 'flex-end',
-            backgroundColor: 'rgba(0,0,0,0.5)',
-          }}>
-          <View
-            style={{
-              backgroundColor: '#fff',
-              display: 'flex',
-              borderTopLeftRadius: 20,
-              borderTopRightRadius: 20,
-            }}>
+        <View style={styles.pushNotiu}>
+          <View style={styles.pushNotiii}>
             <View style={{alignItems: 'flex-end'}}>
               <TouchableOpacity onPress={() => setNotificationModal(false)}>
-                <Text
-                  style={{
-                    backgroundColor: '#EFEEF0',
-                    borderRadius: 50,
-                    padding: 8,
-                    marginRight: 16,
-                    marginTop: 16,
-                  }}>
+                <Text style={styles.pushNotii}>
                   <Cross />
                 </Text>
               </TouchableOpacity>
             </View>
-            <View
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                marginHorizontal: 24,
-                alignItems: 'center',
-                marginTop: 24,
-              }}>
+            <View style={styles.emailNoti}>
               <Text style={styles.notificationText}>Email Notifications</Text>
               <Switch
                 trackColor={{false: '#767577', true: '#EFE9F7'}}
@@ -220,16 +163,7 @@ const Settings = ({navigation}: any) => {
                 value={isEnabled1}
               />
             </View>
-            <View
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                marginHorizontal: 24,
-                alignItems: 'center',
-                marginTop: 34,
-                marginBottom: 16,
-              }}>
+            <View style={styles.pushNoti}>
               <Text style={styles.notificationText}>Push Notifications</Text>
               <Switch
                 trackColor={{false: '#767577', true: '#EFE9F7'}}
@@ -247,183 +181,3 @@ const Settings = ({navigation}: any) => {
 };
 
 export default Settings;
-
-const styles = StyleSheet.create({
-  parent: {
-    flex: 1,
-  },
-  header: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: 16,
-    paddingHorizontal: 23,
-    borderBottomWidth: 1,
-    borderBottomColor: '#EFEEF0',
-  },
-  headerText: {
-    color: 'black',
-    fontSize: 16,
-    fontWeight: '500',
-    lineHeight: 22,
-    fontFamily: 'Inter-Medium',
-  },
-  headerText1: {
-    color: COLORS.lightBlue,
-    fontSize: 16,
-    fontWeight: '500',
-    lineHeight: 22,
-    fontFamily: 'Inter-Medium',
-  },
-  headerChild: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 15,
-  },
-  header1: {
-    display: 'flex',
-    flexDirection: 'row',
-    paddingHorizontal: 16,
-    marginTop: 24,
-    gap: 16,
-  },
-  headerChild1: {
-    display: 'flex',
-    justifyContent: 'center',
-    gap: 8,
-  },
-  headerText2: {
-    color: 'black',
-    fontSize: 20,
-    fontWeight: '700',
-    lineHeight: 28,
-    fontFamily: 'Inter-Medium',
-  },
-  headerText3: {
-    color: '#827D89',
-    fontSize: 12,
-    fontWeight: '400',
-    lineHeight: 15,
-    fontFamily: 'Inter-Medium',
-  },
-  button: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 32,
-    gap: 10,
-    paddingVertical: 8,
-    borderColor: '#613EEA',
-    borderWidth: 1,
-    borderRadius: 25,
-  },
-  buttonText: {
-    color: '#613EEA',
-    fontSize: 16,
-    fontWeight: '500',
-    lineHeight: 22,
-    fontFamily: 'Inter-Medium',
-  },
-  buttonParent: {
-    borderBottomColor: '#EFEEF0',
-    borderBottomWidth: 1,
-    paddingBottom: 24,
-    marginHorizontal: 16,
-  },
-  appSetting: {
-    color: '#827D89',
-    fontSize: 10,
-    fontWeight: '400',
-    lineHeight: 12,
-    fontFamily: 'Inter-Regular',
-    marginLeft: 16,
-    marginTop: 24,
-  },
-  listParent: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingHorizontal: 12,
-    alignItems: 'center',
-    paddingVertical: 17,
-  },
-  listContent: {
-    display: 'flex',
-    flexDirection: 'row',
-    gap: 16,
-    alignItems: 'center',
-  },
-  listText: {
-    color: 'black',
-    fontSize: 16,
-    fontWeight: '500',
-    lineHeight: 22,
-    fontFamily: 'Inter-Regular',
-  },
-  listText1: {
-    color: '#CE3A54',
-    fontSize: 16,
-    fontWeight: '500',
-    lineHeight: 22,
-    fontFamily: 'Inter-Regular',
-  },
-  listSideText: {
-    color: '#827D89',
-    fontSize: 10,
-    fontWeight: '400',
-    lineHeight: 14,
-    fontFamily: 'Inter-Regular',
-  },
-  logoutModal: {
-    display: 'flex',
-    alignItems: 'center',
-    borderRadius: 20,
-
-    flex: 1,
-    justifyContent: 'center',
-    backgroundColor: 'rgba(0,0,0,0.5)',
-  },
-  logout: {
-    color: '#180E25',
-    fontSize: 20,
-    fontWeight: '700',
-    lineHeight: 28,
-    fontFamily: 'Inter-Bold',
-    marginTop: 32,
-  },
-  logoutText: {
-    color: '#827D89',
-    fontSize: 16,
-    fontWeight: '400',
-    lineHeight: 22,
-    fontFamily: 'Inter-Regular',
-    marginTop: 8,
-    textAlign: 'center',
-    paddingHorizontal: 24,
-  },
-  modelButton: {
-    borderRadius: 25,
-    borderWidth: 1,
-    paddingVertical: 8,
-    paddingHorizontal: 27,
-    borderColor: '#6A3EA1',
-  },
-  modelButton1: {
-    borderRadius: 25,
-    borderWidth: 1,
-    paddingVertical: 8,
-    paddingHorizontal: 40,
-    borderColor: '#6A3EA1',
-    backgroundColor: '#6A3EA1',
-  },
-  notificationText: {
-    color: '#180E25',
-    fontSize: 16,
-    fontWeight: '500',
-    lineHeight: 22,
-    fontFamily: 'Inter-Medium',
-    marginTop: 8,
-  },
-});

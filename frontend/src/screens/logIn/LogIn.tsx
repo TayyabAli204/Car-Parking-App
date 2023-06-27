@@ -1,5 +1,4 @@
 import {
-  StyleSheet,
   TextInput,
   ScrollView,
   Text,
@@ -13,17 +12,12 @@ import React, {useState} from 'react';
 import Slogo from '../../assets/img/splashlogo.svg';
 import COLORS from '../../consts/colors';
 import axios from 'axios';
-import {
-  fontPixel,
-  pixelSizeVertical,
-  pixelSizeHorizontal,
-  widthPixel,
-  heightPixel,
-} from '../../utils/ResponsiveStyle';
+import {widthPixel, heightPixel} from '../../utils/ResponsiveStyle';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
 import {setEmail, setToken, setName} from '../../store/userSlice';
+import {styles} from './style';
 
 const LogIn = ({}) => {
   const navigation: any = useNavigation();
@@ -60,30 +54,25 @@ const LogIn = ({}) => {
         setLoader(false);
         // console.log(response.data, 'data from db');
         // console.log(response.data.data.email, 'email from db');
-        console.log(
-          'response',
-          response.data,
-          'from loginnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn',
-        );
+
         dispatch(setEmail(response.data.data.email));
         dispatch(setToken(response.data.data.token));
         if (response.data.data.name) {
           dispatch(setName(response.data.data.name));
         } else {
           dispatch(setName(''));
-          return;
-
         }
 
         await AsyncStorage.setItem('token', response.data.data.token);
         await AsyncStorage.setItem('userName', response.data.data.name);
         await AsyncStorage.setItem('userEmail', response.data.data.email);
         console.log('Token stored successfully');
-        navigation.navigate('Taps');
+
         ToastAndroid.show('User SuccessFully Login', ToastAndroid.TOP);
+        navigation.navigate('Taps');
       } catch (error) {
         ToastAndroid.show('Invalid email or password', ToastAndroid.TOP);
-        setLoader(false)
+        setLoader(false);
       }
     }
   };
@@ -161,69 +150,3 @@ const LogIn = ({}) => {
 };
 
 export default LogIn;
-
-const styles = StyleSheet.create({
-  input: {
-    width: widthPixel(343),
-    borderColor: COLORS.borderCOl,
-    borderBottomWidth: 1,
-    fontSize: fontPixel(16),
-    fontFamily: 'OpenSans-Regular',
-    color: COLORS.grey,
-  },
-  passWord_input: {
-    fontSize: fontPixel(16),
-    width: widthPixel(343),
-    borderColor: COLORS.borderCOl,
-    borderBottomWidth: 1,
-    marginTop: pixelSizeVertical(44),
-    marginBottom: pixelSizeVertical(18),
-    fontFamily: 'OpenSans-Regular',
-    color: COLORS.grey,
-  },
-  forget: {
-    fontSize: fontPixel(16),
-    fontFamily: 'OpenSans-Regular',
-    textAlign: 'right',
-    color: COLORS.secondary,
-    marginTop: pixelSizeVertical(22),
-  },
-
-  signup: {
-    fontSize: fontPixel(16),
-    fontFamily: 'OpenSans-Regular',
-    color: COLORS.secondary,
-  },
-  or: {
-    fontSize: fontPixel(16),
-    fontFamily: 'OpenSans-Regular',
-    color: COLORS.grey,
-  },
-  main: {flex: 1, marginHorizontal: pixelSizeHorizontal(16)},
-  sec: {
-    alignItems: 'center',
-    marginTop: pixelSizeVertical(147),
-    marginBottom: pixelSizeVertical(135),
-  },
-  sec1: {
-    backgroundColor: COLORS.secondary,
-    paddingHorizontal: pixelSizeHorizontal(20),
-    paddingVertical: pixelSizeVertical(14),
-    borderRadius: 6,
-    marginTop: pixelSizeVertical(62),
-    marginBottom: pixelSizeVertical(40),
-  },
-  sec2: {
-    textAlign: 'center',
-    fontSize: fontPixel(16),
-    color: COLORS.white,
-    fontFamily: 'OpenSans-Bold',
-    lineHeight: 24,
-  },
-  sec3: {
-    flexDirection: 'row',
-    gap: 5,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

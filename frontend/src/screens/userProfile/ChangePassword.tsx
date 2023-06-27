@@ -4,6 +4,7 @@ import BackIcon from '../../assets/img/setting/leftIcon.svg'
 import RightArrow from '../../assets/img/setting/whiteIcon.svg'
 import ButtonWithImg from '../../components/ButtonWithText';
 import axios from 'axios';
+import{styles} from './Styles'
 import {useSelector} from 'react-redux';
 const ChangePassword = ({navigation}: any) => {
   const storeEmail = useSelector(
@@ -104,91 +105,3 @@ const ChangePassword = ({navigation}: any) => {
 };
 
 export default ChangePassword;
-
-const styles = StyleSheet.create({
-  header: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: 16,
-    paddingHorizontal: 23,
-    borderBottomWidth: 1,
-    borderBottomColor: '#EFEEF0',
-  },
-  headerText: {
-    color: 'black',
-    fontSize: 16,
-    fontWeight: '500',
-    lineHeight: 22,
-    fontFamily: 'Inter-Medium',
-  },
-  headerText1: {
-    color: '#613EEA',
-    fontSize: 16,
-    fontWeight: '500',
-    lineHeight: 22,
-    fontFamily: 'Inter-Medium',
-  },
-  headerChild: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 15,
-  },
-  headerTitle: {
-    color: '#613EEA',
-    fontSize: 12,
-    fontWeight: '500',
-    lineHeight: 14,
-    fontFamily: 'Inter-Medium',
-    marginHorizontal: 16,
-    marginTop: 24,
-  },
-  headerTitle1: {
-    color: '#613EEA',
-    fontSize: 12,
-    fontWeight: '500',
-    lineHeight: 14,
-    fontFamily: 'Inter-Medium',
-    marginHorizontal: 16,
-    marginTop: 24,
-    paddingTop: 24,
-    borderTopColor: '#EFEEF0',
-    borderTopWidth: 1,
-  },
-  emailLable: {
-    fontSize: 16,
-    lineHeight: 38,
-    fontWeight: '500',
-    fontFamily: 'Inter-Medium',
-    color: '#180E25',
-    marginTop: 16,
-  },
-  emailInput: {
-    color: 'gray',
-    borderColor: '#C8C5CB',
-    paddingHorizontal: 16,
-    borderRadius: 8,
-    borderWidth: 1,
-  },
-  text: {fontSize: 16, lineHeight: 22, color: 'white'},
-  button: {
-    backgroundColor: '#613EEA',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    borderRadius: 50,
-    paddingVertical: 16,
-    paddingHorizontal: 20,
-    marginTop: 80,
-  },
-  inputTitle: {
-    fontSize: 12,
-    lineHeight: 14,
-    fontWeight: '400',
-    fontFamily: 'Inter-Medium',
-    color: '#C8C5CB',
-    marginTop: 12,
-  },
-});

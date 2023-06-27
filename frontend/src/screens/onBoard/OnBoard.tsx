@@ -14,9 +14,7 @@ import {
   pixelSizeHorizontal,
   pixelSizeVertical,
 } from '../../utils/ResponsiveStyle';
-import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 const GetStarted = ({}) => {
   const navigation: any = useNavigation();
   const getStart = async () => {
