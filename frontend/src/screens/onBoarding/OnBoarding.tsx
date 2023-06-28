@@ -30,7 +30,7 @@ const Boarding = () => {
             backgroundColor: '#fff',
             image: (
               <Image
-                source={require('../../assets/img/onboarding.png')}
+                source={require('../../assets/img/onboardingg.png')}
                 style={{
                   width: '100%',
                   height: heightPixel(241),

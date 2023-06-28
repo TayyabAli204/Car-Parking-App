@@ -26,6 +26,8 @@ import {useSelector} from 'react-redux';
 const Settings = ({navigation}: any) => {
   const userName = useSelector((state: any) => state.userSlice.name);
   const userEmail = useSelector((state: any) => state.userSlice.email);
+  const userImage = useSelector((state: any) => state.userSlice.image);
+
   const [logoutModal, setLogoutModal] = useState(false);
   const [notificationModal, setNotificationModal] = useState(false);
   const [isEnabled1, setIsEnabled1] = useState(true);
@@ -64,8 +66,15 @@ const Settings = ({navigation}: any) => {
       </View>
       <View style={styles.header1}>
         <Image
-          style={{height: 64, width: 64}}
-          source={require('../../assets/img/ProfilePicture.png')}></Image>
+          resizeMode="cover"
+          resizeMethod="scale"
+          style={styles.image}
+          source={
+            userImage?.uri
+              ? {uri: userImage?.uri}
+              : require('../../assets/img/ProfilePicture.png')
+          }
+        />
         <View style={styles.headerChild1}>
           <Text style={styles.headerText2}>
             {userName === '' ? 'Michel' : userName}

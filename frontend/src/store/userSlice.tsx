@@ -4,7 +4,8 @@ const userSlice = createSlice({
   initialState: {
     email: '',
     token: '',
-    name:''
+    name:'',
+    image:{},
   },
   reducers: {
     setEmail: (state, action) => {
@@ -16,9 +17,12 @@ const userSlice = createSlice({
     },
     setName:(state,action)=>{
       state.name=action.payload
+    },
+    setImages:(state,action)=>{
+     state.image= action.payload
     }
   },
 });
 
-export const {setEmail, setToken,setName} = userSlice.actions;
+export const {setEmail, setToken,setName,setImages} = userSlice.actions;
 export default userSlice.reducer;

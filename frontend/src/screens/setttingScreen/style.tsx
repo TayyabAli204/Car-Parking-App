@@ -90,7 +90,6 @@ export const styles = StyleSheet.create({
       display: 'flex',
       flexDirection: 'row',
       paddingHorizontal: 16,
-      marginTop: 24,
       gap: 16,
     },
     headerChild1: {
@@ -237,6 +236,11 @@ export const styles = StyleSheet.create({
       display: 'flex',
       alignItems: 'center',
       borderRadius: 20,
-    }
+    }, image: {
+      height: 120,
+      width: 120,
+      marginTop: 24,
+      borderRadius: 80,
+    },
   });
   

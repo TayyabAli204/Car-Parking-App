@@ -12,17 +12,20 @@ import BackIcon from '../../assets/img/setting/leftIcon.svg';
 import ButtonWithImg from '../../components/ButtonWithText';
 import TickIcon from '../../assets/img/setting/tickIcon.svg';
 import axios from 'axios';
-import {useSelector} from 'react-redux';
+import {useSelector,useDispatch} from 'react-redux';
 import { styles } from './style';
 import {DemoButton} from '../../components';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {launchImageLibrary, launchCamera} from 'react-native-image-picker';
 import ImagePicker from 'react-native-image-picker';
+import { setImages } from '../../store/userSlice';
 const includeExtra = true;
 
 const EditProfile = ({navigation}: any) => {
   const oldEmail = useSelector((state: any) => state.userSlice);
   console.log('dkjashfkljdashn', oldEmail);
+
+  const dispatch = useDispatch();
 
   const [name, onChangeName] = useState('');
   const [email, onChangeEmail] = useState('');
@@ -35,14 +38,17 @@ const EditProfile = ({navigation}: any) => {
       setImage(response?.assets?.[0] || null);
     });
   };
-
+ 
   useEffect(() => {
     async function name() {
       const storedImageUri = await AsyncStorage.getItem('imageUri');
-      console.log(storedImageUri);
+      console.log("storedImageUri",storedImageUri);
       setImage({
         uri: storedImageUri,
       });
+      dispatch(setImages({
+        uri: storedImageUri,
+      }));
     }
     name();
     // updateProfile()
@@ -118,9 +124,7 @@ const EditProfile = ({navigation}: any) => {
             resizeMethod="scale"
             style={styles.image}
             source={
-              imageData?.uri
-                ? {uri: imageData?.uri}
-                : require('../../assets/img/ProfilePicture.png')
+              imageData?.uri ? {uri: imageData?.uri} : require('../../assets/img/ProfilePicture.png')
             }
           />
         </View>
@@ -155,7 +159,7 @@ const EditProfile = ({navigation}: any) => {
           />
 
           {isRequiredEmail && (
-            <Text style={{color: 'red', fontSize: 12}}>Enter Valid Email</Text>
+            <Text style={{color: 'red', fontSize: 12,marginHorizontal: 16}}>Enter Name</Text>
           )}
 
           <Text style={styles.emailLable}>Email Address</Text>
@@ -174,7 +178,7 @@ const EditProfile = ({navigation}: any) => {
           />
 
           {isRequiredEmail && (
-            <Text style={{color: 'red', fontSize: 12}}>Enter Valid Email</Text>
+            <Text style={{color: 'red', fontSize: 12,marginHorizontal: 16,}}>Enter Valid Email</Text>
           )}
         </View>
         <Text style={styles.text}>

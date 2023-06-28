@@ -300,7 +300,7 @@ const MapHomeScreen = ({navigation}: any) => {
         {parkingLocation.map((item: any, index:any) => {
           return (
             <Marker
-            key={item?.lat * item?.lng}
+            key={index}
             coordinate={{
               latitude: item?.lat,
               longitude: item?.lng,
