@@ -25,9 +25,6 @@ import {useRef} from 'react';
 import Cross from '../../assets/img/CrossIcon.svg';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-import GooglePlacesAutoCompleteComp from '../../components/GooglePlacesAutoComplete';
-import useGooglePlaces from '../../hooks/useGooglePlaces';
 const MapHomeScreen = ({navigation}: any) => {
 
   // useEffect(() => {
@@ -65,12 +62,12 @@ const MapHomeScreen = ({navigation}: any) => {
   });
 
   async function getDbData(name: String) {
+    console.log("name",name)
     try {
       const token = await AsyncStorage.getItem('token');
       console.log('token from , that are  login', token);
-      const {data} = await axios.get(
-        `https://long-jade-wasp-robe.cyclic.app/parkingSlot/data/${name}/${token}`,
-      );
+
+      const {data} = await axios.get(`https://long-jade-wasp-robe.cyclic.app/parkingSlot/data/${name}`);
       dispatch(setSelectedArea(name));
       dispatch(setParkingSlotData(data.data));
       navigation.navigate('parkingSpace');

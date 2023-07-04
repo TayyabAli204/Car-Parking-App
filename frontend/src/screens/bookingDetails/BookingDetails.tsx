@@ -23,7 +23,6 @@ const BookingDetails = () => {
       <MenuSearchBar
         MenuSearchBarStyle={styles.mainspace}
         title={selectedArea}
-        titleSlotName={selectedSpot.parkingLotName}
 
       />
       <View>
@@ -40,6 +39,7 @@ const BookingDetails = () => {
                 flexDirection: 'row',
                 justifyContent: 'space-between',
                 paddingHorizontal: 13,
+                flexWrap:'wrap'
               }}>
               <Text style={styles.CHECKINTIMEDATA}>Booked Space: </Text>
               <Text style={styles.CHECKINTIMETEXT}>

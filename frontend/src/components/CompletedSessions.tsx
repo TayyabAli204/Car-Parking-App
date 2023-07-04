@@ -5,6 +5,7 @@ import {
   pixelSizeHorizontal,
   fontPixel,
   heightPixel,
+  widthPixel,
 } from '../utils/ResponsiveStyle';
 import COLORS from '../consts/colors';
 const CompletedSessions = ({Icon,data}: any) => {
@@ -25,10 +26,10 @@ const CompletedSessions = ({Icon,data}: any) => {
         <View style={styles.jello}>
           <View style={styles.jello1}>
             <View style={{marginVertical: 9}}>{Icon}</View>
-            <View style={{marginTop: 9, marginRight: 23}}>
+            <View style={{paddingTop:5,width: widthPixel(200)}}>
               <Text style={styles.jello2}>{data?.location}</Text>
-              <Text style={styles.jello4}>{data?.parkingLotName}</Text>
             </View>
+              <Text style={styles.jello4}>{data?.parkingLotName}</Text>
           </View>
           <View style={styles.jello6}></View>
           <View style={styles.jello5}>
@@ -49,7 +50,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     width: '100%',
     marginTop: 11,
-    height: heightPixel(100),
     borderRadius: 10,
     shadowColor: '#000',
     shadowOffset: {width: 0, height: 2},
@@ -59,18 +59,17 @@ const styles = StyleSheet.create({
   },
   jello1: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginLeft: pixelSizeHorizontal(13),
+    justifyContent: 'space-around',
   },
   jello2: {
     color: COLORS.grey,
-    fontSize: fontPixel(16),
+    fontSize: fontPixel(14),
     fontFamily: 'OpenSans-SemiBold',
     
   },
   jello4: {
     color: COLORS.grey,
-    alignSelf: 'flex-end',
+    alignSelf: 'center',
     fontSize: fontPixel(14),
     fontFamily: 'OpenSans-SemiBold',
   },
@@ -78,7 +77,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginHorizontal: pixelSizeHorizontal(15),
-    marginTop: 9,
+    marginVertical: 9,
   },
   jello6: {
     borderWidth: 1,

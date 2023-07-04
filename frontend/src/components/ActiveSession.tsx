@@ -6,16 +6,17 @@ import {
   pixelSizeVertical,
   fontPixel,
   heightPixel,
+  widthPixel,
 } from '../utils/ResponsiveStyle';
 import COLORS from '../consts/colors';
 const ActiveSession = ({data}: any) => {
-var entryTime: any = data.entryTime;
-const estimateReservationHours = data.totalParkingTime;
-const entryMoment = moment(entryTime, "dddd, M/D/YYYY h:mm A");
-const checkOutMoment = entryMoment
-  .clone()
-  .add(estimateReservationHours, 'hours')
-const checkOutTimeFormatted = checkOutMoment.format("hh:mm A");
+  var entryTime: any = data.entryTime;
+  const estimateReservationHours = data.totalParkingTime;
+  const entryMoment = moment(entryTime, 'dddd, M/D/YYYY h:mm A');
+  const checkOutMoment = entryMoment
+    .clone()
+    .add(estimateReservationHours, 'hours');
+  const checkOutTimeFormatted = checkOutMoment.format('hh:mm A');
   return (
     <>
       <View style={styles.hello1}>
@@ -23,10 +24,11 @@ const checkOutTimeFormatted = checkOutMoment.format("hh:mm A");
           <View style={styles.hello3}>
             <Text style={styles.hello4}>{'N' + data.perHourFee}</Text>
           </View>
-          <View style={{marginTop: 9, marginRight: 23}}>
+
+          <View style={{paddingTop:5,width: widthPixel(200)}}>
             <Text style={styles.hello5}>{data.location}</Text>
-            <Text style={styles.hello6}>{data.parkingLotName}</Text>
           </View>
+          <Text style={styles.hello6}>{data.parkingLotName}</Text>
         </View>
         <View style={styles.hello7}></View>
         <View style={styles.hello8}>
@@ -45,10 +47,7 @@ const checkOutTimeFormatted = checkOutMoment.format("hh:mm A");
               {data.totalParkingTime + 'hours'}{' '}
             </Text>
           </View>
-          {/* <View style={{flexDirection:'row', justifyContent: 'space-between'}}>
-            <Text style={styles.hello9}>Remaining Time</Text>
-            <Text style={styles.hello10}> {remainingTimeFormatted} </Text>
-          </View> */}
+          
         </View>
       </View>
     </>
@@ -62,7 +61,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     width: '100%',
     marginTop: 11,
-    // height: heightPixel(105),
     borderRadius: 10,
     shadowColor: '#000',
     shadowOpacity: 0.25,
@@ -72,30 +70,32 @@ const styles = StyleSheet.create({
   },
   hello2: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginLeft: pixelSizeHorizontal(13),
+    justifyContent:"space-around"
   },
   hello3: {
     backgroundColor: COLORS.secondary,
     borderRadius: 6,
     marginVertical: 12,
+    alignSelf:'center'
   },
   hello4: {
     color: 'white',
     fontSize: fontPixel(16),
     fontFamily: 'OpenSans-Bold',
-    padding: 5,
+    padding: 6,
   },
   hello5: {
     color: COLORS.grey,
     fontSize: fontPixel(14),
     fontFamily: 'OpenSans-SemiBold',
+    alignSelf:'center',
+    
   },
   hello6: {
     color: COLORS.lightBlue,
-    alignSelf: 'flex-end',
     fontSize: fontPixel(16),
     fontFamily: 'OpenSans-SemiBold',
+    alignSelf:'center'
   },
   hello7: {
     borderWidth: 1,

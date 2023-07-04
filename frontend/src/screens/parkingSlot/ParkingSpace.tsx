@@ -17,6 +17,16 @@ const ParkingSpace = () => {
   const {parkingSlots, selectedArea, selectedSpot} = useSelector(
     (state: any) => state.parkingSlotSlice,
   );
+
+  console.log("parkingSlots parkingSlotsparkingSlots",parkingSlots)
+
+  // const firstPerHourFee = parkingSlots[0].perHourFee;
+
+  // const firstPerHourFee= parkingSlots.map((slot:any)=>slot.perHourFee)
+  // // const hello= firstPerHourFee.forEach(fee => {
+  // //   console.log(fee);
+  // // });
+  // // console.log(firstPerHourFee);
   console.log(selectedArea, 'selectedArea from home screen');
   useEffect(() => {
     async function getSlotsData() {
@@ -45,8 +55,8 @@ const ParkingSpace = () => {
       />
       <View style={styles.mainspace}>
         <MenuSearchBar
-          title={selectedArea}
-          titleSlotName={'N' + parkingSlots[0].perHourFee}
+          title="Galleria، E Canal Rd, سعید کالونی Nasar Ullah Khan Town, فیصل آباد, ضلع فیصل آباد, پنجاب 38000, Pakistan"
+         
         />
 
         <View>

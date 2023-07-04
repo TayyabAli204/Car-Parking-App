@@ -124,7 +124,7 @@ const BookSpace = () => {
       <MenuSearchBar
         MenuSearchBarStyle={styles.mainspace}
         title={selectedArea}
-        titleSlotName={"N" +selectedSpot.perHourFee}
+        
       />
 
       <View style={styles.contain}>

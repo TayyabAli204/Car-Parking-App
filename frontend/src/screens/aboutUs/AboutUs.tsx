@@ -1,9 +1,14 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, ScrollView,StatusBar } from 'react-native';
 
 const AboutUs = () => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
+      <StatusBar
+        translucent={false}
+        backgroundColor={'white'}
+        barStyle={'dark-content'}
+      />
       <Text style={styles.title}>About Us</Text>
       <Text style={styles.description}>
         Welcome to our revolutionary car parking app! We are proud to introduce a user-friendly and efficient solution to the common problem of finding parking spaces. Our app is designed to make your parking experience convenient, hassle-free, and reliable. At "SwiftPark", we understand the frustration of searching for available parking spots, especially in busy urban areas. Our mission is to simplify this process and help you save time and effort. Whether you're a daily commuter, a visitor exploring a new city, or simply in need of a parking spot for an event, our app is here to assist you.
@@ -43,7 +48,7 @@ const AboutUs = () => {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    paddingVertical: 20,
+    paddingVertical: 40,
     paddingHorizontal: 16,
     backgroundColor: '#FFFFFF',
   },

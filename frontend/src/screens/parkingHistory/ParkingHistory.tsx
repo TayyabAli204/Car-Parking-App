@@ -75,24 +75,14 @@ const parsedDate = moment(dateString, "dddd, M/D/YYYY h:mm A").toDate();
 },[BookedSlotHistory])
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1,backgroundColor:'white'}}>
       <StatusBar
         translucent
         backgroundColor={'transparent'}
         barStyle={'dark-content'}
       />
       <ScrollView>
-        <View style={styles.hi1}>
-          <TouchableOpacity onPress={() => setfirst(!first)}>
-            {first ? (
-              <Close width={widthPixel(47)} height={heightPixel(47)} />
-            ) : (
-              <Menu width={widthPixel(25)} height={heightPixel(22)} />
-            )}
-          </TouchableOpacity>
           <Text style={styles.hi2}>History</Text>
-          <Profile width={widthPixel(32)} height={heightPixel(32)} />
-        </View>
         <View style={styles.hi3}>
           <Text style={styles.hi4}>Active Session :</Text>
        
@@ -176,10 +166,11 @@ const styles = StyleSheet.create({
     marginTop: 53,
   },
   hi2: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: 'bold',
     color: '#3B414B',
     fontFamily: 'OpenSans-Bold',
+    textAlign:"center"
   },
   hi3: {
     marginTop: pixelSizeVertical(29),
@@ -188,7 +179,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: pixelSizeHorizontal(16),
   },
   hi4: {
-    // marginHorizontal: pixelSizeHorizontal(1),
     color: COLORS.grey,
     fontSize: fontPixel(16),
     fontFamily: 'OpenSans-SemiBold',

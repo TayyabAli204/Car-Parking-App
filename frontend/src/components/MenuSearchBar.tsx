@@ -9,12 +9,8 @@ const MenuSearchBar = (props: any) => {
       <View style={styles.miansearch}>
         <View style={styles.mainouter}>
           <Text style={styles.stext}>{props.title}</Text>
-          <Text style={styles.stext2}>{props.titleSlotName}</Text>
+          {/* <Text style={styles.stext2}>{props.titleSlotName}</Text> */}
         </View>
-        {/* <View style={styles.stext1}>
-              </View> */}
-        {/* <Text style={styles.stext2}>{props.titleRS}</Text>
-              <Text style={styles.stext2}>{props.titleHours}</Text> */}
       </View>
     </View>
   );
@@ -33,12 +29,12 @@ const styles = StyleSheet.create({
   },
   mainouter: {
     flexDirection: 'row',
-    paddingHorizontal: 11,
+    paddingHorizontal: 16,
     paddingVertical: 20,
-    gap: 30,
+    // gap: 30,
   },
   stext: {
-    fontSize: fontPixel(16),
+    fontSize: fontPixel(20),
     color: COLORS.black,
     fontFamily: 'OpenSans-SemiBold',
   },
