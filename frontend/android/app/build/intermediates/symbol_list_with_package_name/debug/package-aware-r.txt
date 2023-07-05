@@ -1584,6 +1584,7 @@ color foreground_material_dark
 color foreground_material_light
 color highlighted_text_material_dark
 color highlighted_text_material_light
+color ic_launcher_background
 color info_zone_header_text
 color m3_appbar_overlay_color
 color m3_assist_chip_icon_tint_color
@@ -4404,6 +4405,7 @@ layout wallet_test_layout
 menu stripe_add_payment_method
 menu stripe_payment_auth_web_view_menu
 mipmap ic_launcher
+mipmap ic_launcher_foreground
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description
 plurals stripe_account_picker_cta_link
