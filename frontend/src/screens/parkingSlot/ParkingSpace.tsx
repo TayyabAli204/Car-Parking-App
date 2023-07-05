@@ -55,7 +55,7 @@ const ParkingSpace = () => {
       />
       <View style={styles.mainspace}>
         <MenuSearchBar
-          title="Galleria، E Canal Rd, سعید کالونی Nasar Ullah Khan Town, فیصل آباد, ضلع فیصل آباد, پنجاب 38000, Pakistan"
+          title={selectedArea}
          
         />
 

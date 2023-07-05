@@ -67,7 +67,7 @@ const MapHomeScreen = ({navigation}: any) => {
       const token = await AsyncStorage.getItem('token');
       console.log('token from , that are  login', token);
 
-      const {data} = await axios.get(`https://long-jade-wasp-robe.cyclic.app/parkingSlot/data/${name}`);
+      const {data} = await axios.get(`http://192.168.50.9:8000/parkingSlot/data/${name}`);
       dispatch(setSelectedArea(name));
       dispatch(setParkingSlotData(data.data));
       navigation.navigate('parkingSpace');
@@ -290,7 +290,7 @@ const MapHomeScreen = ({navigation}: any) => {
               longitude: currentLocation.longitude,
             }}
             image={require('../../assets/img/homeimg/usercurrentlocation.png')}
-            style={{height: 40, width: 40}}
+            // style={{height: 40, width: 40}}
           />
         )}
 
@@ -304,6 +304,7 @@ const MapHomeScreen = ({navigation}: any) => {
             }}
             title={item.location}
             image={require('../../assets/img/homeimg/parkinglocation.png')}
+            style={{height:20,width:20}}
             onPress={() => getDbData(item.location)}
             />
           );

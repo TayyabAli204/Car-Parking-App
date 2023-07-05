@@ -92,6 +92,10 @@
         "source": "com.carparkingapp-react-87:/drawable-mdpi/src_assets_img_card_purple.jpeg"
     },
     {
+        "merged": "com.carparkingapp-merged_res-92:/drawable-mdpi_src_assets_img_onboardingg.png.flat",
+        "source": "com.carparkingapp-react-87:/drawable-mdpi/src_assets_img_onboardingg.png"
+    },
+    {
         "merged": "com.carparkingapp-merged_res-92:/mipmap-xxhdpi_ic_launcher_round.png.flat",
         "source": "com.carparkingapp-main-93:/mipmap-xxhdpi/ic_launcher_round.png"
     },

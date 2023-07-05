@@ -3255,6 +3255,7 @@ drawable src_assets_img_homeimg_usercurrentlocation
 drawable src_assets_img_onboard
 drawable src_assets_img_onboard1
 drawable src_assets_img_onboarding
+drawable src_assets_img_onboardingg
 drawable src_assets_img_profilepicture
 drawable src_assets_img_splashscreen
 drawable stripe_3ds2_ic_amex
