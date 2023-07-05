@@ -21,8 +21,9 @@ import MakePayment from './src/screens/makePayment/MakePayment';
 import ChangePassword from './src/screens/userProfile/ChangePassword';
 import ImagePickerGetBrower from './src/components/ImagePickerCompon';
 import Taps from './src/components/TabNavigation';
-import { REACT_APP_STRIPE_PUBLISHABLE_KEY } from '@env';
+import {REACT_APP_STRIPE_PUBLISHABLE_KEY} from '@env';
 const Stack = createNativeStackNavigator(); 
+
 const App = () => {
   return (
     <>    

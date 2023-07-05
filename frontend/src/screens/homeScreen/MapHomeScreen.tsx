@@ -23,10 +23,9 @@ import {
 } from '../../store/parkingSlotSlice';
 import {useRef} from 'react';
 import Cross from '../../assets/img/CrossIcon.svg';
-
+import {REACT_APP_GOOGLE_API_KEY } from '@env';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 const MapHomeScreen = ({navigation}: any) => {
-
   // useEffect(() => {
   //   const handleBackPress = () => {
   //     // BackHandler.exitApp();
@@ -67,7 +66,7 @@ const MapHomeScreen = ({navigation}: any) => {
       const token = await AsyncStorage.getItem('token');
       console.log('token from , that are  login', token);
 
-      const {data} = await axios.get(`http://192.168.50.9:8000/parkingSlot/data/${name}`);
+      const {data} = await axios.get(`https://long-jade-wasp-robe.cyclic.app/parkingSlot/data/${name}`);
       dispatch(setSelectedArea(name));
       dispatch(setParkingSlotData(data.data));
       navigation.navigate('parkingSpace');
@@ -124,7 +123,7 @@ const MapHomeScreen = ({navigation}: any) => {
       const response = await fetch(
         `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
           address,
-        )}&key=AIzaSyBRXj2DhUtd9c-hvmKWDJm4DIv-YUgWvjw`,
+        )}&key=${REACT_APP_GOOGLE_API_KEY}`,
       );
       const data = await response.json();
       if (data.status === 'OK') {
@@ -204,6 +203,7 @@ const MapHomeScreen = ({navigation}: any) => {
       <GooglePlacesAutocomplete
         ref={googlePlacesAutocompleteRef}
         renderRightButton={():any =>
+
           googlePlacesAutocompleteRef.current?.getAddressText() ? (
             <TouchableOpacity
               style={{position: 'absolute', right: 2, top: 16}}
@@ -223,13 +223,15 @@ const MapHomeScreen = ({navigation}: any) => {
             width: '100%',
           },
         }}
-        minLength={2}
+        minLength={6}
         fetchDetails={true}
         GooglePlacesSearchQuery={{
           rankby: 'distance',
         }}
         onPress={(data: any, details: any) => {
-          const isParkingAvailable: any = checkIfParkingAvailable(details); // Implement this function to check if parking is available
+          const isParkingAvailable: any = checkIfParkingAvailable(details);
+          console.log("details",details)
+          // Implement this function to check if parking is available
           if (isParkingAvailable) {
             setRegion({
               latitude: details.geometry.location.lat,
@@ -246,12 +248,12 @@ const MapHomeScreen = ({navigation}: any) => {
           }
         }}
         query={{
-          key: 'AIzaSyBRXj2DhUtd9c-hvmKWDJm4DIv-YUgWvjw',
+          key: REACT_APP_GOOGLE_API_KEY,
           language: 'en',
           components: 'country:pk',
           types: 'establishment',
           radius: 30000,
-          input: '{main_text}',
+          // input: '{main_text}',
           location: `${region.latitude}, ${region.longitude}`,
         }}
         styles={{
@@ -303,8 +305,8 @@ const MapHomeScreen = ({navigation}: any) => {
               longitude: item?.lng,
             }}
             title={item.location}
-            image={require('../../assets/img/homeimg/parkinglocation.png')}
-            style={{height:20,width:20}}
+            // image={require('../../assets/img/homeimg/parkinglocation.png')}
+            // style={{height:20,width:20}}
             onPress={() => getDbData(item.location)}
             />
           );
@@ -410,11 +412,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 12,
   },
-  // modalContainer: {
-  //   backgroundColor: 'white',
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  // },
+
   modalText12: {
     fontSize: 18,
     fontWeight: 'bold',
